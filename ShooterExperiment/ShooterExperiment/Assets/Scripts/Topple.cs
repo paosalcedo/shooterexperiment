@@ -10,7 +10,8 @@ public class Topple : MonoBehaviour {
 	public enum BuildingState
 	{
 		NORMAL,
-		DESTRUCTIVE
+		DESTRUCTIVE,
+		DONE
 	}
 
 
@@ -29,7 +30,15 @@ public class Topple : MonoBehaviour {
 	}
 
 	float risk (){
-		return Random.Range (0f, 100f);	 
+		if (buildingState == BuildingState.NORMAL) {
+			return Random.Range (0f, 100f);
+		} else if (buildingState == BuildingState.DESTRUCTIVE) {
+			return 101f;
+		} else if (buildingState == BuildingState.DONE) {
+			return 101f;
+		} else {
+			return 101f;
+		}
 	}
 
 	public void DetectPlayer(){
@@ -45,7 +54,8 @@ public class Topple : MonoBehaviour {
 		}
 
 		if (buildingState == BuildingState.DESTRUCTIVE) {
-			rb.AddRelativeTorque(Vector3.right * 100f);		
+			rb.AddRelativeTorque(Vector3.right * 100000f, ForceMode.Impulse);
+			buildingState = BuildingState.DONE;
 		} 
 
 	}
