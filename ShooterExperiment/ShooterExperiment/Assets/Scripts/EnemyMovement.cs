@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour {
 	float speed = 1f;
 	public GameObject player;
 	public TextMesh riskText;
+	private float riskNum;
 
 	public enum EnemyState{
 		NORMAL,
