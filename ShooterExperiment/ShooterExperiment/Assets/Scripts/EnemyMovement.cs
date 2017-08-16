@@ -36,8 +36,9 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	//reverse direction upon collision with wall
-	void OnCollisionEnter(Collision coll){
-		if (coll.gameObject.tag == "Wall") {
+	void OnCollisionEnter (Collision coll)
+	{
+		if (enemyState != EnemyState.ALERTED) {
 			speed *= -1f;
 		}
 	}
