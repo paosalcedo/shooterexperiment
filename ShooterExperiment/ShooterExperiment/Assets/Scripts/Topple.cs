@@ -33,10 +33,6 @@ public class Topple : MonoBehaviour {
 		SetRisk ();
 	}
 
-	void SetRisk(){
-		risk = Random.Range (0f, 100f);
-	}
-
 //	float risk (){
 //		if (buildingState == BuildingState.NORMAL) {
 //			return Random.Range (0f, 100f);
