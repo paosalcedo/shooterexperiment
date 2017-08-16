@@ -7,6 +7,7 @@ public class Topple : MonoBehaviour {
 	public TextMesh riskText;
 	public float risk;
 	public GameObject player;
+	private float riskNum;
 
 	public enum BuildingState
 	{
@@ -27,8 +28,9 @@ public class Topple : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		riskText.text = risk.ToString ();
+		riskText.text = riskNum.ToString ();
 		DetectPlayer ();
+		SetRisk ();
 	}
 
 	void SetRisk(){
@@ -50,8 +52,8 @@ public class Topple : MonoBehaviour {
 	public void DetectPlayer(){
 		float distanceToPlayer;
 		distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
-		if (distanceToPlayer <= 20f) {
-			if (risk<= 10f) {
+		if (distanceToPlayer <= 5f) {
+			if (riskNum <= 10f) {
 				buildingState = BuildingState.DESTRUCTIVE;
 				Debug.Log (buildingState);
 			} else {
@@ -65,4 +67,9 @@ public class Topple : MonoBehaviour {
 		} 
 
 	}
+
+	public void SetRisk(/*maybe it can take different values from player, like speed at which they approach you? direction?*/){
+		riskNum = Random.Range (0f, 100f);	
+	}
+
 }
