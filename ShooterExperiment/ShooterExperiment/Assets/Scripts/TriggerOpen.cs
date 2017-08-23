@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerOpen : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +14,9 @@ public class TriggerOpen : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	void OnTriggerEnter(Collider coll){
+		
+	}
+	
 }

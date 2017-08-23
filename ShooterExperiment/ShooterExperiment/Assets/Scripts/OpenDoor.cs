@@ -9,10 +9,16 @@ public class OpenDoor : MonoBehaviour {
 		CLOSED
 	}
 
+	MeshRenderer doorMesh;
+	Collider doorCollider;
+
 	DoorState doorState;
 	// Use this for initialization
 	void Start () {
-		doorState = DoorState.CLOSED;
+		doorState = DoorState.CLOSED;		
+		MeshRenderer doorMesh = GetComponent<MeshRenderer>();
+		Collider doorCollider = GetComponent<Collider>();
+		
  	}
 	
 	// Update is called once per frame
@@ -20,14 +26,14 @@ public class OpenDoor : MonoBehaviour {
 	{		
 	}
 
-	public void Open(){
-		this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-		this.gameObject.GetComponent<Collider>().enabled = false;
+	public void Open(){	
+		doorMesh.enabled = false;
+		doorCollider.enabled = false;
 	}
 
 	public void Close(){
-		this.gameObject.GetComponent<MeshRenderer>().enabled = true;
-		this.gameObject.GetComponent<Collider>().enabled = true;
+ 		doorMesh.enabled = true;
+		doorCollider.enabled = true;
 	}
 
 	
