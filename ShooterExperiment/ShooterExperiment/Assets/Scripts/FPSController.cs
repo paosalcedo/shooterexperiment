@@ -40,6 +40,9 @@ public class FPSController : MonoBehaviour {
 	
 	// Update is called once per frame
 
+	void Update(){
+ 	}
+
 	void FixedUpdate()
 	{
 		MovePlayer ();
@@ -72,9 +75,9 @@ public class FPSController : MonoBehaviour {
 		if (grounded == true && Input.GetButtonDown("Jump")) {
 			rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);
 			// play the jump sound.
-			AudioSource jump;
-			jump = GetComponent<AudioSource>();
-			jump.Play();
+//			AudioSource jump;
+//			jump = GetComponent<AudioSource>();
+//			jump.Play();
 		}
 
 		//tweaking air control when jumping.
