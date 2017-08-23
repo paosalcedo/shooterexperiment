@@ -34,6 +34,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
 			if (currentPlayer == CurrentPlayer.PLAYER1) {
 				mainCamera.transform.SetParent (player2.transform);
 				mainCamera.transform.position = player2.transform.position;
+				mainCamera.transform.localPosition = new Vector3 (0f, 1f, 0f);
 				player1.GetComponent<FPSController> ().enabled = false;
 				player2.GetComponent<FPSController> ().enabled = true;
 				currentPlayer = CurrentPlayer.PLAYER2;
@@ -44,6 +45,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
 			if (currentPlayer == CurrentPlayer.PLAYER2) {
 				mainCamera.transform.SetParent (player1.transform);
 				mainCamera.transform.position = player1.transform.position;
+				mainCamera.transform.localPosition = new Vector3 (0f, 1f, 0f);
 				player2.GetComponent<FPSController> ().enabled = false;
 				player1.GetComponent<FPSController> ().enabled = true;
 				currentPlayer = CurrentPlayer.PLAYER1;
