@@ -23,14 +23,13 @@ public class Topple : MonoBehaviour {
 	void Start () {
 		buildingState = BuildingState.NORMAL;
 		rb = GetComponent<Rigidbody> ();
-		SetRisk();
-	}
+		riskNum = CommonFunctions.SetRisk ();
+ 	}
 	
 	// Update is called once per frame
 	void Update () {
 		riskText.text = riskNum.ToString ();
 		DetectPlayer ();
-		SetRisk ();
 	}
 
 //	float risk (){
@@ -64,8 +63,8 @@ public class Topple : MonoBehaviour {
 
 	}
 
-	public void SetRisk(/*maybe it can take different values from player, like speed at which they approach you? direction?*/){
-		riskNum = Random.Range (0f, 100f);	
-	}
+//	public void SetRisk(/*maybe it can take different values from player, like speed at which they approach you? direction?*/){
+//		riskNum = Random.Range (0f, 100f);	
+//	}
 
 }

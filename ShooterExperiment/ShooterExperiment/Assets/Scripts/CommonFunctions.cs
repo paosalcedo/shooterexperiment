@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class CommonFunctions : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public static float SetRisk(){
+		return Random.Range(0f, 100f);
 	}
 }
