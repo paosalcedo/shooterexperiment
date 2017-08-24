@@ -41,15 +41,18 @@ public class PlayerSwitcherScript : MonoBehaviour {
 //				mainCamera.transform.SetParent (player2.transform);
 //				mainCamera.transform.position = player2.transform.position;
 //				mainCamera.transform.localPosition = new Vector3 (0f, 1f, 0f);
-				//save player 1 rotation
-				p1_lastRot = player1.transform.rotation; 
-				player1.GetComponent<FPSController> ().enabled = false;
+				player1.GetComponentInChildren<MouseLook>().enabled = false;
+  				player1.GetComponent<FPSController> ().enabled = false;
 				player1.GetComponentInChildren<Camera> ().enabled = false;
+				player1.GetComponentInChildren<Rigidbody> ().useGravity = true;
+
+				player2.GetComponentInChildren<MouseLook> ().enabled = true;
 				player2.GetComponent<FPSController> ().enabled = true;
 				player2.GetComponentInChildren<Camera> ().enabled = true;
+				player2.GetComponentInChildren<Rigidbody> ().useGravity = false;
+
 				currentPlayer = CurrentPlayer.PLAYER2;
-				player2.transform.rotation = p2_lastRot;
-				currentParent = player2;
+ 				currentParent = player2;
 				
 				return;
 			}
@@ -58,13 +61,17 @@ public class PlayerSwitcherScript : MonoBehaviour {
 //				mainCamera.transform.SetParent (player1.transform);
 //				mainCamera.transform.position = player1.transform.position;
 //				mainCamera.transform.localPosition = new Vector3 (0f, 1f, 0f);
-				p2_lastRot = player2.transform.rotation;
-				player2.GetComponent<FPSController> ().enabled = false;
+				player2.GetComponentInChildren<MouseLook> ().enabled = false;
+ 				player2.GetComponent<FPSController> ().enabled = false;
 				player2.GetComponentInChildren<Camera> ().enabled = false;
+				player2.GetComponentInChildren<Rigidbody> ().useGravity = true;
+
+				player1.GetComponentInChildren<MouseLook>().enabled = true;
 				player1.GetComponent<FPSController> ().enabled = true;
 				player1.GetComponentInChildren<Camera> ().enabled = true;
-				player1.transform.rotation = p1_lastRot;
-				currentPlayer = CurrentPlayer.PLAYER1;
+				player1.GetComponentInChildren<Rigidbody> ().useGravity = false;
+
+ 				currentPlayer = CurrentPlayer.PLAYER1;
 				currentParent = player1;
  				return;
 			}

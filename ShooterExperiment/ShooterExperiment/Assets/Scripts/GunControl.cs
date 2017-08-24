@@ -26,8 +26,7 @@ public class GunControl : MonoBehaviour {
 			GameObject bullet = Instantiate (Resources.Load ("Prefabs/Weapons/BlueBullet")) as GameObject;
 			bullet.transform.position = transform.position + setModPos;
 			bullet.transform.rotation = transform.rotation;
-			Debug.Log ("PLAYER 1 FIRES BALL!");
-		}
+ 		}
 	}
 		
 

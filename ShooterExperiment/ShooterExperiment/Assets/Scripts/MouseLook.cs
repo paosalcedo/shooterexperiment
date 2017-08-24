@@ -18,7 +18,7 @@ public class MouseLook : MonoBehaviour {
 
 	void Start () {
 
-		character = this.transform.parent.gameObject;
+		character = transform.parent.gameObject;
  	}
 	
 	// Update is called once per frame
@@ -32,8 +32,7 @@ public class MouseLook : MonoBehaviour {
 		mouseLook.y = Mathf.Clamp (mouseLook.y, -90f, 90f);
 
 		transform.localRotation = Quaternion.AngleAxis (-mouseLook.y, Vector3.right);
-		Debug.Log ("You are controlling " + character);
-		character = PlayerSwitcherScript.currentParent;
+ //		character = PlayerSwitcherScript.currentParent;
 		character.transform.localRotation = Quaternion.AngleAxis (mouseLook.x, Vector3.up);
 		
 //		Vector2 mousePos = new Vector2 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"));

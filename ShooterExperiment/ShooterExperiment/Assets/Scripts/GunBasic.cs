@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunBasic : MonoBehaviour {
 
+	protected string gunName = "StickyGun";
 	protected string bulletName = "Ball";
 
 	private WeaponType ballType;
@@ -18,9 +19,6 @@ public class GunBasic : MonoBehaviour {
 		ballType = BulletDefs.bulletDefs [0].weapon;
 		ballGrav = BulletDefs.bulletDefs [0].grav;
 		ballSpeed = BulletDefs.bulletDefs [0].speed;
-		Debug.Log (ballType);
-		Debug.Log (ballSpeed);
-		Debug.Log (ballGrav);
 		rb = GetComponent<Rigidbody> ();
 		Destroy (gameObject, 10);
 	}
@@ -44,9 +42,6 @@ public class GunBasic : MonoBehaviour {
 	void OnCollisionEnter(Collision coll){
 		if (coll.gameObject.tag != "Player") {
  			stuck = true;
- 
-//			ballSpeed = 0f;
-			//		ballGrav = 0f;
 		}
 	}
 }
