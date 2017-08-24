@@ -14,7 +14,7 @@ public class TriggerTrapDoor : MonoBehaviour {
 	void Update () {
 	}
 
-	void OnTriggerStay(){
+	void OnTriggerEnter(){
 		GetComponent<CloseTrapDoor> ().Close ();
 	}
 

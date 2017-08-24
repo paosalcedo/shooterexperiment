@@ -18,10 +18,14 @@ public class CloseTrapDoor : MonoBehaviour {
 	}
 
 	public void Open(){
+		trapDoor1.transform.rotation = Quaternion.AngleAxis (-90, Vector3.right);
+		trapDoor2.transform.rotation = Quaternion.AngleAxis (-90, Vector3.left);
 	}
 
 	public void Close(){
 		trapDoor1.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
 		trapDoor2.transform.rotation = Quaternion.AngleAxis (0, Vector3.left);
 	}
+
+
 }

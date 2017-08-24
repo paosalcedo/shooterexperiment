@@ -7,8 +7,9 @@ public class BulletDefs {
 	public static BulletInfo[] bulletDefs = {
 		new BulletInfo (
 			WeaponType.BALL,
-			5,
-			20
+/*gravity*/	100,
+/*speed*/	10
+
 		),
 
 		new BulletInfo(
