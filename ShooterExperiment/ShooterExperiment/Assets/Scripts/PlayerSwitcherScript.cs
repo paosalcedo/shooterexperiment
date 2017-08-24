@@ -25,7 +25,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
 	void Start () {
 		currentPlayer = CurrentPlayer.PLAYER1;
 		currentParent = player1;
-		currentCam = Camera.main.transform.gameObject;
+//		currentCam = Camera.main.transform.gameObject;
 		switchKey = KeyCode.Q;
 	}
 	

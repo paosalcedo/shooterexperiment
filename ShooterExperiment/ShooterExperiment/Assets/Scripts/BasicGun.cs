@@ -17,12 +17,15 @@ public class BasicGun : MonoBehaviour {
 		ballGrav = BulletDefs.bulletDefs [0].grav;
 		ballSpeed = BulletDefs.bulletDefs [0].speed;
 		Debug.Log (ballType);
+		Debug.Log (ballSpeed);
+		Debug.Log (ballGrav);
 		rb = GetComponent<Rigidbody> ();
+		Destroy (gameObject, 3);
 	}
 
 
 	void Update(){
-		rb.velocity = transform.forward * ballSpeed * Time.deltaTime;
+		rb.velocity = transform.forward * ballSpeed;
 		rb.AddForce (new Vector3 (0, -ballGrav * rb.mass * Time.deltaTime, 0));
 	}
 

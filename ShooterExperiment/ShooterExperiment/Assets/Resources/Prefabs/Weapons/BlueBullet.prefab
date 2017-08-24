@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 33615826830465452}
   - component: {fileID: 135035135128295828}
   - component: {fileID: 23933984258257076}
+  - component: {fileID: 114958759199148044}
+  - component: {fileID: 54999559023568466}
   m_Layer: 0
   m_Name: BlueBullet
   m_TagString: Untagged
@@ -152,6 +154,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1450520474315020}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54999559023568466
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450520474315020}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114958759199148044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450520474315020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc031cce7021a2141a1f69dd74f5324d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135035135128295828
 SphereCollider:
   m_ObjectHideFlags: 1
