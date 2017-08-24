@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour {
 
-	public static MeshRenderer mesh;
-	public static Collider coll;
+	public static MeshRenderer doorMesh;
+	public static Collider doorColl;
 
 	// Use this for initialization
 	void Start () {
 //		doorState = DoorState.CLOSED;
-		mesh = GetComponent<MeshRenderer> ();
-		coll = GetComponent<Collider> ();
+		doorMesh = GetComponent<MeshRenderer> ();
+		doorColl = GetComponent<Collider> ();
  	}
 	
 	// Update is called once per frame
@@ -20,15 +20,13 @@ public class OpenDoor : MonoBehaviour {
 	}
 
 	public static void Open(){
-		Debug.Log ("Door open!");
-		mesh.enabled = false;
-		coll.enabled = false;
+ 		doorMesh.enabled = false;
+		doorColl.enabled = false;
 	}
 
 	public static void Close(){
-		Debug.Log ("Door closed!");
-		mesh.enabled = true;
-		coll.enabled = true;
+ 		doorMesh.enabled = true;
+		doorColl.enabled = true;
 	}
 
 	

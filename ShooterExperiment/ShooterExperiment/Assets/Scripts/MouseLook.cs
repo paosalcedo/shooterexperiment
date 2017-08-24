@@ -11,15 +11,13 @@ public class MouseLook : MonoBehaviour {
 
 	public float sensitivity = 5.0f;
 	public float smoothing = 2.0f;
-	Transform myCam;
-
+ 
 	GameObject character;
 
 	void Start () {
 
 		character = this.transform.parent.gameObject;
-		myCam = Camera.main.transform;
-	}
+ 	}
 	
 	// Update is called once per frame
 	void Update () {
