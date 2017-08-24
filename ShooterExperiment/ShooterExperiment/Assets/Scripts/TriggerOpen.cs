@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerOpen : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +12,15 @@ public class TriggerOpen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+			
 	}
+
+	void OnTriggerEnter(Collider collider){
+		OpenDoor.Open ();
+	}
+
+	void OnTriggerExit(Collider collider){
+		OpenDoor.Close ();
+	}
+
 }
