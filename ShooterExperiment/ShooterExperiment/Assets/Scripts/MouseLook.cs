@@ -12,6 +12,8 @@ public class MouseLook : MonoBehaviour {
 	public float sensitivity = 5.0f;
 	public float smoothing = 2.0f;
  
+	private Quaternion lastRot;
+
 	GameObject character;
 
 	void Start () {

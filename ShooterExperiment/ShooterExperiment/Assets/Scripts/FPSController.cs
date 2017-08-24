@@ -69,7 +69,7 @@ public class FPSController : MonoBehaviour {
 
 		if (grounded == true) {
 			rb.AddForce (velocityChange, ForceMode.VelocityChange);
-		}
+ 		}
 
 		//jump
 		if (grounded == true && Input.GetButtonDown("Jump")) {
@@ -95,13 +95,12 @@ public class FPSController : MonoBehaviour {
 	void OnCollisionStay (Collision coll) {
 		if (coll.collider.tag == "Ground") {
 			grounded = true;
-
 		}
 	}
 
 	void OnCollisionExit(Collision coll){
-		grounded = false;
-		if (coll.gameObject.tag == "ground") {
+		if (coll.gameObject.tag == "Ground") {
+			grounded = false;
 		}
 	}
 
