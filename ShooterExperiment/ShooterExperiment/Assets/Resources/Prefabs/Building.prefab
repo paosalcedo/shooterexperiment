@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riskText: {fileID: 102449094412880986}
+  risk: 0
   player: {fileID: 0}
 --- !u!114 &114969963350293004
 MonoBehaviour:
