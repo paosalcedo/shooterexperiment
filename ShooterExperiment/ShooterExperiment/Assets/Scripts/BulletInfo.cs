@@ -20,10 +20,10 @@ public class BulletInfo {
 //
 //		}
 
-	public BulletInfo(WeaponType setWeapon, float setGrav, float setSpeed, AudioClip setClip){
+	public BulletInfo(WeaponType setWeapon, float setGrav, float setSpeed){
+		weapon = setWeapon; 
 		grav = setGrav;
 		speed = setSpeed;
-		clip = setClip; 
 	}
 
 }

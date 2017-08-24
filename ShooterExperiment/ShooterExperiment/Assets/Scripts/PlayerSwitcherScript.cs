@@ -20,7 +20,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
 		PLAYER2
 	}
 
-	CurrentPlayer currentPlayer;
+	public static CurrentPlayer currentPlayer;
 	// Use this for initialization
 	void Start () {
 		currentPlayer = CurrentPlayer.PLAYER1;

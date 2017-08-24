@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletDefs : MonoBehaviour {
+public class BulletDefs {
 
-	// Use this for initialization
-	void Start () {
+	public static BulletInfo[] bulletDefs = {
+		new BulletInfo (
+			WeaponType.BALL,
+			5,
+			20
+		),
+
+		new BulletInfo(
+			WeaponType.REFLECTOR,
+			0,
+			1000
+		),
+	};
 		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
