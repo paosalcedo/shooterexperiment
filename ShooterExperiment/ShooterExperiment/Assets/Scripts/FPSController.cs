@@ -15,6 +15,10 @@ public class FPSController : MonoBehaviour {
 	private bool grounded = false;
 //	float initHeight;
 
+
+	//CONTROLS
+	public KeyCode attackKey;
+
 	public enum PlayerMoveState {
 		JUMPING,
 		GROUNDED
@@ -103,7 +107,5 @@ public class FPSController : MonoBehaviour {
 			grounded = false;
 		}
 	}
-
-
 
 }

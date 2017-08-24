@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerOpen : MonoBehaviour {
 
-	public MeshRenderer redMesh;
+	public MeshRenderer triggerMesh;
 	MeshRenderer whiteMesh;
 
 	// Use this for initialization
@@ -19,13 +19,13 @@ public class TriggerOpen : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider){
 		OpenDoor.Open ();
-		redMesh.enabled = true;
+		triggerMesh.enabled = true;
 		whiteMesh.enabled = false;
 	}
 
 	void OnTriggerExit(Collider collider){
 		OpenDoor.Close ();
-		redMesh.enabled = false;
+		triggerMesh.enabled = false;
 		whiteMesh.enabled = true;
 	}
 
