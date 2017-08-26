@@ -19,12 +19,12 @@ public class OpenDoor : MonoBehaviour {
 	{		
 	}
 
-	public static void Open(){
+	public void Open(){
  		doorMesh.enabled = false;
 		doorColl.enabled = false;
 	}
 
-	public static void Close(){
+	public void Close(){
  		doorMesh.enabled = true;
 		doorColl.enabled = true;
 	}

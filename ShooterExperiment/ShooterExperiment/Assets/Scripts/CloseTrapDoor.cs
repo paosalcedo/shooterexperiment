@@ -20,6 +20,8 @@ public class CloseTrapDoor : MonoBehaviour {
 	public void Open(){
 		trapDoor1.transform.rotation = Quaternion.AngleAxis (-90, Vector3.right);
 		trapDoor2.transform.rotation = Quaternion.AngleAxis (-90, Vector3.left);
+		trapDoor1.GetComponent<Collider> ().enabled = false;
+		trapDoor2.GetComponent<Collider> ().enabled = false;
 	}
 
 	public void Close(){

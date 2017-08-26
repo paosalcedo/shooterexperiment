@@ -7,6 +7,8 @@ public class TriggerOpen : MonoBehaviour {
 	public MeshRenderer triggerMesh;
 	MeshRenderer whiteMesh;
 
+	public GameObject doorToOpen;
+
 	// Use this for initialization
 	void Start () {
 		whiteMesh = GetComponent<MeshRenderer> ();
@@ -18,13 +20,13 @@ public class TriggerOpen : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider){
-		OpenDoor.Open ();
+		doorToOpen.GetComponent<OpenDoor> ().Open ();
 		triggerMesh.enabled = true;
 		whiteMesh.enabled = false;
 	}
 
 	void OnTriggerExit(Collider collider){
-		OpenDoor.Close ();
+		doorToOpen.GetComponent<OpenDoor> ().Close ();
 		triggerMesh.enabled = false;
 		whiteMesh.enabled = true;
 	}
