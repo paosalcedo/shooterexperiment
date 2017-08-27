@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour {
 
-	public enum DoorState{
-		OPEN,
-		CLOSED
-	}
+	public MeshRenderer doorMesh;
+	public Collider doorColl;
+	public GameObject door;
+	Vector3 openRot;
+	Vector3 closedRot;
 
-	DoorState doorState;
 	// Use this for initialization
 	void Start () {
-		doorState = DoorState.CLOSED;
+//		doorState = DoorState.CLOSED;
+		doorMesh = GetComponent<MeshRenderer> ();
+		doorColl = GetComponent<Collider> ();
+		openRot = new Vector3 (0, 90, 0);
+		closedRot = new Vector3(0, -90, 0);
  	}
 	
 	// Update is called once per frame
@@ -21,13 +25,11 @@ public class OpenDoor : MonoBehaviour {
 	}
 
 	public void Open(){
-		this.gameObject.GetComponent<MeshRenderer>().enabled = false;
-		this.gameObject.GetComponent<Collider>().enabled = false;
-	}
+		LeanTween.rotate(door, openRot, 1f).setEaseInSine();
+ 	}
 
 	public void Close(){
-		this.gameObject.GetComponent<MeshRenderer>().enabled = true;
-		this.gameObject.GetComponent<Collider>().enabled = true;
+ 		 LeanTween.rotate(door, closedRot, 1f).setEaseInSine();
 	}
 
 	
