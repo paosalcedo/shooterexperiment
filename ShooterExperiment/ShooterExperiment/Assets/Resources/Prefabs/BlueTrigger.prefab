@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 23012477104279848}
   - component: {fileID: 33934924119307062}
   - component: {fileID: 114575228042464364}
-  - component: {fileID: 114484998962893874}
   - component: {fileID: 136246220489660012}
+  - component: {fileID: 114841989830476528}
+  - component: {fileID: 114112302967015666}
   m_Layer: 0
   m_Name: WhiteTrigger
   m_TagString: Untagged
@@ -59,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971084544101958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.58, y: 0.18829, z: 4.85}
+  m_LocalPosition: {x: -4.681942, y: 6.189656, z: 15.071171}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4899482606761236}
@@ -124,7 +125,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c2ebcf09fae3a364b9b97caadd6b0017, type: 2}
+  - {fileID: 2100000, guid: c98ee9c09c3b9a54eb9f69c2e6508d96, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,7 +158,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1075682946316050}
   m_Mesh: {fileID: 0}
---- !u!114 &114484998962893874
+--- !u!114 &114112302967015666
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -165,10 +166,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075682946316050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24af18816c5748c48a7234390fc6ac2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 03a397f9d3efa3140a2b417e972fc936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redMesh: {fileID: 23760049725718544}
+  trapDoor1: {fileID: 0}
+  trapDoor2: {fileID: 0}
 --- !u!114 &114575228042464364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -35573,6 +35575,17 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114841989830476528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1075682946316050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5030307dc65d8942a8592edd3365ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114853010362726088
 MonoBehaviour:
   m_ObjectHideFlags: 1

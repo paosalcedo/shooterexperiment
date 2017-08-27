@@ -6,11 +6,14 @@ public class CloseTrapDoor : MonoBehaviour {
 
 	public GameObject trapDoor1;
 	public GameObject trapDoor2;
-	Vector3 newRot;
+	private Vector3 newRot;
+	private Vector3 oldRot;
+
  
 	// Use this for initialization
 	void Start () {
-		newRot = new Vector3(-90f, 0f, 0f); 
+		newRot = new Vector3 (0, 0, 0);
+		oldRot = new Vector3(-90f, 0f, 0f); 
  	}
 	
 	// Update is called once per frame
@@ -18,27 +21,27 @@ public class CloseTrapDoor : MonoBehaviour {
 		
 	}
 
-	public void Open(){
- //		trapDoor1.transform.rotation = Quaternion.AngleAxis (-90, Vector3.right);
-//		trapDoor2.transform.rotation = Quaternion.AngleAxis (-90, Vector3.left);
-  	}
-
 	public void Operate(){
-		LeanTween.rotate(trapDoor1, Vector3.right, 1f).setEaseInSine().setOnComplete(
-			()=>{
-				LeanTween.rotate(trapDoor1, newRot, 1f).setEaseInSine().setDelay(3f); 
-			}
-		);
-		LeanTween.rotate(trapDoor2, Vector3.right, 1f).setEaseInSine().setOnComplete(
-			()=>{
-				LeanTween.rotate(trapDoor2, -newRot, 1f).setEaseInSine().setDelay(3f);
-			}
-		);  
+		LeanTween.rotate (trapDoor1, newRot, 1f).setEaseInSine (); 
+		LeanTween.rotate (trapDoor2, -newRot, 1f).setEaseInSine ();
+
+//		LeanTween.rotate(trapDoor1, Vector3.right, 1f).setEaseInSine().setOnComplete(
+//			()=>{
+//				LeanTween.rotate(trapDoor1, newRot, 1f).setEaseInSine().setDelay(2f); 
+//			}
+//		);
+//		LeanTween.rotate(trapDoor2, Vector3.right, 1f).setEaseInSine().setOnComplete(
+//			()=>{
+//				LeanTween.rotate(trapDoor2, -newRot, 1f).setEaseInSine().setDelay(2f);
+//			}
+//		);  
  //		trapDoor1.transform.rotation = Quaternion.AngleAxis (0, Vector3.right);
 //		trapDoor2.transform.rotation = Quaternion.AngleAxis (0, Vector3.left);
-		trapDoor1.GetComponent<Collider> ().enabled = true;
-		trapDoor2.GetComponent<Collider> ().enabled = true;
 	}
 
+	public void Open(){
+		LeanTween.rotate (trapDoor1, oldRot, 1f).setEaseInSine ();
+		LeanTween.rotate (trapDoor2, -oldRot, 1f).setEaseInSine ();
+	}
 
 }
