@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TriggerTrapDoor : MonoBehaviour {
 
+	ParticleSystem particles;
 
 	// Use this for initialization
 	void Start () {
-		
+		particles = GetComponentInChildren<ParticleSystem> ();
+
 	}
 	
 	// Update is called once per frame
@@ -15,10 +17,12 @@ public class TriggerTrapDoor : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(){
+		particles.Play ();
 		GetComponent<CloseTrapDoor> ().Operate ();
 	}
 
 	void OnTriggerExit(){
+		particles.Stop ();
 		GetComponent<CloseTrapDoor> ().Open ();
 	}
 }
