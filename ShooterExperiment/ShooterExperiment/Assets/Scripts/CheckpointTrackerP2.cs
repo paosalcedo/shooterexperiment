@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointTracker : MonoBehaviour {
+public class CheckpointTrackerP2 : MonoBehaviour {
 
 	public int chkKey;
 	// Use this for initialization
 	void Start () {
- 		CheckpointControl.chkDict.Add (chkKey, this.gameObject);
+ 		CheckpointControl.chkDictP2.Add (chkKey, this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -23,7 +23,7 @@ public class CheckpointTracker : MonoBehaviour {
 
 		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER2) {
 //			Destroy (CheckpointControl.chkDict [CheckpointControl.chkLast]);
-			CheckpointControl.chkLast = chkKey; 
+			CheckpointControl.chkLastP2 = chkKey; 
 		} 
 	}
 
