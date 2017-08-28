@@ -32,6 +32,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		SwitchPlayer (switchKey);	
+		Debug.Log("Current Player is " + currentPlayer);
 	}
 
 	public void SwitchPlayer(KeyCode key){
@@ -50,8 +51,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
 				player2.GetComponent<FPSController> ().enabled = true;
 				player2.GetComponentInChildren<Camera> ().enabled = true;
 				player2.GetComponentInChildren<Rigidbody> ().useGravity = false;
-
-				currentPlayer = CurrentPlayer.PLAYER2;
+ 				currentPlayer = CurrentPlayer.PLAYER2;
  				currentParent = player2;
 				
 				return;
@@ -70,7 +70,6 @@ public class PlayerSwitcherScript : MonoBehaviour {
 				player1.GetComponent<FPSController> ().enabled = true;
 				player1.GetComponentInChildren<Camera> ().enabled = true;
 				player1.GetComponentInChildren<Rigidbody> ().useGravity = false;
-
  				currentPlayer = CurrentPlayer.PLAYER1;
 				currentParent = player1;
  				return;

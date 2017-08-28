@@ -10,4 +10,10 @@ public class KillzoneControl : MonoBehaviour {
 		lastCheckpoint = CheckpointControl.chkDict[CheckpointControl.chkLast];
 		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);	
 	}
+
+	void OnCollisionEnter(Collision coll){
+		lastCheckpoint = CheckpointControl.chkDict[CheckpointControl.chkLast];
+		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);	
+
+	}
 }

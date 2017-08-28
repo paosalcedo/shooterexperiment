@@ -8,4 +8,8 @@ public class CheckpointControl : MonoBehaviour {
 	
 	public static int chkLast;
 
+	public static Dictionary<int, GameObject> chkDictP2 = new Dictionary<int, GameObject>();
+
+	public static int chkLastP2;
+
 }

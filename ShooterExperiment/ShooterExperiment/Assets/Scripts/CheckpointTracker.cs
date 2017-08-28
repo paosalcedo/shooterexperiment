@@ -15,15 +15,16 @@ public class CheckpointTracker : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter(Collider coll){
+	void OnTriggerEnter (Collider coll)
+	{
 		//this is now the new checkpoint.
 		//Destroy the first one.		
-		Debug.Log("Checkpoint no. " + chkKey + " reached!");
+		Debug.Log ("Checkpoint no. " + chkKey + " reached!");		
 
-		if(chkKey != 0){
+		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER2) {
+//			Destroy (CheckpointControl.chkDict [CheckpointControl.chkLast]);
 			CheckpointControl.chkLast = chkKey; 
-			Destroy(CheckpointControl.chkDict[CheckpointControl.chkLast-1]);
-		}
+		} 
 	}
 
 }
