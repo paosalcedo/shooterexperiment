@@ -6,15 +6,8 @@ public class KillzoneControl : MonoBehaviour {
 
 	GameObject lastCheckpoint;
 
-	void Start(){
-		
-	}
-
-	void Update(){
-	}
-
 	void OnTriggerEnter(Collider coll){
-		lastCheckpoint = CheckpointControl.chkDict[CheckpointTracker.chkLast];
+		lastCheckpoint = CheckpointControl.chkDict[CheckpointControl.chkLast];
 		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);	
 	}
 }

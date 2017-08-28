@@ -5,11 +5,9 @@ using UnityEngine;
 public class CheckpointTracker : MonoBehaviour {
 
 	public int chkKey;
-	public static int chkLast;
 	// Use this for initialization
 	void Start () {
-		CheckpointControl.checkpoints.Add (this.gameObject);
-		CheckpointControl.chkDict.Add (chkKey, this.gameObject);
+ 		CheckpointControl.chkDict.Add (chkKey, this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -20,11 +18,11 @@ public class CheckpointTracker : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		//this is now the new checkpoint.
 		//Destroy the first one.		
-		Debug.Log("Checkpoint no. " + chkKey + " activated!");
+		Debug.Log("Checkpoint no. " + chkKey + " reached!");
 
 		if(chkKey != 0){
-			chkLast = chkKey; 
-			Destroy(CheckpointControl.chkDict[0]);
+			CheckpointControl.chkLast = chkKey; 
+			Destroy(CheckpointControl.chkDict[CheckpointControl.chkLast-1]);
 		}
 	}
 
