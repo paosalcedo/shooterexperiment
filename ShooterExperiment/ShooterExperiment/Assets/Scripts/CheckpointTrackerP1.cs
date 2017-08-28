@@ -12,8 +12,7 @@ public class CheckpointTrackerP1 : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(){
-		Debug.Log ("Player 1 has reached checkpoint " + chkKey + "!");		
-
+ 
 		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER1) {
 			CheckpointControl.chkLastP1 = chkKey;
 		}

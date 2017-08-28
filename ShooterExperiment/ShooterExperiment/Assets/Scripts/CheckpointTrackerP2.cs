@@ -19,8 +19,7 @@ public class CheckpointTrackerP2 : MonoBehaviour {
 	{
 		//this is now the new checkpoint.
 		//Destroy the first one.		
-		Debug.Log ("Checkpoint no. " + chkKey + " reached!");		
-
+ 
 		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER2) {
 //			Destroy (CheckpointControl.chkDict [CheckpointControl.chkLast]);
 			CheckpointControl.chkLastP2 = chkKey; 
