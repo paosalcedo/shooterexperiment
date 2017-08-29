@@ -12,15 +12,23 @@ public class KillcrushControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER1) {
-			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
-		} else {
-			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
-		}
+//		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER1) {
+//			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
+//		} else {
+//			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
+//		}
 	}
 
 	void OnCollisionEnter (Collision coll)
 	{
-		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+		if (coll.gameObject.name == "Player") {		
+			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
+			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+		} 
+
+		if (coll.gameObject.name == "Player2") {
+			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
+			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+		}
 	}
 }
