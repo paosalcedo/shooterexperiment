@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33648949316500256}
   - component: {fileID: 135328493096921570}
   - component: {fileID: 23809266172092432}
+  - component: {fileID: 114691764296832074}
+  - component: {fileID: 54121792383223450}
   m_Layer: 0
   m_Name: RedBullet
   m_TagString: Untagged
@@ -152,6 +154,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1464083717483428}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54121792383223450
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323590459185490}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114691764296832074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323590459185490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1446777e194d92468cbd86f04db796f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135328493096921570
 SphereCollider:
   m_ObjectHideFlags: 1

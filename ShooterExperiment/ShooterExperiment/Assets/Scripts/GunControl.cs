@@ -16,16 +16,27 @@ public class GunControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER1) {
-			Attack (attackKey, modPos);		
-		}
+		Attack (attackKey, modPos);		
+
 	}
 
-	public void Attack(KeyCode key, Vector3 setModPos){
-		if(Input.GetKeyDown (key)){
-			GameObject bullet = Instantiate (Resources.Load ("Prefabs/Weapons/BlueBullet")) as GameObject;
-			bullet.transform.position = transform.position + setModPos;
-			bullet.transform.rotation = transform.rotation;
+	public void Attack (KeyCode key, Vector3 setModPos)
+	{
+		if (Input.GetKeyDown (key)) {
+			GameObject bullet;
+			if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER1) {
+				bullet = Instantiate (Resources.Load ("Prefabs/Weapons/BlueBullet")) as GameObject;
+				Debug.Log (gameObject.name + " is attacking!");
+				bullet.transform.position = transform.position + setModPos;
+				bullet.transform.rotation = transform.rotation;
+			}
+
+			else if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER2) {
+				bullet = Instantiate (Resources.Load ("Prefabs/Weapons/RedBullet")) as GameObject;
+				Debug.Log (gameObject.name + " is attacking!");
+				bullet.transform.position = transform.position + setModPos;
+				bullet.transform.rotation = transform.rotation;
+			}
  		}
 	}
 		

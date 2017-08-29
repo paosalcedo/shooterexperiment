@@ -20,7 +20,7 @@ public class GunBasic : MonoBehaviour {
 		ballGrav = BulletDefs.bulletDefs [0].grav;
 		ballSpeed = BulletDefs.bulletDefs [0].speed;
 		rb = GetComponent<Rigidbody> ();
-		Destroy (gameObject, 10);
+		Destroy (gameObject, 5);
 	}
 
 	void Update(){

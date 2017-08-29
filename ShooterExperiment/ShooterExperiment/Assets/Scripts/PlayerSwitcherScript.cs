@@ -46,11 +46,13 @@ public class PlayerSwitcherScript : MonoBehaviour {
   				player1.GetComponent<FPSController> ().enabled = false;
 				player1.GetComponentInChildren<Camera> ().enabled = false;
 				player1.GetComponentInChildren<Rigidbody> ().useGravity = true;
+//				player1.GetComponentInChildren<GunControl>().enabled = false;
 
 				player2.GetComponentInChildren<MouseLook> ().enabled = true;
 				player2.GetComponent<FPSController> ().enabled = true;
 				player2.GetComponentInChildren<Camera> ().enabled = true;
 				player2.GetComponentInChildren<Rigidbody> ().useGravity = false;
+//				player2.GetComponentInChildren<GunControl>().enabled = true;
  				currentPlayer = CurrentPlayer.PLAYER2;
  				currentParent = player2;
 				
@@ -65,11 +67,13 @@ public class PlayerSwitcherScript : MonoBehaviour {
  				player2.GetComponent<FPSController> ().enabled = false;
 				player2.GetComponentInChildren<Camera> ().enabled = false;
 				player2.GetComponentInChildren<Rigidbody> ().useGravity = true;
+//				player2.GetComponentInChildren<GunControl>().enabled = false;
 
 				player1.GetComponentInChildren<MouseLook>().enabled = true;
 				player1.GetComponent<FPSController> ().enabled = true;
 				player1.GetComponentInChildren<Camera> ().enabled = true;
 				player1.GetComponentInChildren<Rigidbody> ().useGravity = false;
+//				player1.GetComponentInChildren<GunControl>().enabled = true;
  				currentPlayer = CurrentPlayer.PLAYER1;
 				currentParent = player1;
  				return;

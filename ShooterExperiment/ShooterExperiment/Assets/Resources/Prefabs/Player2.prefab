@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 54375592445116192}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba8c834bdb64904980b014de5d554c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackKey: 0
+  attackKey: 323
   modPosX: 0
   modPosY: 0
   modPosZ: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642560654255480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4baf95307b20564894a518a2b5190de, type: 3}
   m_Name: 
