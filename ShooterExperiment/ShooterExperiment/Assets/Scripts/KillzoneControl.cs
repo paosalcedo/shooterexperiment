@@ -17,8 +17,7 @@ public class KillzoneControl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider coll){
-		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-		if (coll.gameObject.name == "Player") {		
+ 		if (coll.gameObject.name == "Player") {	
 			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
 		} 

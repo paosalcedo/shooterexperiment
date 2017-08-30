@@ -23,24 +23,27 @@ public class TreadmillControl : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		player = coll.gameObject;
 		rb = player.GetComponent<Rigidbody> ();
+		triggerOn.SetActive (true);
  	}
 
 	void OnTriggerStay(){
- 		if (rb.velocity.magnitude > 2.5f) {
-			if (!paused) {
-				SendPause ();
-				triggerOn.SetActive (true);
-				triggerOff.SetActive (false);		
-				paused = true;
+		if (rb != null) {
+			if (rb.velocity.magnitude > 2.5f) {
+				if (!paused) {
+					SendPause ();
+					triggerOn.SetActive (true);
+					triggerOff.SetActive (false);		
+					paused = true;
+				}
+			} else {
+				if (paused) {
+					SendResume ();			
+					triggerOn.SetActive (false);
+					triggerOff.SetActive (true);	
+					paused = false;
+				}
 			}
-		} else {
-			if (paused) {
-				SendResume ();			
-				triggerOn.SetActive (false);
-				triggerOff.SetActive (true);	
-				paused = false;
-			}
-		} 
+		}
 	}
 
 	void OnTriggerExit(){
