@@ -7,9 +7,12 @@ public class EnemyMovement : MonoBehaviour {
 	//we want to set up basic movement first.
 //	Rigidbody rb;
 	float speed = 1f;
+	float attackSpeed = 20f;
+	public float aggressiveRange = 10f;
 	public GameObject player;
-	public TextMesh riskText;
-	private float riskNum;
+	Rigidbody rb;
+
+	Vector3 playerDir;
 
 	public enum EnemyState{
 		NORMAL,
@@ -20,18 +23,26 @@ public class EnemyMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		rb = GetComponent<Rigidbody> ();
 //		rb = GetComponent<Rigidbody> ();
 		enemyState = EnemyState.NORMAL;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		playerDir = player.transform.position - transform.position;
+
 //		Debug.Log ("Risk is: " + risk ());
 //		rb.AddForce (transform.right * speed * Time.deltaTime);
 		if (enemyState == EnemyState.NORMAL) {
 			transform.position += transform.forward * speed * Time.deltaTime;
-			riskText.text = risk ().ToString();
+//			riskText.text = risk ().ToString();
 		}
+		if (enemyState == EnemyState.ALERTED) {
+// 			transform.Translate(playerDir * attackSpeed * Time.deltaTime);
+			rb.AddForce(playerDir * attackSpeed * Time.deltaTime);
+		} 
 		DetectPlayer ();
 	}
 
@@ -51,19 +62,11 @@ public class EnemyMovement : MonoBehaviour {
 	public void DetectPlayer(){
 		float distanceToPlayer;
 		distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
-		if (distanceToPlayer <= 5f) {
-			if (risk () <= 10f) {
-				enemyState = EnemyState.ALERTED;
-				Debug.Log (enemyState);
-			} else {
-				Debug.Log ("You're good");
-			}
+		if (distanceToPlayer <= aggressiveRange) {
+ 			enemyState = EnemyState.ALERTED;
 		}
 
-		if (enemyState == EnemyState.ALERTED) {
-			Vector3 playerDir = player.transform.position - transform.position;
-			transform.position += playerDir * speed * Time.deltaTime;
-		} 
+	
 
 	}
 }
