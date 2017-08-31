@@ -6,8 +6,10 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour {
 	//we want to set up basic movement first.
 //	Rigidbody rb;
-	float speed = 1f;
-	float attackSpeed = 20f;
+	private GameObject lastCheckpoint;
+
+	float speed = 10f;
+	float attackSpeed = 20000f;
 	public float aggressiveRange = 10f;
 	public GameObject player;
 	Rigidbody rb;
@@ -16,7 +18,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	public enum EnemyState{
 		NORMAL,
-		ALERTED
+		ALERTED,
 	}
 
 	EnemyState enemyState;
@@ -41,16 +43,29 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		if (enemyState == EnemyState.ALERTED) {
 // 			transform.Translate(playerDir * attackSpeed * Time.deltaTime);
-			rb.AddForce(playerDir * attackSpeed * Time.deltaTime);
+			GameObject enemyBullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
+			enemyBullet.transform.position = transform.position + Vector3.forward;
+			enemyBullet.GetComponent<Rigidbody> ().AddForce (playerDir * attackSpeed * Time.deltaTime);
+//			rb.AddForce(playerDir * attackSpeed * Time.deltaTime);
 		} 
 		DetectPlayer ();
 	}
 
 	//reverse direction upon collision with wall
-	void OnCollisionEnter (Collision coll)
-	{
+	//kills player.
+	void OnCollisionEnter(Collision coll){
 		if (enemyState != EnemyState.ALERTED) {
 			speed *= -1f;
+		}
+
+		if (coll.gameObject.name == "Player") {	
+			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
+			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+		} 
+
+		if (coll.gameObject.name == "Player2") {
+			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
+			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
 		}
 	}
 
@@ -60,13 +75,21 @@ public class EnemyMovement : MonoBehaviour {
 
 	//check how close the player is
 	public void DetectPlayer(){
-		float distanceToPlayer;
-		distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
-		if (distanceToPlayer <= aggressiveRange) {
- 			enemyState = EnemyState.ALERTED;
+//		float distanceToPlayer;
+//		distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
+//		if (distanceToPlayer <= aggressiveRange) {
+// 			enemyState = EnemyState.ALERTED;
+//		}
+
+		RaycastHit hit;
+		Vector3 rayDirection = player.transform.position - transform.position;
+		if (Physics.Raycast (transform.position, rayDirection, out hit)) {
+			if (hit.transform == player.transform) {
+				enemyState = EnemyState.ALERTED;
+ 			} else {
+				enemyState = EnemyState.NORMAL;
+			}
 		}
-
-	
-
 	}
+		
 }

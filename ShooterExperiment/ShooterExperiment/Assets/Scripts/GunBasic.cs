@@ -35,7 +35,7 @@ public class GunBasic : MonoBehaviour {
 		rb.velocity = transform.forward * ballSpeed;
 //		rb.AddForce(transform.forward * ballSpeed, ForceMode.Impulse);
 //		rb.AddForce (new Vector3 (0, -ballGrav * rb.mass, 0));
-		rb.AddForce(Vector3.down * ballGrav * rb.mass, ForceMode.Force);
+//		rb.AddForce(Vector3.down * ballGrav * rb.mass, ForceMode.Force);
 
 	}
 

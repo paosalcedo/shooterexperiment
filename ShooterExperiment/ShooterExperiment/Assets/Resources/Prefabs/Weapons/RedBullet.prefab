@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23809266172092432}
   - component: {fileID: 114691764296832074}
   - component: {fileID: 54121792383223450}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RedBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33842657380425360}
   - component: {fileID: 135559850164754874}
   - component: {fileID: 23007052929065600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
