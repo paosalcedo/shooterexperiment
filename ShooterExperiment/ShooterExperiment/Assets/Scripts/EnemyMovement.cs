@@ -9,11 +9,14 @@ public class EnemyMovement : MonoBehaviour {
 	private GameObject lastCheckpoint;
 
 	float speed = 10f;
-	float attackSpeed = 20000f;
+	float attackSpeed = 100f;
 	public float aggressiveRange = 10f;
 	public GameObject player;
+	bool hasFired;
 	Rigidbody rb;
+	float cooldown;
 
+	Vector3 targetDir;
 	Vector3 playerDir;
 
 	public enum EnemyState{
@@ -26,28 +29,27 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
-//		rb = GetComponent<Rigidbody> ();
-		enemyState = EnemyState.NORMAL;
+ 		enemyState = EnemyState.NORMAL;
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
+ 	void Update () {
 		playerDir = player.transform.position - transform.position;
-
-//		Debug.Log ("Risk is: " + risk ());
-//		rb.AddForce (transform.right * speed * Time.deltaTime);
-		if (enemyState == EnemyState.NORMAL) {
+  		if (enemyState == EnemyState.NORMAL) {
 			transform.position += transform.forward * speed * Time.deltaTime;
-//			riskText.text = risk ().ToString();
-		}
+			targetDir = playerDir;
+ 		}
 		if (enemyState == EnemyState.ALERTED) {
-// 			transform.Translate(playerDir * attackSpeed * Time.deltaTime);
-			GameObject enemyBullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
-			enemyBullet.transform.position = transform.position + Vector3.forward;
-			enemyBullet.GetComponent<Rigidbody> ().AddForce (playerDir * attackSpeed * Time.deltaTime);
-//			rb.AddForce(playerDir * attackSpeed * Time.deltaTime);
-		} 
+			if (!hasFired && cooldown <= 0f) {
+				Fire ();
+				hasFired = true;
+				cooldown = 0.25f;
+			}
+			cooldown -= Time.deltaTime;
+
+
+//			enemyBullet.transform.Translate (targetDir * attackSpeed * Time.deltaTime);
+ 		} 
 		DetectPlayer ();
 	}
 
@@ -75,12 +77,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	//check how close the player is
 	public void DetectPlayer(){
-//		float distanceToPlayer;
-//		distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
-//		if (distanceToPlayer <= aggressiveRange) {
-// 			enemyState = EnemyState.ALERTED;
-//		}
-
+		
 		RaycastHit hit;
 		Vector3 rayDirection = player.transform.position - transform.position;
 		if (Physics.Raycast (transform.position, rayDirection, out hit)) {
@@ -90,6 +87,11 @@ public class EnemyMovement : MonoBehaviour {
 				enemyState = EnemyState.NORMAL;
 			}
 		}
+	}
+
+	void Fire(){
+		GameObject enemyBullet = Instantiate(Resources.Load("Prefabs/Weapons/EnemyBullet")) as GameObject;
+		enemyBullet.transform.position = transform.position;
 	}
 		
 }

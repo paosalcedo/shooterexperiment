@@ -5472,7 +5472,7 @@ GameObject:
   - component: {fileID: 191386414}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -49858,7 +49858,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 40
+  m_StaticEditorFlags: 127
   m_IsActive: 1
 --- !u!64 &717104874
 MeshCollider:
@@ -50210,7 +50210,7 @@ MonoBehaviour:
   m_Script: {fileID: 16342205, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityType: 3
+  _entityType: 0
 --- !u!4 &717104879
 Transform:
   m_ObjectHideFlags: 0
@@ -57840,7 +57840,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh12776
+  m_Name: pb_Mesh12828
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
