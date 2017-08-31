@@ -13,4 +13,6 @@ public class CheckpointControl : MonoBehaviour {
 	public static int chkLastP1;
 
 
+
+
 }
