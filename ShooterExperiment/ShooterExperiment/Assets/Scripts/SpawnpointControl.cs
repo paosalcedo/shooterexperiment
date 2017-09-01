@@ -58,8 +58,7 @@ public class SpawnpointControl : MonoBehaviour {
 	}
 
 	void Start(){
-		Debug.Log ("loaded SpawnControl!");
-		SetupSpawns ();
+ 		SetupSpawns ();
 		P1StartingSpawn (player1spawns);
 		P2StartingSpawn (player2spawns);
 	}

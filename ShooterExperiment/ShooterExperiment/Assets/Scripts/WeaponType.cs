@@ -4,5 +4,6 @@ using UnityEngine;
 
 public enum WeaponType {
 	BALL,
-	REFLECTOR
+	REFLECTOR,
+	CONE
 }

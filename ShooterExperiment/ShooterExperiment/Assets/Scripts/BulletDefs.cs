@@ -17,6 +17,12 @@ public class BulletDefs {
 			0,
 			1000
 		),
+
+		new BulletInfo(
+			WeaponType.CONE,
+			0,
+			100f
+		)
 	};
 		
 
