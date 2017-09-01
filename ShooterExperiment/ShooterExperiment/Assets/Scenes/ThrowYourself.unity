@@ -4822,7 +4822,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1144
+  m_Name: pb_Mesh-2620
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -52916,11 +52916,6 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1112842325}
-    - target: {fileID: 114121536352360440, guid: 8ad30d8f826d7e042ab800c98deb9e0c,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ad30d8f826d7e042ab800c98deb9e0c, type: 2}
   m_IsPrefabParent: 0
@@ -78800,7 +78795,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1076
+  m_Name: pb_Mesh-2566
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

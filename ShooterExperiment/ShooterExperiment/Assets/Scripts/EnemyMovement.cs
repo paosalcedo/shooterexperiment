@@ -40,15 +40,14 @@ public class EnemyMovement : MonoBehaviour {
 			targetDir = playerDir;
  		}
 		if (enemyState == EnemyState.ALERTED) {
+			//face the player
+			transform.LookAt(player.transform);
 			if (!hasFired && cooldown <= 0f) {
 				Fire ();
 				hasFired = true;
 				cooldown = 0.25f;
 			}
 			cooldown -= Time.deltaTime;
-
-
-//			enemyBullet.transform.Translate (targetDir * attackSpeed * Time.deltaTime);
  		} 
 		DetectPlayer ();
 	}
@@ -91,7 +90,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Fire(){
 		GameObject enemyBullet = Instantiate(Resources.Load("Prefabs/Weapons/EnemyBullet")) as GameObject;
-		enemyBullet.transform.position = transform.position;
+		enemyBullet.transform.position = new Vector3 (enemyBullet.transform.position.x, enemyBullet.transform.position.y, enemyBullet.transform.position.z + 1);
 	}
 		
 }
