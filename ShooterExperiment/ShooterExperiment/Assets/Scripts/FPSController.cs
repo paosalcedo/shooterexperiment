@@ -17,7 +17,7 @@ public class FPSController : MonoBehaviour {
 
 
 	//CONTROLS
-	public KeyCode attackKey;
+//	public KeyCode attackKey;
 
 	public enum PlayerMoveState {
 		JUMPING,
@@ -71,12 +71,12 @@ public class FPSController : MonoBehaviour {
 		velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
 		velocityChange.y = 0;
 
-		if (grounded == true) {
+		if (grounded) {
 			rb.AddForce (velocityChange, ForceMode.VelocityChange);
  		}
 
 		//jump
-		if (grounded == true && Input.GetButtonDown("Jump")) {
+		if (grounded && Input.GetButtonDown("Jump")) {
 			rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);
 			// play the jump sound.
 //			AudioSource jump;
@@ -85,7 +85,7 @@ public class FPSController : MonoBehaviour {
 		}
 
 		//tweaking air control when jumping.
-		if (grounded == false) {
+		if (grounded) {
 			rb.AddForce (velocityChange * airControl, ForceMode.VelocityChange);
 		}
 

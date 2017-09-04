@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44fdd182f4777543a90b7a1aa52fade, type: 3}
+  m_Name: PrefabsDB
+  m_EditorClassIdentifier: 
+  players:
+  - {fileID: 1757370363698918, guid: 2a66719bfabc98041bdeceb407d8f738, type: 2}
+  - {fileID: 1198215209276202, guid: 8ad30d8f826d7e042ab800c98deb9e0c, type: 2}
+  enemies:
+  - {fileID: 1018055649461006, guid: 1418cf40415023548986402366a41f2a, type: 2}
+  - {fileID: 1018055649461006, guid: 1418cf40415023548986402366a41f2a, type: 2}
+  ammoTypes: []
+  triggerTypes: []
