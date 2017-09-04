@@ -17,12 +17,12 @@ public class KillzoneControl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider coll){
- 		if (coll.gameObject.name == "Player") {	
+		if (coll.gameObject.tag == "Player") {	
 			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
 		} 
 
-		if (coll.gameObject.name == "Player2") {
+		if (coll.gameObject.tag == "Player2") {
 			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
 		}
