@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour {
 		ALERTED,
 	}
 
-	EnemyState enemyState;
+	public EnemyState enemyState;
 
 	// Use this for initialization
 	void Start () {
@@ -35,27 +35,34 @@ public class EnemyMovement : MonoBehaviour {
 	
  	void Update () {
 		playerDir = player.transform.position - transform.position;
-  		if (enemyState == EnemyState.NORMAL) {
+		targetDir = playerDir;
+
+		switch (enemyState) {
+		case EnemyState.NORMAL:
 			transform.position += transform.forward * speed * Time.deltaTime;
-			targetDir = playerDir;
- 		}
-		if (enemyState == EnemyState.ALERTED) {
+			break;
+		case EnemyState.ALERTED:
 			//face the player
-			transform.LookAt(player.transform);
-			if (!hasFired && cooldown <= 0f) {
-				Fire ();
-				hasFired = true;
-				cooldown = 0.25f;
+			transform.LookAt (player.transform);
+//			StartCoroutine (WaitForEnemyToFacePlayer (0.5f));
+			if (cooldown <= 0f) {
+ 				Fire ();
+ 				cooldown = 1f;
 			}
+			Debug.Log (cooldown);
 			cooldown -= Time.deltaTime;
- 		} 
+			break;
+		default: 
+			break;
+		}
+			
 		DetectPlayer ();
 	}
 
 	//reverse direction upon collision with wall
 	//kills player.
 	void OnCollisionEnter(Collision coll){
-		if (enemyState != EnemyState.ALERTED) {
+		if (enemyState == EnemyState.NORMAL) {
 			speed *= -1f;
 		}
 
@@ -69,10 +76,7 @@ public class EnemyMovement : MonoBehaviour {
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
 		}
 	}
-
-	float risk (){
-		return Random.Range (0,100);
-	}
+		
 
 	//check how close the player is
 	public void DetectPlayer(){
@@ -90,7 +94,18 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Fire(){
 		GameObject enemyBullet = Instantiate(Resources.Load("Prefabs/Weapons/EnemyBullet")) as GameObject;
-		enemyBullet.transform.position = new Vector3 (enemyBullet.transform.position.x, enemyBullet.transform.position.y, enemyBullet.transform.position.z + 1);
+		enemyBullet.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + 1);
+		enemyBullet.transform.rotation = transform.rotation;	
+	}
+
+	IEnumerator WaitForEnemyToFacePlayer (float delay){
+		yield return new WaitForSeconds (delay);
+//		if (!hasFired && cooldown <= 0f) {
+		if (!hasFired){
+			Fire ();
+//			hasFired = true;
+			cooldown = 0.25f;
+		}
 	}
 		
 }

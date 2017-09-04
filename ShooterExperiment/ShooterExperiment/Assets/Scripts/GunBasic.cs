@@ -24,11 +24,11 @@ public class GunBasic : MonoBehaviour {
 	}
 
 	void Update(){
-		if (stuck) {
-			stuckCounter -= Time.deltaTime;
-			if (stuckCounter <= 0f)
-				ballSpeed = 0f;
-		}
+//		if (stuck) {
+//			stuckCounter -= Time.deltaTime;
+//			if (stuckCounter <= 0f)
+//				ballSpeed = 0f;
+//		}
 	}
 
 	void FixedUpdate(){
@@ -40,8 +40,9 @@ public class GunBasic : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision coll){
-		if (coll.gameObject.tag != "Player") {
- 			stuck = true;
-		}
+//		if (coll.gameObject.tag != "Player") {
+// 			stuck = true;
+//		}
+		Destroy (gameObject);
 	}
 }
