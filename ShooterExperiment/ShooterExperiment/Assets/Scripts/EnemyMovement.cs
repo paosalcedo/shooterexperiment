@@ -47,7 +47,7 @@ public class EnemyMovement : MonoBehaviour {
 		case EnemyState.ALERTED:
 			//face the player
 			transform.LookAt (player.transform);
-//			transform.Translate (transform.forward * attackSpeed * Time.deltaTime);
+			transform.Translate (transform.forward * attackSpeed * Time.deltaTime);
 //			StartCoroutine (WaitForEnemyToFacePlayer (0.5f));
 			if (cooldown <= 0f) {
  				Fire ();
