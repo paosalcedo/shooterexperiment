@@ -21,9 +21,11 @@ public class TreadmillControl : MonoBehaviour {
 		
  
 	void OnTriggerEnter(Collider coll){
-		player = coll.gameObject;
-		rb = player.GetComponent<Rigidbody> ();
-		triggerOn.SetActive (true);
+		if (coll.gameObject.GetComponent<FPSController> () != null) {
+			player = coll.gameObject;
+			rb = player.GetComponent<Rigidbody> ();
+			triggerOn.SetActive (true);
+		}
  	}
 
 	void OnTriggerStay(){

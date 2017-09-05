@@ -22,12 +22,12 @@ TagManager:
   - PlayerAmmo
   - Enemies
   - EnemyAmmo
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - FirstPersonWeapons
+  - ThirdPersonWeapons
+  - ' '
+  - ' '
+  - PlayerCannotSee
+  - Player2CannotSee
   - 
   - 
   - 

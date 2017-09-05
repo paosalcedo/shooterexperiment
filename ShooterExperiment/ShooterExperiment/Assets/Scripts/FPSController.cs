@@ -13,7 +13,7 @@ public class FPSController : MonoBehaviour {
 //	public bool canJump = true;
 	public float jumpHeight = 2.0f;
 	private bool grounded = false;
-//	float initHeight;
+ //	float initHeight;
 
 
 	//CONTROLS
@@ -45,6 +45,11 @@ public class FPSController : MonoBehaviour {
 	// Update is called once per frame
 
 	void Update(){
+		Vector3 velocity = rb.velocity;
+
+		if (grounded && Input.GetButtonDown("Jump")) {
+			rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);
+		}
  	}
 
 	void FixedUpdate()
@@ -76,16 +81,16 @@ public class FPSController : MonoBehaviour {
  		}
 
 		//jump
-		if (grounded && Input.GetButtonDown("Jump")) {
-			rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);
+//		if (grounded && Input.GetButtonDown("Jump")) {
+//			rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);
 			// play the jump sound.
 //			AudioSource jump;
 //			jump = GetComponent<AudioSource>();
 //			jump.Play();
-		}
+//		}
 
 		//tweaking air control when jumping.
-		if (grounded) {
+		if (!grounded) {
 			rb.AddForce (velocityChange * airControl, ForceMode.VelocityChange);
 		}
 

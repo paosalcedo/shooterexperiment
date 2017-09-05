@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TriggerTrapDoor : MonoBehaviour {
 
-	ParticleSystem particles;
+	public GameObject particles;
+	public float trapDoorDelay = 1.5f;
 
 	// Use this for initialization
 	void Start () {
-		particles = GetComponentInChildren<ParticleSystem> ();
 
 	}
 	
@@ -17,12 +17,19 @@ public class TriggerTrapDoor : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(){
-		particles.Play ();
 		GetComponent<CloseTrapDoor> ().Operate ();
+		particles.SetActive (true);
 	}
 
-	void OnTriggerExit(){
-		particles.Stop ();
+	void OnTriggerExit(Collider coll){
+		if (coll.gameObject.GetComponent<GunBasic> () != null) {
+			StartCoroutine (DelayParticleDeath (trapDoorDelay));
+		}
+	}
+
+	IEnumerator DelayParticleDeath(float trapDoorDelay_){
+		yield return new WaitForSeconds (trapDoorDelay_);
+		particles.SetActive (false);
 		GetComponent<CloseTrapDoor> ().Open ();
 	}
 }

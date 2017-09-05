@@ -46,10 +46,14 @@ public class GunBasic : MonoBehaviour {
 //		}
 		attackDamage = BulletDefs.bulletDefs[0].attackDamage;
 		if (coll.gameObject.GetComponent<EnemyHealth> () != null) {
-			Debug.Log("HIT ENEMY");
+			Debug.Log ("HIT ENEMY");
 			coll.gameObject.GetComponent<EnemyHealth> ().DeductHealth (attackDamage);
+		} else if (coll.gameObject.GetComponent<TriggerTrapDoor>() != null){
+			StartCoroutine (DelayedDeath (0.5f));
 		}
-		Destroy (gameObject);
+		else {
+			Destroy (gameObject);
+		}
 //		StartCoroutine(DelayedDeath(0.01f));
 	}
 
