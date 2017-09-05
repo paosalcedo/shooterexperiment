@@ -26,14 +26,14 @@ public class GunControl : MonoBehaviour {
 			GameObject bullet;
 			if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER1) {
 				bullet = Instantiate (Resources.Load ("Prefabs/Weapons/BlueBullet")) as GameObject;
-				Debug.Log (gameObject.name + " is attacking!");
+//				Debug.Log (gameObject.name + " is attacking!");
 				bullet.transform.position = transform.position + setModPos;
 				bullet.transform.rotation = transform.rotation;
 			}
 
 			else if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER2) {
 				bullet = Instantiate (Resources.Load ("Prefabs/Weapons/RedBullet")) as GameObject;
-				Debug.Log (gameObject.name + " is attacking!");
+//				Debug.Log (gameObject.name + " is attacking!");
 				bullet.transform.position = transform.position + setModPos;
 				bullet.transform.rotation = transform.rotation;
 			}

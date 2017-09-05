@@ -32,13 +32,13 @@ public class PlayerSwitcherScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		SwitchPlayer (switchKey);	
-		Debug.Log("Current Player is " + currentPlayer);
 	}
 
 	public void SwitchPlayer(KeyCode key){
 		if (Input.GetKeyDown(key)) {
 			if (currentPlayer == CurrentPlayer.PLAYER1) {
-				
+				Debug.Log("Current Player is " + currentPlayer);
+
 //				mainCamera.transform.SetParent (player2.transform);
 //				mainCamera.transform.position = player2.transform.position;
 //				mainCamera.transform.localPosition = new Vector3 (0f, 1f, 0f);
@@ -60,6 +60,8 @@ public class PlayerSwitcherScript : MonoBehaviour {
 			}
 
 			if (currentPlayer == CurrentPlayer.PLAYER2) {
+				Debug.Log("Current Player is " + currentPlayer);
+
 //				mainCamera.transform.SetParent (player1.transform);
 //				mainCamera.transform.position = player1.transform.position;
 //				mainCamera.transform.localPosition = new Vector3 (0f, 1f, 0f);

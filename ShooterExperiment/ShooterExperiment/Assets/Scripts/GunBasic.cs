@@ -11,6 +11,7 @@ public class GunBasic : MonoBehaviour {
 	private float ballGrav;
 	private float ballSpeed;
 	private float stuckCounter = 3f;
+	private int attackDamage;
 	bool stuck = false;
 
 	private Rigidbody rb;
@@ -43,6 +44,17 @@ public class GunBasic : MonoBehaviour {
 //		if (coll.gameObject.tag != "Player") {
 // 			stuck = true;
 //		}
+		attackDamage = BulletDefs.bulletDefs[0].attackDamage;
+		if (coll.gameObject.GetComponent<EnemyHealth> () != null) {
+			Debug.Log("HIT ENEMY");
+			coll.gameObject.GetComponent<EnemyHealth> ().DeductHealth (attackDamage);
+		}
+		Destroy (gameObject);
+//		StartCoroutine(DelayedDeath(0.01f));
+	}
+
+	IEnumerator DelayedDeath(float delay){
+		yield return new WaitForSeconds (delay);
 		Destroy (gameObject);
 	}
 }

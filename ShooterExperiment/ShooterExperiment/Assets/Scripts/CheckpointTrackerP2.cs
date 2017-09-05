@@ -26,4 +26,15 @@ public class CheckpointTrackerP2 : MonoBehaviour {
 		} 
 	}
 
+	void OnTriggerExit (Collider coll)
+	{
+		//this is now the new checkpoint.
+		//Destroy the first one.		
+
+		if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER2) {
+			//			Destroy (CheckpointControl.chkDict [CheckpointControl.chkLast]);
+			CheckpointControl.chkLastP2 = chkKey; 
+		} 
+	}
+
 }

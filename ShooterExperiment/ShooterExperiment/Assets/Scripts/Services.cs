@@ -11,4 +11,5 @@ public static class Services {
 	public static TreadmillControl TreadmillControl { get; set; }
 	public static TYCommonFunctions TYCommonFunctions { get; set; }
 	public static PlayerSwitcherScript PlayerSwitcher { get; set; }
+	public static EnemyDefs EnemyDefs { get; set; }
 }

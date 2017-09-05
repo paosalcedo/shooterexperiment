@@ -7,7 +7,8 @@ public class EnemyMovement : MonoBehaviour {
 	//we want to set up basic movement first.
 //	Rigidbody rb;
 	private GameObject lastCheckpoint;
-
+	private Vector3 startPos;
+	private Quaternion startRot;
 	float speed = 10f;
 	float attackSpeed = 100f;
 	public float aggressiveRange = 10f;
@@ -30,6 +31,8 @@ public class EnemyMovement : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
  		enemyState = EnemyState.NORMAL;
+		startPos = transform.position;
+		startRot = transform.rotation;
 
 	}
 	
@@ -49,8 +52,7 @@ public class EnemyMovement : MonoBehaviour {
  				Fire ();
  				cooldown = 1f;
 			}
-			Debug.Log (cooldown);
-			cooldown -= Time.deltaTime;
+ 			cooldown -= Time.deltaTime;
 			break;
 		default: 
 			break;
@@ -80,11 +82,11 @@ public class EnemyMovement : MonoBehaviour {
 
 	//check how close the player is
 	public void DetectPlayer(){
-		
+		float distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
 		RaycastHit hit;
 		Vector3 rayDirection = player.transform.position - transform.position;
 		if (Physics.Raycast (transform.position, rayDirection, out hit)) {
-			if (hit.transform == player.transform) {
+			if (hit.transform == player.transform && distanceToPlayer <= 15f) {
 				enemyState = EnemyState.ALERTED;
  			} else {
 				enemyState = EnemyState.NORMAL;
@@ -94,7 +96,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Fire(){
 		GameObject enemyBullet = Instantiate(Resources.Load("Prefabs/Weapons/EnemyBullet")) as GameObject;
-		enemyBullet.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + 1);
+		enemyBullet.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 		enemyBullet.transform.rotation = transform.rotation;	
 	}
 

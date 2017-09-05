@@ -8,6 +8,7 @@ public class BulletInfo {
 	public GameObject bullet;
 	public float grav;
 	public float speed;
+	public int attackDamage;
 	public AudioClip clip;
 
 
@@ -20,10 +21,11 @@ public class BulletInfo {
 //
 //		}
 
-	public BulletInfo(WeaponType setWeapon, float setGrav, float setSpeed){
-		weapon = setWeapon; 
-		grav = setGrav;
-		speed = setSpeed;
+	public BulletInfo(WeaponType weapon_, float grav_, float speed_, int attackDamage_){
+		weapon = weapon_; 
+		grav = grav_;
+		speed = speed_;
+		attackDamage = attackDamage_;
 	}
 
 }

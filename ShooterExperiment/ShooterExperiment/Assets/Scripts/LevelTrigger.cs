@@ -20,7 +20,7 @@ public class LevelTrigger : MonoBehaviour {
  
 		if (activator == Activator.ACTIVATE) {
 			levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (true);
-	
+			
 		} 
 
 		if (activator == Activator.DEACTIVATE) {

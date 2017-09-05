@@ -8,21 +8,25 @@ public class BulletDefs {
 		new BulletInfo (
 			WeaponType.BALL,
 /*gravity*/	100,
-/*speed*/	10
-
+/*speed*/	40,
+/*damage*/	20
 		),
 
 		new BulletInfo(
 			WeaponType.REFLECTOR,
 			0,
-			1000
+			1000,
+			0
 		),
 
 		new BulletInfo(
 			WeaponType.CONE,
 			0,
-			100f
+			100f,
+			0
 		)
+
+
 	};
 		
 
