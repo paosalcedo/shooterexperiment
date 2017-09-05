@@ -29,7 +29,7 @@ public class EnemyDefs {
 			new EnemyInfo 
 			(
 				"Basic enemy.", //Description 
-				60, //Health
+				200, //Health
 				20, //Movement Speed
 				20, //Attack speed
 				1 // attack cooldown in seconds

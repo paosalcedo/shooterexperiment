@@ -8,7 +8,7 @@ public class BulletDefs {
 		new BulletInfo (
 			WeaponType.BALL,
 /*gravity*/	100,
-/*speed*/	40,
+/*speed*/	80,
 /*damage*/	20
 		),
 

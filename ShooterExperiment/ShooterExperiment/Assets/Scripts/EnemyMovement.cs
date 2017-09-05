@@ -10,8 +10,8 @@ public class EnemyMovement : MonoBehaviour {
 	private Vector3 startPos;
 	private Quaternion startRot;
 	float speed = 10f;
-	float attackSpeed = 100f;
-	public float aggressiveRange = 10f;
+	float attackSpeed = 2;
+	public float aggressiveRange;
 	public GameObject player;
 	bool hasFired;
 	Rigidbody rb;
@@ -47,6 +47,7 @@ public class EnemyMovement : MonoBehaviour {
 		case EnemyState.ALERTED:
 			//face the player
 			transform.LookAt (player.transform);
+//			transform.Translate (transform.forward * attackSpeed * Time.deltaTime);
 //			StartCoroutine (WaitForEnemyToFacePlayer (0.5f));
 			if (cooldown <= 0f) {
  				Fire ();
@@ -76,7 +77,8 @@ public class EnemyMovement : MonoBehaviour {
 		if (coll.gameObject.name == "Player2") {
 			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-		}
+		} 
+			
 	}
 		
 
@@ -86,7 +88,7 @@ public class EnemyMovement : MonoBehaviour {
 		RaycastHit hit;
 		Vector3 rayDirection = player.transform.position - transform.position;
 		if (Physics.Raycast (transform.position, rayDirection, out hit)) {
-			if (hit.transform == player.transform && distanceToPlayer <= 15f) {
+			if (hit.transform == player.transform && distanceToPlayer <= aggressiveRange) {
 				enemyState = EnemyState.ALERTED;
  			} else {
 				enemyState = EnemyState.NORMAL;

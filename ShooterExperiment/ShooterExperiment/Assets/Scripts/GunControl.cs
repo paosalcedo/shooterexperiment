@@ -22,7 +22,7 @@ public class GunControl : MonoBehaviour {
 
 	public void Attack (KeyCode key, Vector3 setModPos)
 	{
-		if (Input.GetKeyDown (key)) {
+		if (Input.GetKeyDown(key)) {
 			GameObject bullet;
 			if (PlayerSwitcherScript.currentPlayer == PlayerSwitcherScript.CurrentPlayer.PLAYER1) {
 				bullet = Instantiate (Resources.Load ("Prefabs/Weapons/BlueBullet")) as GameObject;
