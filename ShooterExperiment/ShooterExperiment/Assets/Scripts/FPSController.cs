@@ -15,6 +15,9 @@ public class FPSController : MonoBehaviour {
 	private bool grounded = false;
 
 	public KeyCode restartKey;
+	public KeyCode showHintsKey;
+
+	public GameObject[] hints;
  //	float initHeight;
 
 
@@ -56,6 +59,8 @@ public class FPSController : MonoBehaviour {
 		if (Input.GetKeyDown (restartKey)) {
 			SceneControl.RestartGame ();
 		}
+
+		ShowHints (showHintsKey);
   	}
 
 	void FixedUpdate()
@@ -133,5 +138,16 @@ public class FPSController : MonoBehaviour {
 		return Mathf.Sqrt(2 * jumpPadForce * gravity);
 	}
 
+	public void ShowHints(KeyCode key){
+		if (Input.GetKey (key)) {
+			for (int i = 0; i < hints.Length; i++) {
+				hints [i].SetActive (true);
+			}
+		} else {
+			for (int i = 0; i < hints.Length; i++) {
+				hints [i].SetActive (false);
+			}
+		}
+	}
 
 }

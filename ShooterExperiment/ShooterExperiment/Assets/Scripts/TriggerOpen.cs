@@ -6,18 +6,20 @@ public class TriggerOpen : MonoBehaviour {
 
 	public MeshRenderer triggerMesh;
 	MeshRenderer whiteMesh;
-	ParticleSystem particles;
+//	ParticleSystem particles;
+	public GameObject particles;
 
 	public GameObject doorToOpen;
 
 	// Use this for initialization
 	void Start () {
 		whiteMesh = GetComponent<MeshRenderer> ();
-		particles = GetComponentInChildren<ParticleSystem> ();
+//		particles = GetComponentInChildren<ParticleSystem> ();
  	}
 
 	void OnTriggerEnter(Collider collider){
-		particles.Play ();
+//		particles.Play ();
+		particles.SetActive(true);
 		doorToOpen.GetComponent<OpenDoor> ().Open ();
 		triggerMesh.enabled = true;
 		whiteMesh.enabled = false;
@@ -25,7 +27,8 @@ public class TriggerOpen : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider collider){
-		particles.Stop ();
+//		particles.Stop ();
+		particles.SetActive(false);
 		doorToOpen.GetComponent<OpenDoor> ().Close ();
 		triggerMesh.enabled = false;
 		whiteMesh.enabled = true;
