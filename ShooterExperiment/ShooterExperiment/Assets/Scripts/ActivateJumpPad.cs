@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActivateJumpPad : MonoBehaviour {
 
-	public GameObject triggerToActivate;
+	public GameObject[] triggersToActivate;
 	public GameObject particles;
 	// Use this for initialization
 	void Start () {
@@ -17,8 +17,10 @@ public class ActivateJumpPad : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(){
-		
-		triggerToActivate.GetComponent<JumpPadTrigger> ().ActivateJumpPad ();
+
+		for (int i = 0; i < triggersToActivate.Length; i++) {
+			triggersToActivate [i].GetComponent<JumpPadTrigger> ().ActivateJumpPad ();
+		}
 		particles.SetActive (true);
 		StartCoroutine (DelayedInactive (0.10f));
 	}
