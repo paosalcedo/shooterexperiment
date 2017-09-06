@@ -25,7 +25,7 @@ public class BossWeakpoint : MonoBehaviour {
 		health -= damage;
 		Debug.Log ("Boss health: " + health + "/" + EnemyDefs.enemyDict [EnemyDefs.EnemyType.CHOPPER].health);
 		if (health <= 0) {
-			Destroy(gameObject);
+			Destroy(transform.parent.gameObject);
 		}
 	}
 

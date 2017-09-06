@@ -51,12 +51,13 @@ public class EnemyDefs {
 			new EnemyInfo 
 			(
 				"First boss", 
-				20, //Health   
+				500, //Health   
 				20, //movement speed
 				100, //Attack speed
 				0.5f //attack cooldown in seconds
 			)
 		);
+		Debug.Log ("Enemy Defs Generated");
   	}
 
 }

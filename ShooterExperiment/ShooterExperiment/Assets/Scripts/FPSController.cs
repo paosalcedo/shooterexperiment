@@ -13,6 +13,8 @@ public class FPSController : MonoBehaviour {
 //	public bool canJump = true;
 	public float jumpHeight = 2.0f;
 	private bool grounded = false;
+
+	public KeyCode restartKey;
  //	float initHeight;
 
 
@@ -50,7 +52,11 @@ public class FPSController : MonoBehaviour {
 		if (grounded && Input.GetButtonDown("Jump")) {
 			rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);
 		}
- 	}
+
+		if (Input.GetKeyDown (restartKey)) {
+			SceneControl.RestartGame ();
+		}
+  	}
 
 	void FixedUpdate()
 	{
