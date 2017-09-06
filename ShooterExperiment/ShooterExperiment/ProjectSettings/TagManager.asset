@@ -9,6 +9,7 @@ TagManager:
   - Fire
   - SecondCamera
   - Player2
+  - Enemies
   layers:
   - Default
   - TransparentFX

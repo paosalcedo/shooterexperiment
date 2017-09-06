@@ -44,11 +44,13 @@ public class SpawnpointControl : MonoBehaviour {
 		p2_spawndict.Add (Player2Spawns.FIRST, p2_spawns [0]);
 		p2_spawndict.Add (Player2Spawns.AFTER_THE_LEAP, p2_spawns [1]);
 		p2_spawndict.Add (Player2Spawns.UP_THE_STAIRS, p2_spawns [2]);
+		p2_spawndict.Add (Player2Spawns.DOWN_THE_RAMP, p2_spawns [3]);
 
 		p1_spawndict.Add (Player1Spawns.FIRST, p1_spawns [0]);
 		p1_spawndict.Add (Player1Spawns.RED_DOOR, p1_spawns [1]);
 		p1_spawndict.Add (Player1Spawns.CRUSHERS, p1_spawns [2]);
 		p1_spawndict.Add (Player1Spawns.AFTER_THE_TUNNEL, p1_spawns [3]);
+		p1_spawndict.Add (Player1Spawns.END_OF_THE_ROAD, p1_spawns [4]);
 	}
 
 	void P1StartingSpawn(Player1Spawns spawn){

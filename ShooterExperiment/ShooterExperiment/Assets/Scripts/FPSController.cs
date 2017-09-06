@@ -63,6 +63,7 @@ public class FPSController : MonoBehaviour {
 		return Mathf.Sqrt(2 * jumpHeight * gravity);
 	}
 
+
 	void MovePlayer(){
 
 		Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -112,5 +113,18 @@ public class FPSController : MonoBehaviour {
 			grounded = false;
 		}
 	}
+
+	public void SuperJump(float jumpforce){
+		Vector3 velocity = rb.velocity;
+		rb.velocity = new Vector3 (velocity.x, CalculateSuperJumpVerticalSpeed (jumpforce), velocity.z);
+	}
+
+	public float CalculateSuperJumpVerticalSpeed (float jumpPadForce) {
+		
+		// From the jump height and gravity we deduce the upwards speed 
+		// for the character to reach at the apex.
+		return Mathf.Sqrt(2 * jumpPadForce * gravity);
+	}
+
 
 }

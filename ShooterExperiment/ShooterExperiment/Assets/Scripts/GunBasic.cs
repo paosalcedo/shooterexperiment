@@ -10,10 +10,8 @@ public class GunBasic : MonoBehaviour {
 	private WeaponType ballType;
 	private float ballGrav;
 	private float ballSpeed;
-	private float stuckCounter = 3f;
-	private int attackDamage;
-	bool stuck = false;
-
+ 	private int attackDamage;
+ 
 	private Rigidbody rb;
 
 	void Start(){
@@ -25,29 +23,23 @@ public class GunBasic : MonoBehaviour {
 	}
 
 	void Update(){
-//		if (stuck) {
-//			stuckCounter -= Time.deltaTime;
-//			if (stuckCounter <= 0f)
-//				ballSpeed = 0f;
-//		}
+
 	}
 
 	void FixedUpdate(){
 		rb.velocity = transform.forward * ballSpeed;
-//		rb.AddForce(transform.forward * ballSpeed, ForceMode.Impulse);
-//		rb.AddForce (new Vector3 (0, -ballGrav * rb.mass, 0));
-//		rb.AddForce(Vector3.down * ballGrav * rb.mass, ForceMode.Force);
-
 	}
 
 	void OnCollisionEnter(Collision coll){
-//		if (coll.gameObject.tag != "Player") {
-// 			stuck = true;
-//		}
+ 
 		attackDamage = BulletDefs.bulletDefs[0].attackDamage;
 		if (coll.gameObject.tag == "Enemies") {
-// 			Debug.Log ("HIT ENEMY");
-			coll.gameObject.GetComponent<EnemyHealth> ().DeductHealth (attackDamage);
+			if (coll.gameObject.GetComponent <EnemyHealth> () != null) {
+				coll.gameObject.GetComponent<EnemyHealth> ().DeductHealth (attackDamage);
+			} else if (coll.gameObject.GetComponent<BossWeakpoint> () != null) {
+				Debug.Log ("Boss hit!");
+				coll.gameObject.GetComponent<BossWeakpoint> ().DeductHealth (attackDamage);
+			}
 			Destroy (gameObject);
 		} else if (coll.gameObject.GetComponent<TriggerTrapDoor>() != null){
 			StartCoroutine (DelayedDeath (0.5f));
@@ -55,8 +47,7 @@ public class GunBasic : MonoBehaviour {
 		else {
 			Destroy (gameObject);
 		}
-//		StartCoroutine(DelayedDeath(0.01f));
-	}
+ 	}
 
 	IEnumerator DelayedDeath(float delay){
 		yield return new WaitForSeconds (delay);

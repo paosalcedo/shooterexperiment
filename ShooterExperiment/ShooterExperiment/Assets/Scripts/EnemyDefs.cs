@@ -51,7 +51,7 @@ public class EnemyDefs {
 			new EnemyInfo 
 			(
 				"First boss", 
-				1000, //Health   
+				20, //Health   
 				20, //movement speed
 				100, //Attack speed
 				0.5f //attack cooldown in seconds
