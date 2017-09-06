@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-		health = EnemyDefs.enemyDict ["Drone"].health;
+		health = EnemyDefs.enemyDict [EnemyDefs.EnemyType.DRONE].health;
   	}
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour {
 	public void DeductHealth(int damage_){
 		damage = damage_;
 		health -= damage;
-		Debug.Log ("Enemy health: " + health + "/" + EnemyDefs.enemyDict["Drone"].health);
+		Debug.Log ("Enemy health: " + health + "/" + EnemyDefs.enemyDict[EnemyDefs.EnemyType.DRONE].health);
 		if (health <= 0) {
 			Destroy (gameObject);
 		}

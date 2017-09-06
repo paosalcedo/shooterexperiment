@@ -19,7 +19,7 @@ public class EnemyBulletMotor : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		rb.velocity = transform.forward * EnemyDefs.enemyDict["Drone"].attackSpeed;
+		rb.velocity = transform.forward * EnemyDefs.enemyDict[EnemyDefs.EnemyType.DRONE].attackSpeed;
 	}
 
 	void OnCollisionEnter(Collision coll){

@@ -11,7 +11,8 @@ public class SpawnpointControl : MonoBehaviour {
 		FIRST,
 		RED_DOOR,
 		CRUSHERS,
-		AFTER_THE_TUNNEL
+		AFTER_THE_TUNNEL,
+		END_OF_THE_ROAD
 	}
 
 	public Player1Spawns player1spawns;
@@ -20,7 +21,8 @@ public class SpawnpointControl : MonoBehaviour {
 	{
 		FIRST,
 		AFTER_THE_LEAP,
-		UP_THE_STAIRS
+		UP_THE_STAIRS,
+		DOWN_THE_RAMP
 	}
 
 	public Player2Spawns player2spawns;

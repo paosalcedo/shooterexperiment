@@ -45,8 +45,8 @@ public class GunBasic : MonoBehaviour {
 // 			stuck = true;
 //		}
 		attackDamage = BulletDefs.bulletDefs[0].attackDamage;
-		if (coll.gameObject.GetComponent<EnemyHealth> () != null) {
-			Debug.Log ("HIT ENEMY");
+		if (coll.gameObject.tag == "Enemies") {
+// 			Debug.Log ("HIT ENEMY");
 			coll.gameObject.GetComponent<EnemyHealth> ().DeductHealth (attackDamage);
 			Destroy (gameObject);
 		} else if (coll.gameObject.GetComponent<TriggerTrapDoor>() != null){

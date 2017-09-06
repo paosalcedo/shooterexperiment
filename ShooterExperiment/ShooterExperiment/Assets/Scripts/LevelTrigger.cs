@@ -9,14 +9,16 @@ public class LevelTrigger : MonoBehaviour {
 	{
 		ACTIVATE,
 		DEACTIVATE,
-		BOTH
+		BOTH,
+		NEITHER
 	};
 
 	public Activator activator;
 
 	public int level;
  
-	void OnTriggerExit(Collider coll){
+	void OnTriggerExit (Collider coll)
+	{
  
 		if (activator == Activator.ACTIVATE) {
 			levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (true);
@@ -32,6 +34,10 @@ public class LevelTrigger : MonoBehaviour {
 		if (activator == Activator.BOTH) {
 			levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (true);
 			levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (false);
+		}
+		
+		if (activator == Activator.NEITHER) {
+			return;
 		}
 	}
 }
