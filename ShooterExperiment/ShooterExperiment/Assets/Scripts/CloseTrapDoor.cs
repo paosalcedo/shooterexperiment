@@ -40,8 +40,8 @@ public class CloseTrapDoor : MonoBehaviour {
 	}
 
 	public void Open(){
-		LeanTween.rotate (trapDoor1, oldRot, 1f).setEaseInSine ();
-		LeanTween.rotate (trapDoor2, -oldRot, 1f).setEaseInSine ();
+		LeanTween.rotate (trapDoor1, oldRot, 2f).setEaseInSine ();
+		LeanTween.rotate (trapDoor2, -oldRot, 2f).setEaseInSine ();
 	}
 
 }
