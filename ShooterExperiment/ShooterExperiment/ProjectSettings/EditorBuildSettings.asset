@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ThrowYourself.unity
     guid: 92927e2c0b83db1498adcaf5e4521690
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 31ca3c226c98bed4d8fc06899003c69b
