@@ -115,12 +115,13 @@ public class FPSController : MonoBehaviour {
 	}
 
 	public void SuperJump(float jumpforce){
+		Debug.Log ("Super jumping!");
 		Vector3 velocity = rb.velocity;
 		rb.velocity = new Vector3 (velocity.x, CalculateSuperJumpVerticalSpeed (jumpforce), velocity.z);
 	}
 
 	public float CalculateSuperJumpVerticalSpeed (float jumpPadForce) {
-		
+		Debug.Log ("super jump calculated)");
 		// From the jump height and gravity we deduce the upwards speed 
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(2 * jumpPadForce * gravity);

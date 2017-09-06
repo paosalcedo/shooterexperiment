@@ -5,7 +5,7 @@ using UnityEngine;
 public class JumpPadTrigger : MonoBehaviour {
 
 	public GameObject jumpPad;
-	private float jumpPadForce = 35f;
+	private float jumpPadForce = 50f;
 
 	public enum JumpPadState {
 		ON,
@@ -18,16 +18,26 @@ public class JumpPadTrigger : MonoBehaviour {
 
 	JumpPadState jumppadState;
 
-	void OnTriggerEnter(Collider coll){
+	void OnTriggerStay(Collider coll){
 
-		if (coll.gameObject.GetComponent<FPSController> () != null
+		if (coll.gameObject.tag == "Player"
 			&& jumppadState == JumpPadState.ON) {
+			coll.gameObject.GetComponent<FPSController> ().enabled = true;
 			coll.gameObject.GetComponent<FPSController> ().SuperJump (jumpPadForce);
+//			coll.gameObject.GetComponent<FPSController> ().enabled = true;
+
 			//			jumpPad.GetComponent<JumpPad> ().ActivateJumpPad ();
 		}
  	}
 
 	public void ActivateJumpPad(){
+		Debug.Log ("Activating jump pad!");
 		jumppadState = JumpPadState.ON;
+		StartCoroutine(DeactivateJumpPad(0.5f));
+	}
+
+	IEnumerator DeactivateJumpPad(float delay){
+		yield return new WaitForSeconds (delay);
+		jumppadState = JumpPadState.OFF;
 	}
 }
