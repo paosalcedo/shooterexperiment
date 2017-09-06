@@ -29,11 +29,11 @@ public class EnemyDefs {
 //		)
 //	};
 
-	public static Dictionary<EnemyType, EnemyInfo> enemyDict = new Dictionary<EnemyType, EnemyInfo> ();
+	public static Dictionary<EnemyType, EnemyInfo> enemyDict = new Dictionary<EnemyType, EnemyInfo>();
 
-//	Dictionary<string, int> testdict = new Dictionary<string, EnemyInfo>(){
-//		new KeyValuePair<string, EnemyInfo>("test1", new EnemyInfo(),
-//		new KeyValuePair<string,int>("test2",2)
+//	Dictionary<string, EnemyInfo> testdict = new Dictionary<string, EnemyInfo>(){ 
+//		new KeyValuePair<string, EnemyInfo>("test1", new EnemyInfo("Lol", 60, 60 ,0 ,0)),
+//		new KeyValuePair<string, EnemyInfo>("test2", new EnemyInfo("haha", 20, 20, 20, 20))
 //	};
 
 	public void GenerateEnemyDefs(){

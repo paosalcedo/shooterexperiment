@@ -34,7 +34,7 @@ public class TreadmillControl : MonoBehaviour {
 		if (coll.gameObject.GetComponent<FPSController> () != null) {
 			rb_ = coll.gameObject.GetComponent<Rigidbody> ();
 			if (rb_ != null) {
-				if (rb_.velocity.magnitude > 1f) {
+				if (rb_.velocity.magnitude > 2.5f) {
 					if (!paused) {
 						SendPause ();
 						triggerOn.SetActive (true);
@@ -42,12 +42,12 @@ public class TreadmillControl : MonoBehaviour {
 						paused = true;
 					}
 				} else {
-//					if (paused) {
-//						SendResume ();			
-//						triggerOn.SetActive (false);
-//						triggerOff.SetActive (true);	
-//						paused = false;
-//					}
+					if (paused) {
+						SendResume ();			
+						triggerOn.SetActive (false);
+						triggerOff.SetActive (true);	
+						paused = false;
+					}
 				}
 			}
 		}
