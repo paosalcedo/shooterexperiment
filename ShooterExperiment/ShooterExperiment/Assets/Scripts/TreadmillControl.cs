@@ -20,32 +20,49 @@ public class TreadmillControl : MonoBehaviour {
  	}
 		
  
-	void OnTriggerEnter(Collider coll){
-		if (coll.gameObject.GetComponent<FPSController> () != null) {
-			player = coll.gameObject;
-			rb = player.GetComponent<Rigidbody> ();
-			triggerOn.SetActive (true);
-		}
- 	}
+//	void OnTriggerEnter(Collider coll){
+//		if (coll.gameObject.GetComponent<FPSController> () != null) {
+//			player = coll.gameObject;
+//			rb = player.GetComponent<Rigidbody> ();
+//		}
+// 	}
 
-	void OnTriggerStay(){
-		if (rb != null) {
-			if (rb.velocity.magnitude > 2.5f) {
-				if (!paused) {
-					SendPause ();
-					triggerOn.SetActive (true);
-					triggerOff.SetActive (false);		
-					paused = true;
-				}
-			} else {
-				if (paused) {
-					SendResume ();			
-					triggerOn.SetActive (false);
-					triggerOff.SetActive (true);	
-					paused = false;
+	void OnTriggerStay (Collider coll)
+	{
+		Rigidbody rb_;
+
+		if (coll.gameObject.GetComponent<FPSController> () != null) {
+			rb_ = coll.gameObject.GetComponent<Rigidbody> ();
+			if (rb_ != null) {
+				if (rb_.velocity.magnitude > 1f) {
+					if (!paused) {
+						SendPause ();
+						triggerOn.SetActive (true);
+						triggerOff.SetActive (false);		
+						paused = true;
+					}
+				} else {
+//					if (paused) {
+//						SendResume ();			
+//						triggerOn.SetActive (false);
+//						triggerOff.SetActive (true);	
+//						paused = false;
+//					}
 				}
 			}
 		}
+	}
+
+	void OnTriggerExit (Collider coll)
+	{
+		if (coll.gameObject.GetComponent<FPSController> () != null) {
+			if (paused) {
+				SendResume ();			
+				triggerOn.SetActive (false);
+				triggerOff.SetActive (true);	
+				paused = false;
+			}
+		}	
 	}
 
 	void OnTriggerExit(){

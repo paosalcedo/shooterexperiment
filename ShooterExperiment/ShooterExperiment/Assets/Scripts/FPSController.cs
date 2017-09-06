@@ -37,13 +37,19 @@ public class FPSController : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.Locked;
 		rb = GetComponent<Rigidbody> ();
 
-// 		ORIGINAL SETTINGS
+//		for (int i = 0; i < hints.Length; i++) {
+//			hints [i].SetActive (false);
+//		}
+
+// 		ORIGINAL RIGIDBODY SETTINGS
 		rb.freezeRotation = true;
 		rb.useGravity = false;
 
 //		MINE
 //		rb.freezeRotation = true;
 //		rb.useGravity = true;
+
+		
 	}
 
 	

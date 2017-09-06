@@ -17,21 +17,28 @@ public class TriggerOpen : MonoBehaviour {
 //		particles = GetComponentInChildren<ParticleSystem> ();
  	}
 
-	void OnTriggerEnter(Collider collider){
+	void OnTriggerEnter (Collider collider)
+	{
 //		particles.Play ();
-		particles.SetActive(true);
-		doorToOpen.GetComponent<OpenDoor> ().Open ();
-		triggerMesh.enabled = true;
-		whiteMesh.enabled = false;
+
+		if (collider.gameObject.GetComponent<FPSController> () != null) {
+			particles.SetActive (true);
+			doorToOpen.GetComponent<OpenDoor> ().Open ();
+			triggerMesh.enabled = true;
+			whiteMesh.enabled = false;
+		}
 
 	}
 
-	void OnTriggerExit(Collider collider){
+	void OnTriggerExit (Collider collider)
+	{
 //		particles.Stop ();
-		particles.SetActive(false);
-		doorToOpen.GetComponent<OpenDoor> ().Close ();
-		triggerMesh.enabled = false;
-		whiteMesh.enabled = true;
+		if (collider.gameObject.GetComponent<FPSController> () != null) {
+			particles.SetActive (false);
+			doorToOpen.GetComponent<OpenDoor> ().Close ();
+			triggerMesh.enabled = false;
+			whiteMesh.enabled = true;
+		}
 	}
 		
 
