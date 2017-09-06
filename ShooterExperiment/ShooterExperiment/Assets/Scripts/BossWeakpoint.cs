@@ -7,6 +7,7 @@ public class BossWeakpoint : MonoBehaviour {
 	private int health;
 	private int maxHealth;
 	private int damage;
+	private GameObject lastCheckpoint;
 	
 	// Use this for initialization
 	void Start () {
@@ -26,5 +27,17 @@ public class BossWeakpoint : MonoBehaviour {
 		if (health <= 0) {
 			Destroy(gameObject);
 		}
-	}	
+	}
+
+	void OnCollisionEnter(Collision coll){
+		if (coll.gameObject.name == "Player") {	
+			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
+			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+		} 
+
+		if (coll.gameObject.name == "Player2") {
+			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
+			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+		} 
+	}
 }

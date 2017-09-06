@@ -23,6 +23,7 @@ public class ActivateJumpPad : MonoBehaviour {
 		}
 		particles.SetActive (true);
 		StartCoroutine (DelayedInactive (0.10f));
+
 	}
 
 	IEnumerator DelayedInactive (float delay){
