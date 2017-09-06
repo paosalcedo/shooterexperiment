@@ -25,7 +25,8 @@ public class BossWeakpoint : MonoBehaviour {
 		health -= damage;
 		Debug.Log ("Boss health: " + health + "/" + EnemyDefs.enemyDict [EnemyDefs.EnemyType.CHOPPER].health);
 		if (health <= 0) {
-			Destroy(transform.parent.gameObject);
+			gameObject.GetComponent<MeshRenderer> ().enabled = false;
+			StartCoroutine (LoadWinScreen (5f));
 		}
 	}
 
@@ -39,5 +40,11 @@ public class BossWeakpoint : MonoBehaviour {
 			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
 		} 
+	}
+
+	IEnumerator LoadWinScreen(float delay){
+		yield return new WaitForSeconds (delay);
+		Debug.Log ("LOL YOU WON!");
+		SceneControl.LevelComplete ();
 	}
 }

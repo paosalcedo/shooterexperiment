@@ -8,6 +8,9 @@ public class SceneControl {
 	public static void RestartGame(){
 		SceneManager.LoadScene ("ThrowYourself");
 	}
-		
+
+	public static void LevelComplete(){
+		SceneManager.LoadScene ("WinScreen");
+	}
 
 }
