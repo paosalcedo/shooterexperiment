@@ -13,12 +13,16 @@ public class GunBasic : MonoBehaviour {
  	private int attackDamage;
  
 	private Rigidbody rb;
+	private MeshRenderer mesh;
 
 	void Start(){
 		ballType = BulletDefs.bulletDefs [0].weapon;
 		ballGrav = BulletDefs.bulletDefs [0].grav;
 		ballSpeed = BulletDefs.bulletDefs [0].speed;
 		rb = GetComponent<Rigidbody> ();
+		mesh = GetComponent<MeshRenderer>();
+		mesh.enabled = false;
+		EnableMesh(0.5f);
 		Destroy (gameObject, 5);
 	}
 
@@ -53,4 +57,10 @@ public class GunBasic : MonoBehaviour {
 		yield return new WaitForSeconds (delay);
 		Destroy (gameObject);
 	}
+
+	IEnumerator EnableMesh(float delay){
+		yield return new WaitForSeconds(delay);
+	}
+
+
 }
