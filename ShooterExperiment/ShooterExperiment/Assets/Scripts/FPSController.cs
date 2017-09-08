@@ -56,7 +56,8 @@ public class FPSController : MonoBehaviour {
 	// Update is called once per frame
 
 	void Update(){
-		Vector3 velocity = rb.velocity;
+
+ 		Vector3 velocity = rb.velocity;
 
 		if (grounded && Input.GetButtonDown("Jump")) {
 			rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);

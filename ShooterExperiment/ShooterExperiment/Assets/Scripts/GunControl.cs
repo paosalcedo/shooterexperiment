@@ -28,7 +28,7 @@ public class GunControl : MonoBehaviour {
 				bullet = Instantiate (Resources.Load ("Prefabs/Weapons/BlueBullet")) as GameObject;
 //				Debug.Log (gameObject.name + " is attacking!");
 				bullet.transform.position = transform.position + setModPos;
-				bullet.GetComponent<MeshRenderer>().enabled = false;
+//				bullet.GetComponent<MeshRenderer>().enabled = false;
 				bullet.transform.rotation = transform.rotation;
 			}
 

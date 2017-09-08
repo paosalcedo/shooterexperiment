@@ -21,8 +21,8 @@ public class GunBasic : MonoBehaviour {
 		ballSpeed = BulletDefs.bulletDefs [0].speed;
 		rb = GetComponent<Rigidbody> ();
 		mesh = GetComponent<MeshRenderer>();
-		mesh.enabled = false;
-		EnableMesh(0.5f);
+    	mesh.enabled = false;
+ 		StartCoroutine(EnableMesh(0.05f));
 		Destroy (gameObject, 5);
 	}
 
@@ -60,7 +60,8 @@ public class GunBasic : MonoBehaviour {
 
 	IEnumerator EnableMesh(float delay){
 		yield return new WaitForSeconds(delay);
-	}
+		mesh.enabled = true;
+ 	}
 
 
 }
