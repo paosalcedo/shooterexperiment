@@ -26,13 +26,13 @@ public class EnemyBulletMotor : MonoBehaviour {
 		if (coll.gameObject.tag == "Player") {	
 			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-			Debug.Log (CheckpointControl.chkLastP1);
+			Debug.Log ("Player1 checkpoint is " + CheckpointControl.chkLastP1);
  		} 
 
 		if (coll.gameObject.tag == "Player2") {
 			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
 			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-			Debug.Log (CheckpointControl.chkLastP2);
+			Debug.Log ("Player2 checkpoint is " + CheckpointControl.chkLastP2);
  		}
 		Destroy (gameObject);
 	}

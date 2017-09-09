@@ -8,6 +8,8 @@ public class BossWeakpoint : MonoBehaviour {
 	private int maxHealth;
 	private int damage;
 	private GameObject lastCheckpoint;
+	public GameObject bossBody;
+	public GameObject[] bossTriggers;
 	
 	// Use this for initialization
 	void Start () {
@@ -26,6 +28,9 @@ public class BossWeakpoint : MonoBehaviour {
 		Debug.Log ("Boss health: " + health + "/" + EnemyDefs.enemyDict [EnemyDefs.EnemyType.CHOPPER].health);
 		if (health <= 0) {
 			gameObject.GetComponent<MeshRenderer> ().enabled = false;
+			bossBody.GetComponent<MeshRenderer>().enabled = false;
+			bossTriggers[0].SetActive(false);
+			bossTriggers[1].SetActive(false);
 			StartCoroutine (LoadWinScreen (5f));
 		}
 	}

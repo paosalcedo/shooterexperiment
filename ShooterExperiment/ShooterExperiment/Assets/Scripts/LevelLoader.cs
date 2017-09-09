@@ -10,6 +10,10 @@ public class LevelLoader : MonoBehaviour {
 
 	public static bool P2_hasProgressed = false;
 
+	public static bool P1_hasProgressed_0 = false;
+	public static bool P2_hasProgressed_0 = false;
+
+
 	public static bool P1_hasProgressed_1 = false;
 	public static bool P2_hasProgressed_1 = false;
 
