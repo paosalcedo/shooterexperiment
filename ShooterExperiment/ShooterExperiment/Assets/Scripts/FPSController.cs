@@ -16,6 +16,7 @@ public class FPSController : MonoBehaviour {
 
 	public KeyCode restartKey;
 	public KeyCode showHintsKey;
+	public KeyCode quitKey;
 
 	public GameObject[] hints;
  //	float initHeight;
@@ -48,7 +49,7 @@ public class FPSController : MonoBehaviour {
 //		MINE
 //		rb.freezeRotation = true;
 //		rb.useGravity = true;
-
+		
 		
 	}
 
@@ -56,6 +57,7 @@ public class FPSController : MonoBehaviour {
 	// Update is called once per frame
 
 	void Update(){
+		QuitGame(quitKey);
 
  		Vector3 velocity = rb.velocity;
 
@@ -154,6 +156,13 @@ public class FPSController : MonoBehaviour {
 			for (int i = 0; i < hints.Length; i++) {
 				hints [i].SetActive (false);
 			}
+		}
+	}
+
+	public void QuitGame (KeyCode key)
+	{
+		if (Input.GetKeyDown (key)) {
+			Application.Quit();
 		}
 	}
 

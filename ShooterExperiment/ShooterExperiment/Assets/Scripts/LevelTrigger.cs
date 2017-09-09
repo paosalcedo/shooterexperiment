@@ -20,24 +20,26 @@ public class LevelTrigger : MonoBehaviour {
 	void OnTriggerExit (Collider coll)
 	{
  
-		if (activator == Activator.ACTIVATE) {
-			levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (true);
+		if (coll.gameObject.GetComponent<FPSController> () != null) {
+			if (activator == Activator.ACTIVATE) {
+				levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (true);
 			
-		} 
+			} 
 
-		if (activator == Activator.DEACTIVATE) {
-			if (LevelLoader.P1_hasProgressed && LevelLoader.P2_hasProgressed) {
+			if (activator == Activator.DEACTIVATE) {
+				if (LevelLoader.P1_hasProgressed && LevelLoader.P2_hasProgressed) {
+					levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (false);
+				}
+			} 
+
+			if (activator == Activator.BOTH) {
+				levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (true);
 				levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (false);
 			}
-		} 
-
-		if (activator == Activator.BOTH) {
-			levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (true);
-			levelHolder.GetComponent<LevelLoader> ().levels [level].SetActive (false);
-		}
 		
-		if (activator == Activator.NEITHER) {
-			return;
+			if (activator == Activator.NEITHER) {
+				return;
+			}
 		}
 	}
 }
