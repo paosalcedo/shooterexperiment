@@ -50,11 +50,11 @@ public class ActionRecorder : MonoBehaviour {
 		if(Input.GetKeyDown(key)){
 			posAtRecordStart = transform.position;
 
-			if (recordingState == RecordingState.NOT_RECORDING) {
+			if (recordingState == RecordingState.NOT_RECORDING || recordingState == RecordingState.PLAYBACK) {
 				recordingState = RecordingState.RECORDING;
 				return;
 			}
-			if (recordingState == RecordingState.RECORDING) {
+			if (recordingState == RecordingState.RECORDING || recordingState == RecordingState.PLAYBACK) {
 				recordingState = RecordingState.NOT_RECORDING;
  				return;
 			}
@@ -71,7 +71,7 @@ public class ActionRecorder : MonoBehaviour {
 		}
 	}
 
-	float w = 1;
+	float w = 0.1f;
 
 	private int nextIndex = 0;
 
@@ -81,7 +81,7 @@ public class ActionRecorder : MonoBehaviour {
 			nextIndex++;
 			w = 1f;
 		}
-		transform.Translate (positions [nextIndex]);
+		transform.position = positions [nextIndex];
 	}
 
 	void PlayRecording(KeyCode key){
