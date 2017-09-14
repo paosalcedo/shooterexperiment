@@ -33,6 +33,7 @@ public class ActionRecorder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Positions: " + positions.Count);
 
         ToggleRecord(recordKey);
 
@@ -55,8 +56,7 @@ public class ActionRecorder : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("Last rec index: " + lastRecIndex);
-
+ 
         if (recordingState != RecordingState.RECORDING)
         {
             PlayRecording(playKey);
@@ -67,19 +67,10 @@ public class ActionRecorder : MonoBehaviour
             RecordMovement(transform.position);
         }
 
-        if (recordingState == RecordingState.NOT_RECORDING)
-        {
-            return;
-        }
 
         if (recordingState == RecordingState.PLAYBACK)
         {
             MoveBasedOnRecording();
-        }
-
-        if (playbackIndex >= positions.Count)
-        {
-            recordingState = RecordingState.NOT_RECORDING;
         }
 
     }
@@ -122,7 +113,11 @@ public class ActionRecorder : MonoBehaviour
         playbackIndex++;
         Debug.Log(playbackIndex);
         transform.position = positions[playbackIndex];
-    }
+        if (transform.position == positions[positions.Count-1]) {
+            playbackIndex = 0;
+            transform.position = positions[0];   
+        }
+     }
 
     void PlayRecording(KeyCode key)
     {
