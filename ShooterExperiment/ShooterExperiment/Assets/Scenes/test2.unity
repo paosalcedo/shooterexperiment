@@ -113,7 +113,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh36722
+  m_Name: pb_Mesh17136
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1883,7 +1883,7 @@ GameObject:
   - component: {fileID: 282689566}
   - component: {fileID: 282689565}
   - component: {fileID: 282689564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2271,7 +2271,7 @@ GameObject:
   - component: {fileID: 303898730}
   - component: {fileID: 303898733}
   - component: {fileID: 303898728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rocketeer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3232,7 +3232,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh36822
+  m_Name: pb_Mesh17240
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3360,7 +3360,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh31314
+  m_Name: pb_Mesh17122
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3553,7 +3553,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh36808
+  m_Name: pb_Mesh17226
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3681,7 +3681,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh36736
+  m_Name: pb_Mesh17150
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3819,7 +3819,7 @@ GameObject:
   - component: {fileID: 1506637055}
   - component: {fileID: 1506637053}
   - component: {fileID: 1506637054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -4062,7 +4062,7 @@ GameObject:
   - component: {fileID: 1782124346}
   - component: {fileID: 1782124345}
   - component: {fileID: 1782124350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4122,7 +4122,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1782124343}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -4158,7 +4158,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1782124343}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fba8c834bdb64904980b014de5d554c4, type: 3}
   m_Name: 
@@ -4180,7 +4180,7 @@ GameObject:
   - component: {fileID: 1969716673}
   - component: {fileID: 1969716672}
   - component: {fileID: 1969716671}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4569,7 +4569,7 @@ GameObject:
   - component: {fileID: 2013473925}
   - component: {fileID: 2013473926}
   - component: {fileID: 2013473927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MineMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
