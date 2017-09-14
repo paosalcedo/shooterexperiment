@@ -2271,6 +2271,7 @@ GameObject:
   - component: {fileID: 303898730}
   - component: {fileID: 303898733}
   - component: {fileID: 303898728}
+  - component: {fileID: 303898729}
   m_Layer: 8
   m_Name: Rocketeer
   m_TagString: Untagged
@@ -3115,6 +3116,20 @@ MonoBehaviour:
   showHintsKey: 0
   quitKey: 0
   hints: []
+--- !u!114 &303898729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 303898721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e7229ba79a74d2abc8ad736499ddc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playKey: 91
+  recordKey: 93
+  recordingState: 0
 --- !u!54 &303898730
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4485,10 +4500,8 @@ MonoBehaviour:
   asset_guid: 
   dontDestroyMeshOnDelete: 0
   m_selectedFaces: 
-  m_SelectedEdges:
-  - x: 11
-    y: 10
-  m_selectedTriangles: 0b0000000a000000
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!33 &1969716673
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5840,4 +5853,3 @@ MonoBehaviour:
   playKey: 101
   recordKey: 114
   recordingState: 1
-  positions: []
