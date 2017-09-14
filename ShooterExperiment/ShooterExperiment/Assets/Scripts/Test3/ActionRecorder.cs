@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ActionRecorder : MonoBehaviour
 {
-
-    bool pressed = false;
-
     public enum RecordingState
     {
         RECORDING,
@@ -19,8 +16,9 @@ public class ActionRecorder : MonoBehaviour
 
     public RecordingState recordingState;
 
-    public List<Vector3> positions = new List<Vector3>();
-    // Use this for initialization
+    List<Vector3> positions = new List<Vector3>();
+    //List<Vector3> rotations = new List<Vector3>();
+    List<Quaternion> rotations = new List<Quaternion>();
 
     float t = 1f;
 
@@ -29,48 +27,31 @@ public class ActionRecorder : MonoBehaviour
         recordingState = RecordingState.NOT_RECORDING;
 
     }
-
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Positions: " + positions.Count);
-
         ToggleRecord(recordKey);
 
-        //      if (recordingState != RecordingState.RECORDING) { 
-        //          PlayRecording(playKey);
-        //      }
-
-        //if (recordingState == RecordingState.RECORDING) {
-        //	RecordMovement (transform.position);
-        //} 
-
-        //if (recordingState == RecordingState.NOT_RECORDING) {
-        //	return;
-        //	}
-
-        //if (recordingState == RecordingState.PLAYBACK) {
-        //	MoveBasedOnRecording ();
-        //}
+        if (recordingState != RecordingState.RECORDING)
+        {
+            PlayRecording(playKey);
+        }
     }
 
     private void FixedUpdate()
     {
  
-        if (recordingState != RecordingState.RECORDING)
-        {
-            PlayRecording(playKey);
-        }
-
         if (recordingState == RecordingState.RECORDING)
         {
             RecordMovement(transform.position);
+             RecordRotation(transform.rotation);
         }
 
 
         if (recordingState == RecordingState.PLAYBACK)
         {
             MoveBasedOnRecording();
+            RotateBasedOnRecording();
         }
 
     }
@@ -82,8 +63,6 @@ public class ActionRecorder : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {
-            posAtRecordStart = transform.position;
-
             if (recordingState == RecordingState.NOT_RECORDING || recordingState == RecordingState.PLAYBACK)
             {
                 recordingState = RecordingState.RECORDING;
@@ -92,7 +71,6 @@ public class ActionRecorder : MonoBehaviour
             if (recordingState == RecordingState.RECORDING || recordingState == RecordingState.PLAYBACK)
             {
                 recordingState = RecordingState.NOT_RECORDING;
-                lastRecIndex = positions.Count - 1;
                 return;
             }
         }
@@ -103,8 +81,6 @@ public class ActionRecorder : MonoBehaviour
     {
         positions.Add(playerPos);
     }
-
-    float w = 0.1f;
 
     private int playbackIndex = 0;
 
@@ -124,6 +100,42 @@ public class ActionRecorder : MonoBehaviour
         if (Input.GetKeyDown(key))
         {
             recordingState = RecordingState.PLAYBACK;
+        }
+    }
+
+    //void RecordRotation(Vector3 playerRot) {
+    //    rotations.Add(playerRot);
+    //}
+
+    void RecordRotation(Quaternion playerRot)
+    {
+        rotations.Add(playerRot);
+    }
+
+    private int rotPlaybackIndex = 0;
+
+    //void RotateBasedOnRecording() {
+
+    //    rotPlaybackIndex++;
+    //    transform.rotation = Quaternion.Euler(rotations[rotPlaybackIndex]);
+    //    //rotPlaybackIndex++;
+    //    //transform.rotation = rotations[rotPlaybackIndex];
+    //    if (transform.rotation.eulerAngles == rotations[rotations.Count - 1])
+    //    {
+    //        rotPlaybackIndex = 0;
+    //        transform.rotation = Quaternion.Euler(rotations[0]);
+    //    }
+    //}
+
+    void RotateBasedOnRecording()
+    {
+        Debug.Log("this is the quaternion version");
+        rotPlaybackIndex++;
+        transform.rotation = rotations[rotPlaybackIndex];
+         if (transform.rotation == rotations[rotations.Count - 1])
+        {
+            rotPlaybackIndex = 0;
+            transform.rotation = rotations[0];
         }
     }
 
