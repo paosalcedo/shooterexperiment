@@ -17,8 +17,8 @@ public class ActionRecorder : MonoBehaviour
     public RecordingState recordingState;
 
     List<Vector3> positions = new List<Vector3>();
-    //List<Vector3> rotations = new List<Vector3>();
-    List<Quaternion> rotations = new List<Quaternion>();
+    List<Vector3> rotations = new List<Vector3>();
+    //List<Quaternion> rotations = new List<Quaternion>();
 
     float t = 1f;
 
@@ -44,7 +44,8 @@ public class ActionRecorder : MonoBehaviour
         if (recordingState == RecordingState.RECORDING)
         {
             RecordMovement(transform.position);
-             RecordRotation(transform.rotation);
+            //RecordRotation(transform.rotation);
+            RecordRotation(transform.eulerAngles);
         }
 
 
@@ -103,40 +104,46 @@ public class ActionRecorder : MonoBehaviour
         }
     }
 
-    //void RecordRotation(Vector3 playerRot) {
-    //    rotations.Add(playerRot);
-    //}
-
-    void RecordRotation(Quaternion playerRot)
+    void RecordRotation(Vector3 playerRot)
     {
         rotations.Add(playerRot);
     }
+
+    //void RecordRotation(Quaternion playerRot)
+    //{
+    //    rotations.Add(playerRot);
+    //}
 
     private int rotPlaybackIndex = 0;
 
     //void RotateBasedOnRecording() {
 
-    //    rotPlaybackIndex++;
-    //    transform.rotation = Quaternion.Euler(rotations[rotPlaybackIndex]);
-    //    //rotPlaybackIndex++;
-    //    //transform.rotation = rotations[rotPlaybackIndex];
-    //    if (transform.rotation.eulerAngles == rotations[rotations.Count - 1])
-    //    {
-    //        rotPlaybackIndex = 0;
-    //        transform.rotation = Quaternion.Euler(rotations[0]);
-    //    }
-    //}
-
     void RotateBasedOnRecording()
     {
         Debug.Log("this is the quaternion version");
         rotPlaybackIndex++;
-        transform.rotation = rotations[rotPlaybackIndex];
-         if (transform.rotation == rotations[rotations.Count - 1])
+        transform.eulerAngles = rotations[rotPlaybackIndex];
+        if (transform.eulerAngles == rotations[rotations.Count - 1])
         {
             rotPlaybackIndex = 0;
-            transform.rotation = rotations[0];
+            transform.eulerAngles = rotations[0];
         }
+    }
+
+    //void RotateBasedOnRecording()
+    //{
+    //    Debug.Log("this is the quaternion version");
+    //    rotPlaybackIndex++;
+    //    transform.rotation = rotations[rotPlaybackIndex];
+    //     if (transform.rotation == rotations[rotations.Count - 1])
+    //    {
+    //        rotPlaybackIndex = 0;
+    //        transform.rotation = rotations[0];
+    //    }
+    //}
+    
+    void RecordWeaponActivity() {
+            
     }
 
 
