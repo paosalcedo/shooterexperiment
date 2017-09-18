@@ -31,9 +31,9 @@ public class MouseLook : MonoBehaviour {
 		mouseLook += smoothV;
 		mouseLook.y = Mathf.Clamp (mouseLook.y, -90f, 90f);
 
-		// transform.localRotation = Quaternion.AngleAxis (-mouseLook.y, Vector3.right);
- //		character = PlayerSwitcherScript.currentParent;
-		character.transform.localRotation = Quaternion.AngleAxis (mouseLook.x, Vector3.up);
+        transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        //		character = PlayerSwitcherScript.currentParent;
+        character.transform.localRotation = Quaternion.AngleAxis (mouseLook.x, Vector3.up);
 		
 //		Vector2 mousePos = new Vector2 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"));
 //		mouseLook += mousePos;
