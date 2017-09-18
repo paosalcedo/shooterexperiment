@@ -11,11 +11,18 @@ public class ActionRecorder : MonoBehaviour
         PLAYBACK
     }
 
+    public GameObject thisCamera;
+
     public KeyCode playKey;
     public KeyCode recordKey;
+    private float timeFired;
 
     public RecordingState recordingState;
 
+    public bool isAttacking = false; 
+
+    private float attackRecordTime = 0; 
+    List<bool> attacks = new List<bool>();
     List<Vector3> positions = new List<Vector3>();
     List<Vector3> rotations = new List<Vector3>();
     //List<Quaternion> rotations = new List<Quaternion>();
@@ -25,8 +32,7 @@ public class ActionRecorder : MonoBehaviour
     void Start()
     {
         recordingState = RecordingState.NOT_RECORDING;
-
-    }
+     }
     // Update is called once per frame
     void Update()
     {
@@ -36,16 +42,27 @@ public class ActionRecorder : MonoBehaviour
         {
             PlayRecording(playKey);
         }
+
+       
     }
 
     private void FixedUpdate()
     {
- 
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            isAttacking = true;
+        }
+        else
+        {
+            isAttacking = false;
+        }
+
         if (recordingState == RecordingState.RECORDING)
         {
             RecordMovement(transform.position);
             //RecordRotation(transform.rotation);
             RecordRotation(transform.eulerAngles);
+            RecordWeaponActivity(isAttacking);
         }
 
 
@@ -53,6 +70,7 @@ public class ActionRecorder : MonoBehaviour
         {
             MoveBasedOnRecording();
             RotateBasedOnRecording();
+            AttackBasedOnRecording();
         }
 
     }
@@ -88,7 +106,7 @@ public class ActionRecorder : MonoBehaviour
     void MoveBasedOnRecording()
     {
         playbackIndex++;
-        Debug.Log(playbackIndex);
+        Debug.Log("Movement index: " + playbackIndex);
         transform.position = positions[playbackIndex];
         if (transform.position == positions[positions.Count-1]) {
             playbackIndex = 0;
@@ -141,10 +159,48 @@ public class ActionRecorder : MonoBehaviour
     //        transform.rotation = rotations[0];
     //    }
     //}
-    
-    void RecordWeaponActivity() {
-            
+
+    void RecordWeaponActivity (bool isAttacking_)
+	{
+        //attackRecordTime += Time.deltaTime;
+        //if (Input.GetKeyDown(KeyCode.Mouse0)) {
+        //    timeFired = attackRecordTime;
+        //}
+        attacks.Add(isAttacking_);
     }
 
+    private int attackIndex = 0;
+
+    void AttackBasedOnRecording() {
+        Debug.Log("Attack index: " + attackIndex);
+        attackIndex++;
+        isAttacking = attacks[attackIndex];
+
+        if (isAttacking) {
+            if(this.gameObject.tag == "Player2") {
+                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
+                //				Debug.Log (gameObject.name + " is attacking!");
+                bullet.transform.position = transform.position;
+                //				bullet.GetComponent<MeshRenderer>().enabled = false;
+                bullet.transform.rotation = transform.rotation;
+            }
+
+            if (this.gameObject.tag == "Player")
+            {
+                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/BlueBullet")) as GameObject;
+                //				Debug.Log (gameObject.name + " is attacking!");
+                bullet.transform.position = transform.position;
+                //				bullet.GetComponent<MeshRenderer>().enabled = false;
+                bullet.transform.rotation = transform.rotation;
+            }
+
+        }
+
+        if (attackIndex == attacks.Count-1) {
+            attackIndex = 0;
+            isAttacking = false;
+        }
+    }
+	
 
 }

@@ -20,7 +20,7 @@ public class GunControl : MonoBehaviour {
 
 	}
 
-	public void Attack (KeyCode key, Vector3 setModPos)
+	public virtual void Attack (KeyCode key, Vector3 setModPos)
 	{
 		if (Input.GetKeyDown(key)) {
 			GameObject bullet;

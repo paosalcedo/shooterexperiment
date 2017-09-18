@@ -7,7 +7,8 @@ public class EnemyDefs {
 	public enum EnemyType
 	{
 		DRONE,
-		CHOPPER
+		CHOPPER,
+        TARGET
 	}
 
 	EnemyType enemyType;
@@ -47,6 +48,7 @@ public class EnemyDefs {
 				1 // attack cooldown in seconds
 			)
 		);
+
 		EnemyDefs.enemyDict.Add (EnemyType.CHOPPER, 
 			new EnemyInfo 
 			(
@@ -57,6 +59,18 @@ public class EnemyDefs {
 				0.5f //attack cooldown in seconds
 			)
 		);
+
+        EnemyDefs.enemyDict.Add(EnemyType.TARGET,
+            new EnemyInfo
+            (
+                "Target Practice",
+                1000,
+                0,
+                0,
+                0    
+            )       
+        );
+
 		Debug.Log ("Enemy Defs Generated");
   	}
 

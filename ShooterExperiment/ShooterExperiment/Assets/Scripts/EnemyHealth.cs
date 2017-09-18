@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour {
 	void Update () {
 	}
 
-	public void DeductHealth(int damage_){
+	public virtual void DeductHealth(int damage_){
 		damage = damage_;
 		health -= damage;
 		Debug.Log ("Enemy health: " + health + "/" + EnemyDefs.enemyDict[EnemyDefs.EnemyType.DRONE].health);
