@@ -24,12 +24,12 @@ public class ActionRecorder : MonoBehaviour
     public KeyCode recordKey;
     private float timeFired;
 
-    private Vector3 posAtRecordStart;
-    private int lastRecIndex = 0;
     private int playbackIndex = 0;
     private int attackIndex = 0;
     private int rotPlaybackIndex = 0;
 
+    public float maxRecordTime = 0;
+    private float recordTime = 0;
 
 
     public RecordingState recordingState;
@@ -39,8 +39,7 @@ public class ActionRecorder : MonoBehaviour
     List<bool> attacks = new List<bool>();
     List<Vector3> positions = new List<Vector3>();
     List<Vector3> rotations = new List<Vector3>();
-    //List<Quaternion> rotations = new List<Quaternion>();
-
+ 
     float t = 1f;
 
     void Start()
@@ -70,19 +69,37 @@ public class ActionRecorder : MonoBehaviour
             isAttacking = false;
         }
 
+        //add time to recordTime
+        if(recordingState == RecordingState.RECORDING) {
+            Debug.Log("Recording time: " + recordTime);
+            recordTime += Time.deltaTime;
+        }
+
     }
+    //update runs unbounded
+    //25-60 fps
+    //lerp to each frame in the list
+    //add a little bit of easing to the movements;
+    //try DOTween and record all positions as places to go; moveTo, RotateBy, 
+    //if fixed timestep is not set oorrecctly, might look weird. Fixed timestep should be set so you're running at 60 fps. 
+
+   
 
     private void FixedUpdate()
     {
-       
 
         if (recordingState == RecordingState.RECORDING)
         {
-            RecordMovement(transform.position);
-            RecordRotation(transform.eulerAngles);
-            RecordWeaponActivity(isAttacking);
+            if (recordTime <= maxRecordTime)
+            {
+                RecordMovement(transform.position);
+                RecordRotation(transform.eulerAngles);
+                RecordWeaponActivity(isAttacking);
+            }
+            else {
+                recordingState = RecordingState.NOT_RECORDING;
+            }
         }
-
 
         if (recordingState == RecordingState.PLAYBACK)
         {
@@ -175,10 +192,6 @@ public class ActionRecorder : MonoBehaviour
 
     void RecordWeaponActivity (bool isAttacking_)
 	{
-        //attackRecordTime += Time.deltaTime;
-        //if (Input.GetKeyDown(KeyCode.Mouse0)) {
-        //    timeFired = attackRecordTime;
-        //}
         attacks.Add(isAttacking_);
     }
 
@@ -190,19 +203,15 @@ public class ActionRecorder : MonoBehaviour
         if (isAttacking) {
             if(gameObject.tag == "Player2") {
                 GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
-                //				Debug.Log (gameObject.name + " is attacking!");
-                bullet.transform.position = thisCamera.transform.position;
-                //				bullet.GetComponent<MeshRenderer>().enabled = false;
-                bullet.transform.rotation = thisCamera.transform.rotation;
+                 bullet.transform.position = thisCamera.transform.position;
+                 bullet.transform.rotation = thisCamera.transform.rotation;
             }
 
             if (gameObject.tag == "Player")
             {
                 GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/BlueBullet")) as GameObject;
-                //				Debug.Log (gameObject.name + " is attacking!");
-                bullet.transform.position = thisCamera.transform.position;
-                //				bullet.GetComponent<MeshRenderer>().enabled = false;
-                bullet.transform.rotation = thisCamera.transform.rotation;
+                 bullet.transform.position = thisCamera.transform.position;
+                 bullet.transform.rotation = thisCamera.transform.rotation;
             }
 
         }
