@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class ActionRecorder : MonoBehaviour
 {
+    public GameObject playerHUD;
+
     public enum RecordingState
     {
         RECORDING,
@@ -29,7 +33,7 @@ public class ActionRecorder : MonoBehaviour
     private int rotPlaybackIndex = 0;
 
     public float maxRecordTime = 0;
-    private float recordTime = 0;
+    private float recordTime = 5;
 
 
     public RecordingState recordingState;
@@ -50,6 +54,9 @@ public class ActionRecorder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //update recording bar
+
+        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime);
 
         Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
 
@@ -72,7 +79,7 @@ public class ActionRecorder : MonoBehaviour
         //add time to recordTime
         if(recordingState == RecordingState.RECORDING) {
             Debug.Log("Recording time: " + recordTime);
-            recordTime += Time.deltaTime;
+            recordTime -= Time.deltaTime;
         }
 
     }
@@ -90,7 +97,7 @@ public class ActionRecorder : MonoBehaviour
 
         if (recordingState == RecordingState.RECORDING)
         {
-            if (recordTime <= maxRecordTime)
+            if (recordTime >= maxRecordTime)
             {
                 RecordMovement(transform.position);
                 RecordRotation(transform.eulerAngles);
