@@ -7,26 +7,25 @@ public class TargetHealth : EnemyHealth
 {
 
     public TextMesh healthText;
-    private int health;
-    private int maxHealth;
+    private int targetHealth;
     private int damage;
     // Use this for initialization
 
     void Start()
     {
-        health = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health;
+        targetHealth = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health;
     }
 
     void Update() {
-        healthText.text = health.ToString();
+        healthText.text = targetHealth.ToString();
     }
 
     public override void DeductHealth(int damage_)
     {
         damage = damage_;
-        health -= damage;
-        Debug.Log("Enemy health: " + health + "/" + EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health);
-        if (health <= 0)
+        targetHealth -= damage;
+        Debug.Log("Enemy health: " + targetHealth + "/" + EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health);
+        if (targetHealth <= 0)
         {
             Destroy(gameObject);
         }
