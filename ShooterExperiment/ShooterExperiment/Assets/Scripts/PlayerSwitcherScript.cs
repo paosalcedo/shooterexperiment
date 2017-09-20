@@ -16,7 +16,13 @@ public class PlayerSwitcherScript : MonoBehaviour {
 	public GameObject player2;
 	public GameObject mainCamera;
 	GameObject currentCam;
+
 	public KeyCode oldSwitchKey;
+    public KeyCode leftPlayerKey;
+    public KeyCode rightPlayerKey;
+    public KeyCode midPlayerKey;
+    public KeyCode godPlayerKey;
+
 
 	private Quaternion p1_lastRot;
 	private Quaternion p2_lastRot;
@@ -39,23 +45,29 @@ public class PlayerSwitcherScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		SwitchPlayer (oldSwitchKey);	
-	}
+        SelectMidPlayer(midPlayerKey);
+        SelectLeftPlayer(leftPlayerKey);
+        SelectRightPlayer(rightPlayerKey);
+        SelectGodPlayer(godPlayerKey);
+ 	}
 
     public virtual void SelectMidPlayer(KeyCode key) {
-        presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
-        presentPlayer.GetComponent<FPSController>().enabled = false;
-        presentPlayer.GetComponentInChildren<Camera>().enabled = false;
-        presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
-        presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
+            presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
+            presentPlayer.GetComponent<FPSController>().enabled = false;
+            presentPlayer.GetComponentInChildren<Camera>().enabled = false;
+            if (presentPlayer.gameObject.name != "GodPlayer")
+            {
+                presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
+            }
+            presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
 
-        midPlayer.GetComponentInChildren<MouseLook>().enabled = true;
-        midPlayer.GetComponent<FPSController>().enabled = true;
-        midPlayer.GetComponentInChildren<Camera>().enabled = true;
-        midPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
-        midPlayer.GetComponentInChildren<GunControl>().enabled = true;
+            midPlayer.GetComponentInChildren<MouseLook>().enabled = true;
+            midPlayer.GetComponent<FPSController>().enabled = true;
+            midPlayer.GetComponentInChildren<Camera>().enabled = true;
+            midPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+            midPlayer.GetComponentInChildren<GunControl>().enabled = true;
 
-        presentPlayer = midPlayer;
+            presentPlayer = midPlayer;
     }
 
     public virtual void SelectGodPlayer(KeyCode key) {
@@ -72,8 +84,48 @@ public class PlayerSwitcherScript : MonoBehaviour {
         godPlayer.GetComponentInChildren<GunControl>().enabled = true;
 
         presentPlayer = godPlayer;
-
     }
+
+
+    public virtual void SelectLeftPlayer(KeyCode key) {
+        presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
+        presentPlayer.GetComponent<FPSController>().enabled = false;
+        presentPlayer.GetComponentInChildren<Camera>().enabled = false;
+        if (presentPlayer.gameObject.name != "GodPlayer")
+        {
+            presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
+        }
+        presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
+
+        leftPlayer.GetComponentInChildren<MouseLook>().enabled = true;
+        leftPlayer.GetComponent<FPSController>().enabled = true;
+        leftPlayer.GetComponentInChildren<Camera>().enabled = true;
+        leftPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+        leftPlayer.GetComponentInChildren<GunControl>().enabled = true;
+
+        presentPlayer = leftPlayer;
+    }
+
+    public virtual void SelectRightPlayer(KeyCode key)
+    {
+        presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
+        presentPlayer.GetComponent<FPSController>().enabled = false;
+        presentPlayer.GetComponentInChildren<Camera>().enabled = false;
+        if (presentPlayer.gameObject.name != "GodPlayer")
+        {
+            presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
+        }
+        presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
+
+        rightPlayer.GetComponentInChildren<MouseLook>().enabled = true;
+        rightPlayer.GetComponent<FPSController>().enabled = true;
+        rightPlayer.GetComponentInChildren<Camera>().enabled = true;
+        rightPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+        rightPlayer.GetComponentInChildren<GunControl>().enabled = true;
+
+        presentPlayer = rightPlayer;
+    }
+
 
     public void SwitchPlayer(KeyCode key){
 		if (Input.GetKeyDown(key)) {
