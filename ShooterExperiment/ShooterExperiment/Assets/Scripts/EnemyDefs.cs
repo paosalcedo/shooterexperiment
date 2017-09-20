@@ -8,7 +8,8 @@ public class EnemyDefs {
 	{
 		DRONE,
 		CHOPPER,
-        TARGET
+        TARGET,
+        SOLDIER
 	}
 
 	EnemyType enemyType;
@@ -45,7 +46,8 @@ public class EnemyDefs {
 				60, //Health
 				20, //Movement Speed
 				20, //Attack speed
-				1 // attack cooldown in seconds
+				1, // attack cooldown in seconds
+                "Enemy"
 			)
 		);
 
@@ -53,24 +55,36 @@ public class EnemyDefs {
 			new EnemyInfo 
 			(
 				"First boss", 
-				500, //Health   
-				20, //movement speed
+				1000, //Health   
+				10, //movement speed
 				100, //Attack speed
-				0.5f //attack cooldown in seconds
-			)
+				0.5f, //attack cooldown in seconds
+			    "Boss"
+            )
 		);
 
         EnemyDefs.enemyDict.Add(EnemyType.TARGET,
             new EnemyInfo
             (
                 "Target Practice",
-                1000,
-                0,
-                0,
-                0    
+                500, //HP
+                15, //movement speed
+                0, //attack speed
+                0, //attack cooldown in seconds
+                "Target"
             )       
         );
 
+        EnemyDefs.enemyDict.Add(EnemyType.SOLDIER,
+            new EnemyInfo(
+                 "Lowly conscript",
+                100, //HP
+                20, //movement speed
+                0, //attack speed
+                0, //attack cooldown in seconds
+                "Soldier"
+            )
+        );
 		Debug.Log ("Enemy Defs Generated");
   	}
 

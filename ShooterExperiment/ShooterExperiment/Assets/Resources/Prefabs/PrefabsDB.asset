@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 1198215209276202, guid: 8ad30d8f826d7e042ab800c98deb9e0c, type: 2}
   enemies:
   - {fileID: 1018055649461006, guid: 1418cf40415023548986402366a41f2a, type: 2}
-  - {fileID: 1018055649461006, guid: 1418cf40415023548986402366a41f2a, type: 2}
+  - {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+  - {fileID: 1115341640326006, guid: 764badcdccab7eb478ddb6ab2a6cbe95, type: 2}
   ammoTypes: []
   triggerTypes: []

@@ -12,8 +12,7 @@ public class EnemyMovement : MonoBehaviour {
 	float speed = 10f;
 	float attackSpeed = 2;
 	public float aggressiveRange;
-	public GameObject player;
-	bool hasFired;
+ 	bool hasFired;
 	Rigidbody rb;
 	float cooldown;
 
@@ -37,7 +36,7 @@ public class EnemyMovement : MonoBehaviour {
 	}
 	
  	void Update () {
-		playerDir = player.transform.position - transform.position;
+        playerDir = Vector3.forward;
 		targetDir = playerDir;
 
 		switch (enemyState) {
@@ -46,8 +45,7 @@ public class EnemyMovement : MonoBehaviour {
 			break;
 		case EnemyState.ALERTED:
 			//face the player
-			transform.LookAt (player.transform);
-			transform.Translate (transform.forward * attackSpeed * Time.deltaTime);
+ 			transform.Translate (transform.forward * attackSpeed * Time.deltaTime);
 //			StartCoroutine (WaitForEnemyToFacePlayer (0.5f));
 			if (cooldown <= 0f) {
  				Fire ();
@@ -84,16 +82,16 @@ public class EnemyMovement : MonoBehaviour {
 
 	//check how close the player is
 	public void DetectPlayer(){
-		float distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
-		RaycastHit hit;
-		Vector3 rayDirection = player.transform.position - transform.position;
-		if (Physics.Raycast (transform.position, rayDirection, out hit)) {
-			if (hit.transform == player.transform && distanceToPlayer <= aggressiveRange) {
-				enemyState = EnemyState.ALERTED;
- 			} else {
-				enemyState = EnemyState.NORMAL;
-			}
-		}
+		//float distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
+		//RaycastHit hit;
+		//Vector3 rayDirection = player.transform.position - transform.position;
+		//if (Physics.Raycast (transform.position, rayDirection, out hit)) {
+		//	if (hit.transform == player.transform && distanceToPlayer <= aggressiveRange) {
+		//		enemyState = EnemyState.ALERTED;
+ 	//		} else {
+		//		enemyState = EnemyState.NORMAL;
+		//	}
+		//}
 	}
 
 	void Fire(){

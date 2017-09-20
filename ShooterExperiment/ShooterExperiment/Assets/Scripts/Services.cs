@@ -12,4 +12,5 @@ public static class Services {
 	public static TYCommonFunctions TYCommonFunctions { get; set; }
 	public static PlayerSwitcherScript PlayerSwitcher { get; set; }
 	public static EnemyDefs EnemyDefs { get; set; }
+    public static SpawnManager SpawnManager { get; set; }
 }

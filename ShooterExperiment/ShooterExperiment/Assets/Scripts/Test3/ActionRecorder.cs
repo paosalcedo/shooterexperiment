@@ -78,8 +78,7 @@ public class ActionRecorder : MonoBehaviour
 
         //add time to recordTime
         if(recordingState == RecordingState.RECORDING) {
-            Debug.Log("Recording time: " + recordTime);
-            recordTime -= Time.deltaTime;
+             recordTime -= Time.deltaTime;
         }
 
     }
