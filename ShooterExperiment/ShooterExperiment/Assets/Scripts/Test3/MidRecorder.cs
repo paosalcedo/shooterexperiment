@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ActionRecorder : MonoBehaviour
+public class MidRecorder : MonoBehaviour
 {
     public GameObject playerHUD;
 
@@ -16,7 +16,8 @@ public class ActionRecorder : MonoBehaviour
         PLAYBACK
     }
 
-    public enum AttackState {
+    public enum AttackState
+    {
         ATTACKING,
         NOT_ATTACKING
     }
@@ -32,7 +33,8 @@ public class ActionRecorder : MonoBehaviour
     private int rotPlaybackIndex = 0;
 
     private float maxRecordTime = 0;
-    [SerializeField]float recordTime = 5;
+    [SerializeField]
+    float recordTime = 5;
 
     public RecordingState recordingState;
 
@@ -42,7 +44,7 @@ public class ActionRecorder : MonoBehaviour
     List<bool> attacks = new List<bool>();
     List<Vector3> positions = new List<Vector3>();
     List<Vector3> rotations = new List<Vector3>();
- 
+
     float t = 1f;
 
     void Start()
@@ -50,13 +52,13 @@ public class ActionRecorder : MonoBehaviour
         isSelected = false;
         maxRecordTime = recordTime;
         recordingState = RecordingState.NOT_RECORDING;
-     }
+    }
     // Update is called once per frame
     void Update()
     {
         //update recording bar
 
-        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime,maxRecordTime);
+        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime, maxRecordTime);
 
         //Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
 
@@ -66,7 +68,7 @@ public class ActionRecorder : MonoBehaviour
         {
             PlayRecording(playKey);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             isAttacking = true;
@@ -90,7 +92,7 @@ public class ActionRecorder : MonoBehaviour
     //try DOTween and record all positions as places to go; moveTo, RotateBy, 
     //if fixed timestep is not set oorrecctly, might look weird. Fixed timestep should be set so you're running at 60 fps. 
 
-   
+
 
     private void FixedUpdate()
     {
@@ -103,7 +105,8 @@ public class ActionRecorder : MonoBehaviour
                 RecordRotation(transform.eulerAngles);
                 RecordWeaponActivity(isAttacking);
             }
-            else {
+            else
+            {
                 Debug.Log(this.gameObject + "is not recording!");
                 recordingState = RecordingState.NOT_RECORDING;
             }
@@ -147,13 +150,14 @@ public class ActionRecorder : MonoBehaviour
     void MoveBasedOnRecording()
     {
         playbackIndex++;
-         transform.position = positions[playbackIndex];
+        transform.position = positions[playbackIndex];
         //if (transform.position == positions[positions.Count-1]) {
-        if(playbackIndex == positions.Count - 1) {
+        if (playbackIndex == positions.Count - 1)
+        {
             playbackIndex = 0;
-            transform.position = positions[0];   
+            transform.position = positions[0];
         }
-     }
+    }
 
     void PlayRecording(KeyCode key)
     {
@@ -201,39 +205,44 @@ public class ActionRecorder : MonoBehaviour
     //    }
     //}
 
-    void RecordWeaponActivity (bool isAttacking_)
-	{
+    void RecordWeaponActivity(bool isAttacking_)
+    {
         attacks.Add(isAttacking_);
     }
 
 
-    void AttackBasedOnRecording() {
+    void AttackBasedOnRecording()
+    {
         attackIndex++;
         isAttacking = attacks[attackIndex];
 
-        if (isAttacking) {
-            if(gameObject.tag == "Player2") {
+        if (isAttacking)
+        {
+            if (gameObject.tag == "Player2")
+            {
                 GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
-                 bullet.transform.position = thisCamera.transform.position;
-                 bullet.transform.rotation = thisCamera.transform.rotation;
+                bullet.transform.position = thisCamera.transform.position;
+                bullet.transform.rotation = thisCamera.transform.rotation;
             }
 
             if (gameObject.tag == "Player")
             {
                 GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/BlueBullet")) as GameObject;
-                 bullet.transform.position = thisCamera.transform.position;
-                 bullet.transform.rotation = thisCamera.transform.rotation;
+                bullet.transform.position = thisCamera.transform.position;
+                bullet.transform.rotation = thisCamera.transform.rotation;
             }
 
         }
 
-        if (attackIndex == attacks.Count-1) {
+        if (attackIndex == attacks.Count - 1)
+        {
             attackIndex = 0;
             isAttacking = false;
         }
     }
 
-    public void IsSelected(ActionRecorder script) {
+    public void IsSelected(ActionRecorder script)
+    {
         script.isSelected = !script.isSelected;
         isSelected = script.isSelected;
         Debug.Log("heyyy it's " + this.gameObject.name + " " + isSelected);

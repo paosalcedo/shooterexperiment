@@ -21,4 +21,7 @@ public class PrefabsDB : ScriptableObject {
 	private GameObject[] triggerTypes;
 	public GameObject[] TriggerTypes { get { return triggerTypes; }}
 
+    [SerializeField]
+    private GameObject gameManager;
+    public GameObject GameManager {  get { return gameManager; } }
 }

@@ -43,7 +43,9 @@ public class PlayerSwitcherScript : MonoBehaviour {
         MID
     }
 
-    public PresentPlayer playerIsNow;
+    public static PresentPlayer playerIsNow;
+
+    public PresentPlayer currentlySelectedPlayer;
 
 	public static CurrentPlayer currentPlayer;
     // Use this for initialization
@@ -65,16 +67,21 @@ public class PlayerSwitcherScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
- 
+
+        currentlySelectedPlayer = playerIsNow;
+
         SelectMidPlayer(midPlayerKey);
         SelectLeftPlayer(leftPlayerKey);
         SelectRightPlayer(rightPlayerKey);
         SelectGodPlayer(godPlayerKey);
 
+        if(presentPlayer != godPlayer) {
+            godPlayer.GetComponent<GodControl>().godIsSelected = false;
+        }
+
         switch (playerIsNow) {
             case PresentPlayer.GOD:
-                //deactivate everything else on everyone else, except action recorder so you can play back.
-                
+                 
                 break;
             case PresentPlayer.LEFT:
   
@@ -90,20 +97,21 @@ public class PlayerSwitcherScript : MonoBehaviour {
 
  	}
 
-    public virtual void SelectMidPlayer(KeyCode key) {
+    public void SelectMidPlayer(KeyCode key) {
         if (Input.GetKeyDown(key)) {
 
-            presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
             presentPlayer.GetComponentInChildren<Camera>().enabled = false;
 
             if (presentPlayer != godPlayer)
             {
+                presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
                 presentPlayer.GetComponent<FPSController>().enabled = false;
                 presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
                 presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
                 presentPlayer.GetComponent<ActionRecorder>().enabled = false;
             }
 
+            midPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
             midPlayer.GetComponentInChildren<MouseLook>().enabled = true;
             midPlayer.GetComponent<FPSController>().enabled = true;
             midPlayer.GetComponentInChildren<Camera>().enabled = true;
@@ -116,7 +124,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
         }
     }
 
-    public virtual void SelectGodPlayer(KeyCode key) {
+    public void SelectGodPlayer(KeyCode key) {
         if(Input.GetKeyDown(key))
         { 
             presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
@@ -124,33 +132,39 @@ public class PlayerSwitcherScript : MonoBehaviour {
             presentPlayer.GetComponentInChildren<Camera>().enabled = false;
             presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
             presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
+            presentPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(false);
+
+            ReactivateActionRecorders();
  
             //godPlayer.GetComponentInChildren<MouseLook>().enabled = true;
             //godPlayer.GetComponent<FPSController>().enabled = true;
             godPlayer.GetComponentInChildren<Camera>().enabled = true;
+            godPlayer.GetComponent<GodControl>().godIsSelected = true;
             //godPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
             //godPlayer.GetComponentInChildren<GunControl>().enabled = true;
 
             presentPlayer = godPlayer;
+
             playerIsNow = PresentPlayer.GOD;
         }
     }
 
 
-    public virtual void SelectLeftPlayer(KeyCode key) {
+    public void SelectLeftPlayer(KeyCode key) {
         if (Input.GetKeyDown(key))
         {
-            presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
             presentPlayer.GetComponentInChildren<Camera>().enabled = false;
 
             if (presentPlayer != godPlayer)
             {
+                presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
                 presentPlayer.GetComponent<FPSController>().enabled = false;
                 presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
                 presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
                 presentPlayer.GetComponent<ActionRecorder>().enabled = false;
             }
 
+            leftPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
             leftPlayer.GetComponentInChildren<MouseLook>().enabled = true;
             leftPlayer.GetComponent<FPSController>().enabled = true;
             leftPlayer.GetComponentInChildren<Camera>().enabled = true;
@@ -163,20 +177,21 @@ public class PlayerSwitcherScript : MonoBehaviour {
         }
     }
 
-    public virtual void SelectRightPlayer(KeyCode key)
+    public void SelectRightPlayer(KeyCode key)
     {
         if (Input.GetKeyDown(key)) { 
-            presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
             presentPlayer.GetComponentInChildren<Camera>().enabled = false;
 
             if (presentPlayer != godPlayer)
             {
+                presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
                 presentPlayer.GetComponent<FPSController>().enabled = false;
                 presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
                 presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
                 presentPlayer.GetComponent<ActionRecorder>().enabled = false;
             }
 
+            rightPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
             rightPlayer.GetComponentInChildren<MouseLook>().enabled = true;
             rightPlayer.GetComponent<FPSController>().enabled = true;
             rightPlayer.GetComponentInChildren<Camera>().enabled = true;
@@ -202,6 +217,16 @@ public class PlayerSwitcherScript : MonoBehaviour {
 
         }
     }
+
+    void ReactivateActionRecorders()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].GetComponent<ActionRecorder>().enabled = true;
+        }
+    }
+
+
 
     public void SwitchPlayer(KeyCode key){
 		if (Input.GetKeyDown(key)) {

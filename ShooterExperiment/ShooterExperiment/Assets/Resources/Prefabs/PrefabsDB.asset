@@ -20,3 +20,5 @@ MonoBehaviour:
   - {fileID: 1115341640326006, guid: 764badcdccab7eb478ddb6ab2a6cbe95, type: 2}
   ammoTypes: []
   triggerTypes: []
+  gameManager: {fileID: 1920579098415278, guid: 32994304d29f69d47addb070ad188288,
+    type: 2}

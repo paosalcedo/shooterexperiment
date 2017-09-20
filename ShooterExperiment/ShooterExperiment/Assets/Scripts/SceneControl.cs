@@ -16,4 +16,13 @@ public class SceneControl {
   		SceneManager.LoadScene ("WinScreen");
 	}
 
+    public static void QuitGame(KeyCode key)
+    {
+        if (Input.GetKeyDown(key))
+        {
+            Application.Quit();
+        }
+    }
+
+
 }

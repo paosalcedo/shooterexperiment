@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public KeyCode quitKey;
+
 	void Awake(){
 		InitializeServices ();
 	}
 	// Use this for initialization
 	void Start () {
-	}
+ 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        SceneControl.QuitGame(quitKey);
 	}
 
 	void InitializeServices(){

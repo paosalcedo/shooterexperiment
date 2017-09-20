@@ -68,7 +68,7 @@ public class EnemyDefs {
             (
                 "Target Practice",
                 500, //HP
-                15, //movement speed
+                2, //movement speed
                 0, //attack speed
                 0, //attack cooldown in seconds
                 "Target"
@@ -79,7 +79,7 @@ public class EnemyDefs {
             new EnemyInfo(
                  "Lowly conscript",
                 100, //HP
-                20, //movement speed
+                5, //movement speed
                 0, //attack speed
                 0, //attack cooldown in seconds
                 "Soldier"
