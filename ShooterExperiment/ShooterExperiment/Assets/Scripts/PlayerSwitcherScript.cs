@@ -77,9 +77,10 @@ public class PlayerSwitcherScript : MonoBehaviour {
                 
                 break;
             case PresentPlayer.LEFT:
-
+  
                 break;
             case PresentPlayer.RIGHT:
+  
                 break;
             case PresentPlayer.MID:
                 break;

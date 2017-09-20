@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 149901827}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -3129,9 +3129,17 @@ MonoBehaviour:
     areaError: 15
   asset_guid: 
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 
-  m_SelectedEdges: []
-  m_selectedTriangles: 
+  m_selectedFaces: 1e000000
+  m_SelectedEdges:
+  - x: 120
+    y: 121
+  - x: 122
+    y: 120
+  - x: 121
+    y: 123
+  - x: 123
+    y: 122
+  m_selectedTriangles: 78000000790000007a000000790000007b0000007a000000
 --- !u!33 &149901829
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6209,7 +6217,7 @@ GameObject:
   - component: {fileID: 1235348768}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -13662,7 +13670,7 @@ GameObject:
   - component: {fileID: 1512482700}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -16412,9 +16420,17 @@ MonoBehaviour:
     areaError: 15
   asset_guid: 
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 
-  m_SelectedEdges: []
-  m_selectedTriangles: 
+  m_selectedFaces: 1e000000
+  m_SelectedEdges:
+  - x: 120
+    y: 121
+  - x: 122
+    y: 120
+  - x: 121
+    y: 123
+  - x: 123
+    y: 122
+  m_selectedTriangles: 78000000790000007a000000790000007b0000007a000000
 --- !u!33 &1512482702
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16559,7 +16575,7 @@ GameObject:
   - component: {fileID: 1587452597}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127
@@ -18309,9 +18325,17 @@ MonoBehaviour:
     areaError: 15
   asset_guid: 
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 
-  m_SelectedEdges: []
-  m_selectedTriangles: 
+  m_selectedFaces: 10000000
+  m_SelectedEdges:
+  - x: 64
+    y: 65
+  - x: 66
+    y: 64
+  - x: 65
+    y: 67
+  - x: 67
+    y: 66
+  m_selectedTriangles: 400000004100000042000000410000004300000042000000
 --- !u!33 &1587452599
 MeshFilter:
   m_ObjectHideFlags: 0
