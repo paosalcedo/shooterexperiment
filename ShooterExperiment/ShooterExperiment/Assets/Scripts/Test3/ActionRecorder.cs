@@ -32,8 +32,8 @@ public class ActionRecorder : MonoBehaviour
     private int attackIndex = 0;
     private int rotPlaybackIndex = 0;
 
-    public float maxRecordTime = 0;
-    private float recordTime = 5;
+    private float maxRecordTime = 0;
+    [SerializeField]float recordTime = 5;
 
 
     public RecordingState recordingState;
@@ -48,6 +48,7 @@ public class ActionRecorder : MonoBehaviour
 
     void Start()
     {
+        maxRecordTime = recordTime;
         attackState = AttackState.NOT_ATTACKING;
         recordingState = RecordingState.NOT_RECORDING;
      }
@@ -56,9 +57,9 @@ public class ActionRecorder : MonoBehaviour
     {
         //update recording bar
 
-        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime);
+        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime,maxRecordTime);
 
-        Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
+        //Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
 
         ToggleRecord(recordKey);
 
@@ -96,7 +97,7 @@ public class ActionRecorder : MonoBehaviour
 
         if (recordingState == RecordingState.RECORDING)
         {
-            if (recordTime >= maxRecordTime)
+            if (recordTime >= 0)
             {
                 RecordMovement(transform.position);
                 RecordRotation(transform.eulerAngles);
@@ -121,6 +122,7 @@ public class ActionRecorder : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {
+            Debug.Log("record key pressed");
             if (recordingState == RecordingState.NOT_RECORDING || recordingState == RecordingState.PLAYBACK)
             {
                 recordingState = RecordingState.RECORDING;
