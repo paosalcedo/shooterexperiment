@@ -11,7 +11,7 @@ public class TargetHealth : EnemyHealth
     private int damage;
     // Use this for initialization
 
-    void Start()
+    public override void Start()
     {
         targetHealth = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health;
     }
@@ -24,7 +24,6 @@ public class TargetHealth : EnemyHealth
     {
         damage = damage_;
         targetHealth -= damage;
-        Debug.Log("Enemy health: " + targetHealth + "/" + EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health);
         if (targetHealth <= 0)
         {
             Destroy(gameObject);

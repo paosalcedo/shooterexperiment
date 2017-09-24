@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponType {
+public enum BulletType {
 	BALL,
 	REFLECTOR,
-	CONE
+	CONE,
+	LASER,
+	SHELL
 }

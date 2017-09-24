@@ -7,7 +7,7 @@ public class GunBasic : MonoBehaviour {
 	protected string gunName = "StickyGun";
 	protected string bulletName = "Ball";
 
-	private WeaponType ballType;
+	private BulletType ballType;
 	private float ballGrav;
 	private float ballSpeed;
  	private int attackDamage;
@@ -16,9 +16,8 @@ public class GunBasic : MonoBehaviour {
 	private MeshRenderer mesh;
 
 	void Start(){
-		ballType = BulletDefs.bulletDefs [0].weapon;
-		ballGrav = BulletDefs.bulletDefs [0].grav;
-		ballSpeed = BulletDefs.bulletDefs [0].speed;
+ 		ballGrav = BulletDefs.bullets [BulletType.BALL].grav;
+		ballSpeed = BulletDefs.bullets [BulletType.BALL].speed;
 		rb = GetComponent<Rigidbody> ();
 		mesh = GetComponent<MeshRenderer>();
     	mesh.enabled = false;
@@ -36,7 +35,7 @@ public class GunBasic : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll){
  
-		attackDamage = BulletDefs.bulletDefs[0].attackDamage;
+		attackDamage = BulletDefs.bullets[BulletType.BALL].attackDamage;
 		if (coll.gameObject.tag == "Enemies") {
 			if (coll.gameObject.GetComponent <EnemyHealth> () != null) {
 				coll.gameObject.GetComponent<EnemyHealth> ().DeductHealth (attackDamage);

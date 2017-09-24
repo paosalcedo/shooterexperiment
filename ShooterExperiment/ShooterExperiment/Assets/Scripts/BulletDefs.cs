@@ -4,30 +4,58 @@ using UnityEngine;
 
 public class BulletDefs {
 
-	public static BulletInfo[] bulletDefs = {
-		new BulletInfo (
-			WeaponType.BALL,
-/*gravity*/	100,
-/*speed*/	80,
-/*damage*/	20
-		),
-
-		new BulletInfo(
-			WeaponType.REFLECTOR,
-			0,
-			1000,
-			0
-		),
-
-		new BulletInfo(
-			WeaponType.CONE,
-			0,
-			100f,
-			0
-		)
-
-
-	};
+	public static Dictionary<BulletType, BulletInfo> bullets = new Dictionary<BulletType, BulletInfo>();
+	
+	public void GenerateBulletDefs(){
+		Debug.Log("Bullet defs generated!");
+		bullets.Add(
+			BulletType.BALL, 
+			new BulletInfo (
+				"plasma globule",
+	/*gravity*/	100,
+	/*speed*/	80,
+	/*damage*/	20
+			)
+		);
 		
+		bullets.Add(
+			BulletType.REFLECTOR,
+			new BulletInfo(
+				"bounces off the walls at perfect angles",
+				0,
+				1000,
+				0
+			)
+		);
 
+		bullets.Add(
+			BulletType.CONE,	
+			new BulletInfo(
+				"no idea",
+				0,
+				100f,
+				0
+				)
+		);
+		
+		bullets.Add(
+			BulletType.LASER,
+			new BulletInfo(
+				"Bullets at the speed of light",
+				0,
+				10f,
+				20
+			)
+		);
+		bullets.Add(
+			BulletType.SHELL,
+			new BulletInfo(
+				"Shells",
+				9.8f,
+				1000f,
+				40
+			)		
+		);
+	}
+		
 }

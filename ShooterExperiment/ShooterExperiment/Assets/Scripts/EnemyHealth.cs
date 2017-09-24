@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour {
  	private int damage;
 	// Use this for initialization
 
-	void Start () {
+	public virtual void Start () {
 		health = EnemyDefs.enemyDict [EnemyDefs.EnemyType.DRONE].health;
   	}
 	

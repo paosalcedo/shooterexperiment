@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
 
 	void InitializeServices(){
 		Services.EnemyDefs = new EnemyDefs ();
+		Services.BulletDefs = new BulletDefs();
 		Services.EnemyDefs.GenerateEnemyDefs ();
+		Services.BulletDefs.GenerateBulletDefs();
 	}
 }
