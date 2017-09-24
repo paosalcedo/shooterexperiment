@@ -8,6 +8,7 @@ public class MortarEngine : MonoBehaviour {
 	
 	void Awake(){
 		rb = GetComponent<Rigidbody>();
+	
 	}
 	void Start () {
 		MoveMortar();
@@ -23,6 +24,10 @@ public class MortarEngine : MonoBehaviour {
 
 	public void MoveMortar(){
 		rb.AddForce(transform.forward * BulletDefs.bullets[BulletType.SHELL].speed, ForceMode.Impulse);
+	}
+
+	void OnCollisionEnter(){
+
 	}
 
 }

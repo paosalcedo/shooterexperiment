@@ -13,6 +13,8 @@ public class MineEngine : MonoBehaviour {
 	}
 
 	MineMode mineMode;
+
+	private float mineLandingDelay = 0.5f;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
@@ -33,10 +35,14 @@ public class MineEngine : MonoBehaviour {
 		}
 	}
 
+	void FixedUpdate(){
+		transform.rotation = Quaternion.Euler(Vector3.down);
+	}
+
 	void OnCollisionEnter(){
 		if(mineMode == MineMode.THROWN){
 			mineMode = MineMode.LANDED;
-		} 
+ 		} 
 	}
 
 	void OnTriggerEnter(Collider coll_){
