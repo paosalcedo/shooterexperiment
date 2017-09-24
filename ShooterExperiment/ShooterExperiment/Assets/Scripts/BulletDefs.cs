@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletDefs {
 
 	public static Dictionary<BulletType, BulletInfo> bullets = new Dictionary<BulletType, BulletInfo>();
-	
+
 	public void GenerateBulletDefs(){
 		Debug.Log("Bullet defs generated!");
 		bullets.Add(
@@ -43,7 +43,7 @@ public class BulletDefs {
 			new BulletInfo(
 				"Bullets at the speed of light",
 				0,
-				10f,
+				100f,
 				20
 			)
 		);
@@ -55,6 +55,16 @@ public class BulletDefs {
 				1000f,
 				40
 			)		
+		);
+
+		bullets.Add(
+			BulletType.MINE,
+			new BulletInfo(
+				"Mines",
+				9.8f,
+				250f,
+				100
+			)
 		);
 	}
 		

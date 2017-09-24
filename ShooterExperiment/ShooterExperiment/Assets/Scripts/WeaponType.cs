@@ -7,5 +7,6 @@ public enum BulletType {
 	REFLECTOR,
 	CONE,
 	LASER,
-	SHELL
+	SHELL,
+	MINE	
 }
