@@ -7,13 +7,13 @@ public class LaserEngine : MonoBehaviour {
 	Rigidbody rb;
 	// Use this for initialization
 	void Start () {
-		Destroy(gameObject, 3f);
+		Destroy(gameObject, 0.5f);
 		rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		MoveLaser();
+		// MoveLaser();
 	}
 
 	
