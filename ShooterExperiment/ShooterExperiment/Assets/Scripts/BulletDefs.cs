@@ -62,7 +62,7 @@ public class BulletDefs {
 			new BulletInfo(
 				"Mines",
 				9.8f,
-				500f,
+				1000f,
 				100
 			)
 		);

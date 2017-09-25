@@ -8,8 +8,7 @@ public class TargetHealth : EnemyHealth
 
     public TextMesh healthText;
     private int targetHealth;
-    private int damage;
-    // Use this for initialization
+     // Use this for initialization
 
     public override void Start()
     {

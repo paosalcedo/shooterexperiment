@@ -212,15 +212,22 @@ public class ActionRecorder : MonoBehaviour
         isAttacking = attacks[attackIndex];
 
         if (isAttacking) {
-            if(gameObject.tag == "Player2") {
-                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
+            if(gameObject.name == "Laser") {
+                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/LaserBullet")) as GameObject;
                  bullet.transform.position = thisCamera.transform.position;
                  bullet.transform.rotation = thisCamera.transform.rotation;
             }
 
-            if (gameObject.tag == "Player")
+            if (gameObject.name == "MineMaster")
             {
-                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/BlueBullet")) as GameObject;
+                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/Mine")) as GameObject;
+                 bullet.transform.position = thisCamera.transform.position;
+                 bullet.transform.rotation = thisCamera.transform.rotation;
+            }
+
+            if (gameObject.name == "Tank")
+            {
+                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/MortarBullet")) as GameObject;
                  bullet.transform.position = thisCamera.transform.position;
                  bullet.transform.rotation = thisCamera.transform.rotation;
             }
@@ -232,6 +239,33 @@ public class ActionRecorder : MonoBehaviour
             isAttacking = false;
         }
     }
+
+    // OLD METHOD
+    // void AttackBasedOnRecording() {
+    //     attackIndex++;
+    //     isAttacking = attacks[attackIndex];
+
+    //     if (isAttacking) {
+    //         if(gameObject.tag == "Player2") {
+    //             GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
+    //              bullet.transform.position = thisCamera.transform.position;
+    //              bullet.transform.rotation = thisCamera.transform.rotation;
+    //         }
+
+    //         if (gameObject.tag == "Player")
+    //         {
+    //             GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/BlueBullet")) as GameObject;
+    //              bullet.transform.position = thisCamera.transform.position;
+    //              bullet.transform.rotation = thisCamera.transform.rotation;
+    //         }
+
+    //     }
+
+    //     if (attackIndex == attacks.Count-1) {
+    //         attackIndex = 0;
+    //         isAttacking = false;
+    //     }
+    // }
 
     public void IsSelected(ActionRecorder script) {
         script.isSelected = !script.isSelected;

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
 
-	private int health = 100;
-	private int maxHealth;
- 	private int damage;
+	protected int health = 100;
+	protected int maxHealth;
+ 	protected int damage;
+
+	public int collisionDamage;
 	// Use this for initialization
 
 	public virtual void Start () {
 		health = EnemyDefs.enemyDict [EnemyDefs.EnemyType.DRONE].health;
+		collisionDamage = EnemyDefs.enemyDict[EnemyDefs.EnemyType.DRONE].attackDamage;
   	}
 	
 	// Update is called once per frame
@@ -20,8 +23,7 @@ public class EnemyHealth : MonoBehaviour {
 	public virtual void DeductHealth(int damage_){
 		damage = damage_;
 		health -= damage;
-		Debug.Log ("Enemy health: " + health + "/" + EnemyDefs.enemyDict[EnemyDefs.EnemyType.DRONE].health);
-		if (health <= 0) {
+ 		if (health <= 0) {
 			Destroy (gameObject);
 		}
 	}

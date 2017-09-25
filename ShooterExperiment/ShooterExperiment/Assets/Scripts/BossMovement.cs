@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMovement : MonoBehaviour {
+public class BossMovement : TargetMovement {
 
- 	Vector3 leftLimit;
-	Vector3 rightLimit;
-	// Use this for initialization
-	void Start () {
-		leftLimit = transform.position - Vector3.left * 25f;
- 		rightLimit = transform.position - Vector3.right * 25f; 		
-		LeanTween.move(gameObject, leftLimit, 5f).setLoopPingPong();
+	public override void Start () {
+		base.Start();
+ 		// LeanTween.move(gameObject, leftLimit, 5f).setLoopPingPong();
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	
 
+	public override void FixedUpdate(){
+		targetDir = destination.transform.position - transform.position;
+
+		Move(EnemyDefs.enemyDict[EnemyDefs.EnemyType.CHOPPER].speed);		
+	}
 	
 }

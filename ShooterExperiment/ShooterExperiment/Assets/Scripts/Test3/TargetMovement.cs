@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TargetMovement : MonoBehaviour {
 
-    private GameObject destination;
+    protected GameObject destination;
 
-    private Vector3 targetDir;
+    protected Vector3 targetDir;
     Rigidbody rb; 
 
 	// Use this for initialization
@@ -17,7 +17,7 @@ public class TargetMovement : MonoBehaviour {
      }
 	
 	// Update is called once per frame
-	public virtual void Update ()
+	public virtual void FixedUpdate ()
     {
         targetDir = destination.transform.position - transform.position;
 
@@ -25,6 +25,7 @@ public class TargetMovement : MonoBehaviour {
 	}
 
     public virtual void Move(float speed_) {
+        // rb.AddForce(targetDir * speed_);
         rb.velocity = targetDir * speed_ * Time.deltaTime;
     }
 }

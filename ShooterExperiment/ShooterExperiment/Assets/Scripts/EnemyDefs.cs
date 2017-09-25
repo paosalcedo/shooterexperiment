@@ -13,23 +13,7 @@ public class EnemyDefs {
 	}
 
 	EnemyType enemyType;
-//	public static EnemyInfo[] enemyDefs = {
-//		new EnemyInfo (
-// 			"Basic enemy.", //Description 
-//			60, //Health
-//			20, //Movement Speed
-//			20, //Attack speed
-//			1 // attack cooldown in seconds
-//		),
-//
-//		new EnemyInfo (
-// 			"First boss", //Description
-//			1000, //Health   
-//			40, //movement speed
-//			60, //Attack speed
-//			0.5f //attack cooldown in seconds
-//		)
-//	};
+
 
 	public static Dictionary<EnemyType, EnemyInfo> enemyDict = new Dictionary<EnemyType, EnemyInfo>();
 
@@ -43,10 +27,10 @@ public class EnemyDefs {
 			new EnemyInfo 
 			(
 				"Basic enemy.", //Description 
-				60, //Health
-				20, //Movement Speed
+				5, //Health
+				15, //Movement Speed
 				20, //Attack speed
-				1, // attack cooldown in seconds
+				50, //attack damage
                 "Enemy"
 			)
 		);
@@ -56,9 +40,9 @@ public class EnemyDefs {
 			(
 				"First boss", 
 				1000, //Health   
-				10, //movement speed
+				3, //movement speed
 				100, //Attack speed
-				0.5f, //attack cooldown in seconds
+				500, //attack damage
 			    "Boss"
             )
 		);
@@ -68,9 +52,9 @@ public class EnemyDefs {
             (
                 "Target Practice",
                 500, //HP
-                2, //movement speed
+                10, //movement speed
                 0, //attack speed
-                0, //attack cooldown in seconds
+                100, //attack damage
                 "Target"
             )       
         );
@@ -81,7 +65,7 @@ public class EnemyDefs {
                 100, //HP
                 5, //movement speed
                 0, //attack speed
-                0, //attack cooldown in seconds
+                20, //attack damage
                 "Soldier"
             )
         );

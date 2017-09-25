@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour {
     public GameObject[] enemySpawnpoints;
     private float seconds;
 
+ 
     void Start() {
     }
 
@@ -19,7 +20,7 @@ public class SpawnManager : MonoBehaviour {
     void Spawn(string enemyToSpawn_) {
         GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/" + enemyToSpawn)) as GameObject;
         enemy.transform.position = RandomizedSpawnpoint();
-        Debug.Log(enemyToSpawn + " spawned");
+        Debug.Log(enemyToSpawn + " spawned at " + enemy.transform.position);
     }
 
     public virtual int RandomEnemyNum()
@@ -28,15 +29,22 @@ public class SpawnManager : MonoBehaviour {
     }
 
     public virtual float RandomSpawnCountdown() {
-        return Random.Range(5, 11);
+        // return Random.Range(5, 11);
+        return Random.Range(2, 3);
     }
 
     public int RandomSpawnpointNum() {
-        return Random.Range(0, 3);
+        return Random.Range(0, 9);
     }
 
     Vector3 RandomizedSpawnpoint() {
-        return enemySpawnpoints[RandomSpawnpointNum()].transform.position;
+        return enemySpawnpoints[RandomSpawnpointNum()].transform.position; //add randomness here
+    }
+
+    Vector3 RandomVec3(){
+        Vector3 randomVec3;
+        randomVec3 = new Vector3 (Random.Range(-10,10),0, 0);
+        return randomVec3; 
     }
 
     void EnemyRespawnCountdown() {
