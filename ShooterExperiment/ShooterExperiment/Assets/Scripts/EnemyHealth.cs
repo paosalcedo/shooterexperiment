@@ -17,7 +17,8 @@ public class EnemyHealth : MonoBehaviour {
   	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
+		Debug.Log(gameObject.name + " current velocity: " +	GetComponent<Rigidbody>().velocity.magnitude);
 	}
 
 	public virtual void DeductHealth(int damage_){

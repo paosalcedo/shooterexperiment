@@ -13,9 +13,11 @@ public class TargetHealth : EnemyHealth
     public override void Start()
     {
         targetHealth = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health;
+        collisionDamage = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackDamage;
     }
 
-    void Update() {
+    public override void Update() {
+        base.Update();
         healthText.text = targetHealth.ToString();
     }
 

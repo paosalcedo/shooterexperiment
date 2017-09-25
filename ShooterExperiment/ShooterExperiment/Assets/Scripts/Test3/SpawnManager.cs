@@ -20,6 +20,9 @@ public class SpawnManager : MonoBehaviour {
     void Spawn(string enemyToSpawn_) {
         GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/" + enemyToSpawn)) as GameObject;
         enemy.transform.position = RandomizedSpawnpoint();
+        if(enemyToSpawn == "Hulk"){
+            enemy.transform.position = enemy.transform.position + (Vector3.up * 10f);
+        }
         Debug.Log(enemyToSpawn + " spawned at " + enemy.transform.position);
     }
 
@@ -30,7 +33,7 @@ public class SpawnManager : MonoBehaviour {
 
     public virtual float RandomSpawnCountdown() {
         // return Random.Range(5, 11);
-        return Random.Range(2, 3);
+        return Random.Range(5, 11);
     }
 
     public int RandomSpawnpointNum() {
@@ -53,10 +56,10 @@ public class SpawnManager : MonoBehaviour {
              switch (RandomEnemyNum())
             {
                 case 0:
-                    enemyToSpawn = "Target";
+                    enemyToSpawn = "Soldier";
                     break;
                 case 1:
-                    enemyToSpawn = "Soldier";
+                    enemyToSpawn = "Target";
                     break;
                 case 2:
                     enemyToSpawn = "Hulk";

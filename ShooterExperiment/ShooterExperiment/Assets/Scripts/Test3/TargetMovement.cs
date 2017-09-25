@@ -19,8 +19,6 @@ public class TargetMovement : MonoBehaviour {
 	// Update is called once per frame
 	public virtual void FixedUpdate ()
     {
-        targetDir = destination.transform.position - transform.position;
-
         Move(EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].speed);
 	}
 

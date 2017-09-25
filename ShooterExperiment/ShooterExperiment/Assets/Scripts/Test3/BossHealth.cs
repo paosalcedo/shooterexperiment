@@ -8,11 +8,13 @@ public class BossHealth : EnemyHealth {
 	// private int health;
 	// Use this for initialization
 	public override void Start () {
-		health = EnemyDefs.enemyDict[EnemyDefs.EnemyType.CHOPPER].health;		
+		health = EnemyDefs.enemyDict[EnemyDefs.EnemyType.CHOPPER].health;	
+		collisionDamage = EnemyDefs.enemyDict[EnemyDefs.EnemyType.CHOPPER].attackDamage;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+		base.Update();
 		healthText.text = health.ToString();
 	}
 

@@ -14,8 +14,6 @@ public class BossMovement : TargetMovement {
 	
 
 	public override void FixedUpdate(){
-		targetDir = destination.transform.position - transform.position;
-
 		Move(EnemyDefs.enemyDict[EnemyDefs.EnemyType.CHOPPER].speed);		
 	}
 	

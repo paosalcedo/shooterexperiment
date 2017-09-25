@@ -15,14 +15,14 @@ public class BaseHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log("Base health remaining: " + health);
-		healthText.text = "Base health: " + health.ToString();
+ 		healthText.text = "Base health: " + health.ToString();
 	}
 
 	void OnCollisionEnter(Collision coll){
 		if(coll.gameObject.GetComponent<EnemyHealth>() != null){
 			health -= coll.gameObject.GetComponent<EnemyHealth>().collisionDamage;
-			Destroy(coll.gameObject);  
+			Destroy(coll.gameObject);
+			Debug.Log("base was hit by a " + coll.gameObject.name + " for " + coll.gameObject.GetComponent<EnemyHealth>().collisionDamage + " damage!" );
 		}
 	}
 }
