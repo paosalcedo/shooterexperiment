@@ -9,6 +9,12 @@ public class TargetAttackControl : MonoBehaviour {
 
 	public GameObject[] players;
 
+	public List<GameObject> playersInCone = new List<GameObject>();
+
+	public GameObject player1;
+	public GameObject player2;
+	public GameObject player3;
+
 	public GameObject closestPlayer;
 	public GameObject closestVisiblePlayer;
 	public float[] distToPlayer;
@@ -24,49 +30,72 @@ public class TargetAttackControl : MonoBehaviour {
  	public enum AlertState{
 		NORMAL,
 		ALERTED,
-		PLAYER_NEAR
-	}
+		SCANNING
+ 	}
 
 	public AlertState alertState;
 	// Use this for initialization
 
+	Vector3 player1Dir;
+	Vector3 player2Dir;
+	Vector3 player3Dir;
 	void Start () {
 		players = GameObject.FindGameObjectsWithTag("Player");
+
+		player1Dir = player1.transform.position - transform.position;
+		player2Dir = player2.transform.position - transform.position;
+		player3Dir = player3.transform.position - transform.position;
 
 		startingPos = transform.position;
 		startingRot = transform.rotation;
 		cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
+		// DetectNearestPlayer();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//update player locations
+		player1Dir = player1.transform.position - transform.position;
+		player2Dir = player2.transform.position - transform.position;
+		player3Dir = player3.transform.position - transform.position;
  
-		DetectNearestPlayer();
-		CheckIfInLineOfSight();
-		playerDir = closestPlayer.transform.position - transform.position;
+		//only check for players in cone if there are actually players in the cone
+		
 
 		switch(alertState)	
 		{
 
 			case AlertState.NORMAL:
 
+				if(PlayerIsInConeOfVision()){
+					Debug.Log("player is in cone of vision!");
+					CheckIfInLineOfSight(closestVisiblePlayer);	
+					
+				}
+ 		
 				//return to normal pos and rot
 				transform.rotation = Quaternion.Slerp (transform.rotation, startingRot, rotationSpeed * Time.deltaTime);
 				// transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
 
 				break;
-			
-			case AlertState.PLAYER_NEAR:
- 				break;
+
+			case AlertState.SCANNING:
+				// transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
+				break;
 			
 			case AlertState.ALERTED:
-  
-				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
-				if (cooldown <= 0f) {
-					Fire ();
-					cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
+				// CheckIfInConeOfVision();
+				if(playersInCone.Count > 0){
+					DetectNearestPlayer();
+					playerDir = closestPlayer.transform.position - transform.position;
+					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
+					if (cooldown <= 0f) {
+						Fire ();
+						cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
+					}
+					cooldown -= Time.deltaTime;
 				}
-				cooldown -= Time.deltaTime;
+
 				break;
 
 			default:
@@ -81,24 +110,32 @@ public class TargetAttackControl : MonoBehaviour {
 	}
 
 	public void DetectNearestPlayer(){
- 		for (int i = 0; i < players.Length; i++) {
-			distToPlayer[i] = Vector3.Distance(players[i].transform.position, transform.position);
-            for (int j = i+1; j < players.Length; j++) {
+ 		// for (int i = 0; i < players.Length; i++) {
+		// 	distToPlayer[i] = Vector3.Distance(players[i].transform.position, transform.position);
+        //     for (int j = i+1; j < players.Length; j++) {
+        //         if ( (distToPlayer[i] > distToPlayer[j]) && (i != j) ) {
+		// 			GameObject tempGameObject;
+		// 			tempGameObject = players[j];
+		// 			players[j] = players[i];
+		// 			players[i] = tempGameObject;
+        //         }
+        //     }
+        // }
+
+		// closestPlayer = players[0];
+		for (int i = 0; i < playersInCone.Count; i++) {
+			distToPlayer[i] = Vector3.Distance(playersInCone[i].transform.position, transform.position);
+            for (int j = i+1; j < playersInCone.Count; j++) {
                 if ( (distToPlayer[i] > distToPlayer[j]) && (i != j) ) {
 					GameObject tempGameObject;
-					tempGameObject = players[j];
-					players[j] = players[i];
-					players[i] = tempGameObject;
+					tempGameObject = playersInCone[j];
+					playersInCone[j] = playersInCone[i];
+					playersInCone[i] = tempGameObject;
                 }
             }
         }
 
-		closestPlayer = players[0];
-		// if(closestVisiblePlayer != players[0]){
-		// 	for(int i = 0; i<players.Length; i++){
-
-		// 	}
-		// }
+		closestPlayer = playersInCone[0];
 		
  	}
 	
@@ -115,45 +152,99 @@ public class TargetAttackControl : MonoBehaviour {
 
 	//Changes alert state
 	public void CheckIfInConeOfVision(){
- 		if(Vector3.Dot(transform.forward, playerDir) > 0.75f){
-			alertState = AlertState.ALERTED;
+ 		if(Vector3.Dot(transform.forward, player1Dir) > 0f){
+			playersInCone.Add(player1);
 		} 
+		
+		if(Vector3.Dot(transform.forward, player2Dir) > 0f)
+		{
+			playersInCone.Add(player2);
+		}
+		
+		if(Vector3.Dot(transform.forward, player3Dir) > 0f)
+		{
+			playersInCone.Add(player3);
+		}
+	}
+
+	public bool PlayerIsInConeOfVision(){
+		bool playerIsInConeOfVision = false;
+		if(Vector3.Dot(transform.forward, player1Dir) > 0f){
+ 			closestVisiblePlayer = player1;
+			playerIsInConeOfVision = true;
+			playersInCone.Add(player1);
+
+		} if(Vector3.Dot(transform.forward, player2Dir) > 0f)
+		{
+ 			closestVisiblePlayer = player2;
+			playerIsInConeOfVision = true;
+			playersInCone.Add(player2);
+		}
+		if(Vector3.Dot(transform.forward, player3Dir) > 0f)
+		{
+ 			closestVisiblePlayer = player3;
+			playerIsInConeOfVision = true;
+			playersInCone.Add(player3);
+		}
+		return playerIsInConeOfVision;
 	}
 	
-	//FIRST, CHECK IF IN LINE OF SIGHT
+ 
+ 	public void CheckIfInLineOfSight(GameObject closestVisiblePlayer_){
+		// RaycastHit hit;
+ 		// rayDirection = closestPlayer.transform.position - transform.position;
+ 		// Debug.DrawRay(transform.position, rayDirection * 5f, Color.red);
+		// if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity, ownAmmo)) {
+		// 	Debug.Log("Raycast hit " + hit.transform.name);
+ 		// 	if(alertState == AlertState.NORMAL){
+		// 		//ORIGINAL, WORKING
+		// 		// if (hit.transform.tag == "Player") {
+		// 		// 	alertState = AlertState.ALERTED;
+		// 		// } else {
+		// 		// 	alertState = AlertState.NORMAL;
+		// 		// }	
 
-	private Vector3 rayDirection;
-	public void CheckIfInLineOfSight(){
+		// 		if (hit.transform.tag == "Player") {
+ 		// 			// if(hit.transform != closestPlayer.transform){
+		// 			// 	closestPlayer = closestVisiblePlayer;
+		// 			// } 
+		// 			alertState = AlertState.ALERTED;
+		// 		} else {
+		// 			alertState = AlertState.NORMAL;
+		// 		}
+		// 	}
+
+		// 	if(alertState == AlertState.ALERTED){
+		// 		if (hit.transform.tag == "Player") {
+		// 			alertState = AlertState.ALERTED;
+		// 		} else {
+		// 			alertState = AlertState.NORMAL;
+		// 		}
+		// 	}
+		// }
+
 		RaycastHit hit;
- 		rayDirection = closestPlayer.transform.position - transform.position;
+ 		Vector3 rayDirection = closestVisiblePlayer_.transform.position - transform.position;
  		Debug.DrawRay(transform.position, rayDirection * 5f, Color.red);
 		if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity, ownAmmo)) {
-			Debug.Log("Raycast hit " + hit.transform.name);
- 			if(alertState == AlertState.NORMAL){
-				//ORIGINAL, WORKING
-				// if (hit.transform.tag == "Player") {
-				// 	alertState = AlertState.ALERTED;
-				// } else {
-				// 	alertState = AlertState.NORMAL;
-				// }	
-
-				if (hit.transform.tag == "Player") {
- 					// if(hit.transform != closestPlayer.transform){
-					// 	closestPlayer = closestVisiblePlayer;
-					// } 
-					alertState = AlertState.ALERTED;
-				} else {
-					alertState = AlertState.NORMAL;
-				}
-			}
-
-			if(alertState == AlertState.ALERTED){
-				if (hit.transform.tag == "Player") {
-					alertState = AlertState.ALERTED;
-				} else {
-					alertState = AlertState.NORMAL;
-				}
+			if(hit.transform.tag == "Player"){
+				alertState = AlertState.ALERTED;
 			}
 		}
+	}
+
+	public bool PlayerIsInLineOfSight(){
+		bool playerIsInLineOfSight = false;
+		RaycastHit hit;
+ 		Vector3 rayDirection = transform.forward;
+ 		Debug.DrawRay(transform.position, rayDirection * 5f, Color.red);
+		if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity, ownAmmo)) {
+			if(hit.transform.tag == "Player"){
+				alertState = AlertState.ALERTED;
+				playerIsInLineOfSight = true;	
+			}
+		}
+
+		return playerIsInLineOfSight;
 	}
 }
