@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBulletMotor : MonoBehaviour {
 
- 	private GameObject lastCheckpoint;
+ 	// private GameObject lastCheckpoint;
 	Rigidbody rb;
 	// Use this for initialization
 	void Start () {
@@ -22,18 +22,28 @@ public class EnemyBulletMotor : MonoBehaviour {
 		rb.velocity = transform.forward * EnemyDefs.enemyDict[EnemyDefs.EnemyType.DRONE].attackSpeed;
 	}
 
-	void OnCollisionEnter(Collision coll){
-		if (coll.gameObject.tag == "Player") {	
-			lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
-			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-			Debug.Log ("Player1 checkpoint is " + CheckpointControl.chkLastP1);
- 		} 
 
-		if (coll.gameObject.tag == "Player2") {
-			lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
-			RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-			Debug.Log ("Player2 checkpoint is " + CheckpointControl.chkLastP2);
- 		}
-		Destroy (gameObject);
+	void OnCollisionEnter(Collision coll){
+		if(coll.gameObject.tag == "Player"){
+			//DAMAGE PLAYER
+		} else{
+			Destroy(gameObject);
+		}
 	}
+
+	//OLD
+	// void OnCollisionEnter(Collision coll){
+	// 	if (coll.gameObject.tag == "Player") {	
+	// 		lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
+	// 		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+	// 		Debug.Log ("Player1 checkpoint is " + CheckpointControl.chkLastP1);
+ 	// 	} 
+
+	// 	if (coll.gameObject.tag == "Player2") {
+	// 		lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
+	// 		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
+	// 		Debug.Log ("Player2 checkpoint is " + CheckpointControl.chkLastP2);
+ 	// 	}
+	// 	Destroy (gameObject);
+	// }
 }

@@ -31,6 +31,7 @@ public class EnemyDefs {
 				15, //Movement Speed
 				20, //Attack speed
 				50, //attack damage
+				1,
                 "Enemy"
 			)
 		);
@@ -43,7 +44,8 @@ public class EnemyDefs {
 				3, //movement speed
 				100, //Attack speed
 				500, //attack damage
-			    "Boss"
+			    1,
+				"Boss"
             )
 		);
 
@@ -55,7 +57,8 @@ public class EnemyDefs {
                 10, //movement speed
                 0, //attack speed
                 100, //attack damage
-                "Target"
+                2,
+				"Target"
             )       
         );
 
@@ -66,7 +69,8 @@ public class EnemyDefs {
                 5, //movement speed
                 0, //attack speed
                 20, //attack damage
-                "Soldier"
+                0,
+				"Soldier"
             )
         );
 		Debug.Log ("Enemy Defs Generated");

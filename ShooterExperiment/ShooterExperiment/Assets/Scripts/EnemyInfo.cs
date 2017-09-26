@@ -9,15 +9,18 @@ public class EnemyInfo {
 	public float speed;
 	public float attackSpeed;
 	public int attackDamage;
+
+	public float attackCooldown;
     public string path;
 
-	public EnemyInfo (string desc_, int health_, float speed_, float attackSpeed_, int attackDamage_, string path_){
+	public EnemyInfo (string desc_, int health_, float speed_, float attackSpeed_, int attackDamage_, float attackCooldown_, string path_){
 
  		desc = desc_;
 		health = health_;
 		speed = speed_;
 		attackSpeed = attackSpeed_;
 		attackDamage = attackDamage_;
+		attackCooldown = attackCooldown_;
         path = path_;
 	}
 

@@ -5317,6 +5317,10 @@ Prefab:
       propertyPath: m_Name
       value: Target (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
   m_IsPrefabParent: 0
@@ -5490,7 +5494,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4264246459981604, guid: 32994304d29f69d47addb070ad188288, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114130873944489768, guid: 32994304d29f69d47addb070ad188288,
         type: 2}
@@ -8408,7 +8412,7 @@ Transform:
   - {fileID: 282689569}
   - {fileID: 1723587017}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &303898728
 MonoBehaviour:
@@ -9459,6 +9463,10 @@ Prefab:
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_Name
       value: Target (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -11117,6 +11125,10 @@ Prefab:
       propertyPath: m_Name
       value: Target (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
   m_IsPrefabParent: 0
@@ -11975,7 +11987,7 @@ Transform:
   m_Children:
   - {fileID: 1148871650}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &682719581
 MonoBehaviour:
@@ -12041,6 +12053,10 @@ Prefab:
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_Name
       value: Target (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -13572,7 +13588,7 @@ Transform:
   - {fileID: 399580640}
   - {fileID: 1235348773}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &820115947
 Mesh:
@@ -14407,17 +14423,9 @@ MonoBehaviour:
     areaError: 15
   asset_guid: 
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 02000000
-  m_SelectedEdges:
-  - x: 8
-    y: 9
-  - x: 10
-    y: 8
-  - x: 9
-    y: 11
-  - x: 11
-    y: 10
-  m_selectedTriangles: 08000000090000000a000000090000000b0000000a000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!33 &853817776
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14514,7 +14522,7 @@ Prefab:
     - target: {fileID: 224957405024708364, guid: d5515f8231d847c4cbbf76b07aa9aed7,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224957405024708364, guid: d5515f8231d847c4cbbf76b07aa9aed7,
         type: 2}
@@ -14753,7 +14761,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -15020,6 +15032,10 @@ Prefab:
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_Name
       value: Target (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -15775,6 +15791,10 @@ Prefab:
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_Name
       value: Target (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -22854,7 +22874,7 @@ GameObject:
   - component: {fileID: 1299207834}
   m_Layer: 8
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25070,7 +25090,7 @@ Transform:
   - {fileID: 851929862}
   - {fileID: 545545654}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 47.227, z: 0}
 --- !u!114 &1299207840
 MonoBehaviour:
@@ -25301,7 +25321,7 @@ Prefab:
     - target: {fileID: 224460567198618680, guid: 08099c97eaa77274781cb25d68237016,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224460567198618680, guid: 08099c97eaa77274781cb25d68237016,
         type: 2}
@@ -28474,6 +28494,15 @@ Prefab:
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_Name
       value: Target (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294965247
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -36116,7 +36145,7 @@ Transform:
   - {fileID: 1853972453}
   - {fileID: 853817773}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1852773120
 Prefab:
@@ -36160,6 +36189,10 @@ Prefab:
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_Name
       value: Target (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -37654,7 +37687,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 52.233, y: 0, z: 0}
 --- !u!114 &1917946889
 MonoBehaviour:
@@ -39293,7 +39326,7 @@ GameObject:
   - component: {fileID: 2013473928}
   m_Layer: 8
   m_Name: MineMaster
-  m_TagString: Player2
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40510,7 +40543,7 @@ Transform:
   - {fileID: 1782124344}
   - {fileID: 1518868008}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2013473925
 MonoBehaviour:
