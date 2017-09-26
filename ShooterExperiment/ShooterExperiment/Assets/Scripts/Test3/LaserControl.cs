@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LaserControl : GunControl {
 
-	[SerializeField]float laserLifetime = 1f;
+	[SerializeField]LayerMask playerLayer; 
+ 	[SerializeField]float laserLifetime = 1f;
 	float laserLifetimeReset;
 
 	bool isFiring = false;
@@ -25,26 +26,34 @@ public class LaserControl : GunControl {
     public override void Attack(KeyCode key, Vector3 setModPos)
     {
         if (Input.GetKeyDown(key)) {
-			DrawLaser();
+			// DrawLaser();
 			ShootRay();
         }	 
     }
 
 	void ShootRay(){
 	
-		Ray ray = new Ray(transform.position, transform.forward);
+		Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));
+		// Ray ray = new Ray(transform.position, transform.forward);
 
 		RaycastHit rayHit = new RaycastHit();
 
-		if(Physics.Raycast (ray, out rayHit, Mathf.Infinity)){
-			//render line? 
-			Debug.DrawRay(transform.position, transform.forward * 10f, Color.red);
-			laserTarget = rayHit.transform;
-			if(rayHit.transform.tag == "Enemies"){
-				var enemy = rayHit.transform;
-				Debug.Log("ray sent!");
-				enemy.SendMessage("DeductHealth", 20f); 
-			}
+		if(Physics.Raycast (ray, out rayHit, Mathf.Infinity, playerLayer)){
+ 			if(rayHit.transform.name != "Laser"){
+				laserTarget = rayHit.transform;
+				GameObject hitEffect; 
+				hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
+				hitEffect.transform.position = rayHit.point;
+				Debug.Log(rayHit.collider.name);
+				// hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
+				// hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
+
+				if(rayHit.transform.tag == "Enemies"){
+					var enemy = rayHit.transform;
+					Debug.Log("ray sent!");
+					enemy.SendMessage("DeductHealth", 20f); 
+				}
+			 }
 		}
 	}
 

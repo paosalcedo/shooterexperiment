@@ -22,3 +22,4 @@ MonoBehaviour:
   triggerTypes: []
   gameManager: {fileID: 1920579098415278, guid: 32994304d29f69d47addb070ad188288,
     type: 2}
+  laserHit: {fileID: 1927347431878584, guid: e3755ab714889fc4a81e26152b1bd9b5, type: 2}

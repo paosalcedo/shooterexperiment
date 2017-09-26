@@ -24,4 +24,8 @@ public class PrefabsDB : ScriptableObject {
     [SerializeField]
     private GameObject gameManager;
     public GameObject GameManager {  get { return gameManager; } }
+
+	[SerializeField]
+	private GameObject laserHit;
+	public GameObject LaserHit { get { return laserHit; }}
 }

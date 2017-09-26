@@ -14,4 +14,6 @@ public static class Services {
 	public static EnemyDefs EnemyDefs { get; set; }
     public static SpawnManager SpawnManager { get; set; }
 	public static BulletDefs BulletDefs { get; set; }
+
+	public static PrefabsDB Prefabs { get; set; }
 }

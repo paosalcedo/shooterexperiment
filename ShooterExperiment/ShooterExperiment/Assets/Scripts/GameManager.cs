@@ -23,5 +23,6 @@ public class GameManager : MonoBehaviour {
 		Services.BulletDefs = new BulletDefs();
 		Services.EnemyDefs.GenerateEnemyDefs ();
 		Services.BulletDefs.GenerateBulletDefs();
-	}
+		Services.Prefabs = Resources.Load<PrefabsDB>("Prefabs/Effects");
+ 	}
 }
