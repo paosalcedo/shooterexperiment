@@ -85,8 +85,8 @@ public class TargetAttackControl : MonoBehaviour {
 			
 			case AlertState.ALERTED:
 				CheckIfInConeOfVision();
-				// CheckIfInLineOfSight(closestVisiblePlayer);	
-
+				CheckIfInLineOfSight(closestVisiblePlayer);	
+				CheckLineOfSightForAll();
 				if(playersInCone.Count > 0){
 					DetectNearestPlayer();
 					playerDir = closestPlayer.transform.position - transform.position;
@@ -254,8 +254,48 @@ public class TargetAttackControl : MonoBehaviour {
  		Debug.DrawRay(transform.position, rayDirection * 5f, Color.red);
 		if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity, ownAmmo)) {
 			if(hit.transform.tag == "Player"){
-				playersInConeAndInSight.Add(hit.transform.gameObject);
-				alertState = AlertState.ALERTED;
+				if(hit.transform)
+					if(!playersInConeAndInSight.Contains(hit.transform.gameObject))
+						playersInConeAndInSight.Add(hit.transform.gameObject);
+						alertState = AlertState.ALERTED;
+			}
+		}
+	}
+
+	private void CheckLineOfSightForAll(){
+		RaycastHit hitRight;
+ 		Vector3 rayRight = player1Dir;
+ 		Debug.DrawRay(transform.position, rayRight * 5f, Color.blue);
+		if (Physics.Raycast (transform.position, rayRight, out hitRight, Mathf.Infinity, ownAmmo)) {
+			if(hitRight.transform.tag == "Player"){
+				if(hitRight.transform)
+					if(!playersInConeAndInSight.Contains(hitRight.transform.gameObject))
+						playersInConeAndInSight.Add(hitRight.transform.gameObject);
+						alertState = AlertState.ALERTED;
+			}
+		}
+
+		RaycastHit hitLeft;
+ 		Vector3 rayLeft = player2Dir;
+ 		Debug.DrawRay(transform.position, rayLeft * 5f, Color.green);
+		if (Physics.Raycast (transform.position, rayLeft, out hitLeft, Mathf.Infinity, ownAmmo)) {
+			if(hitLeft.transform.tag == "Player"){
+				if(hitLeft.transform)
+					if(!playersInConeAndInSight.Contains(hitLeft.transform.gameObject))
+						playersInConeAndInSight.Add(hitLeft.transform.gameObject);
+						alertState = AlertState.ALERTED;
+			}
+		}
+
+		RaycastHit hitMid;
+ 		Vector3 rayMid = player3Dir;
+ 		Debug.DrawRay(transform.position, rayMid * 5f, Color.cyan);
+		if (Physics.Raycast (transform.position, rayMid, out hitMid, Mathf.Infinity, ownAmmo)) {
+			if(hitMid.transform.tag == "Player"){
+				if(hitMid.transform)
+					if(!playersInConeAndInSight.Contains(hitMid.transform.gameObject))
+						playersInConeAndInSight.Add(hitMid.transform.gameObject);
+						alertState = AlertState.ALERTED;
 			}
 		}
 	}
