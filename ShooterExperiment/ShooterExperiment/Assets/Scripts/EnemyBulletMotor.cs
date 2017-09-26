@@ -26,6 +26,7 @@ public class EnemyBulletMotor : MonoBehaviour {
 	void OnCollisionEnter(Collision coll){
 		if(coll.gameObject.tag == "Player"){
 			//DAMAGE PLAYER
+			Destroy(gameObject);
 		} else{
 			Destroy(gameObject);
 		}

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +9,14 @@ public class TargetAttackControl : MonoBehaviour {
 
 	public GameObject[] players;
 
+	private GameObject closestPlayer;
+	public float[] distToPlayer;
+
 	public GameObject player1;
 	public GameObject player2;
 	public GameObject player3;
 	private Vector3 playerDir; //direction from this transform to the player.
-	private Transform playerTransform;
+	private Transform closestPlayerTransform;
 
 	private Vector3 startingPos;
 	private Quaternion startingRot;
@@ -31,6 +34,7 @@ public class TargetAttackControl : MonoBehaviour {
 
 	void Start () {
 		players = GameObject.FindGameObjectsWithTag("Player");
+	 
 		player1 = players[0];
 		player2 = players[1];
 		player3 = players[2];
@@ -43,7 +47,10 @@ public class TargetAttackControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		playerDir = player1.transform.position - transform.position;
+		// DetectNearestPlayer();
+		DetectNearestPlayer();
+		playerDir = closestPlayer.transform.position - transform.position;
+
 		switch(alertState)	
 		{
 
@@ -71,12 +78,6 @@ public class TargetAttackControl : MonoBehaviour {
 				break;
 		}
 
-
-  
-
- 		// DetectNearestPlayer();
-		// CheckIfInLineOfSight();
-	
   	}
 	void Fire(){
 		GameObject enemyBullet = Instantiate(Resources.Load("Prefabs/Weapons/EnemyBullet")) as GameObject;
@@ -85,38 +86,32 @@ public class TargetAttackControl : MonoBehaviour {
 	}
 
 	public void DetectNearestPlayer(){
- 		 
-		  for (int i = 0; i<players.Length; i++){
-			  Debug.Log("Distance to " + players[i].name + " " + Vector3.Distance(players[i].transform.position, transform.position));
-			  float distToPlayers = Vector3.Distance(players[i].transform.position, transform.position);
-			  
-			  if(distToPlayers < 10f){
-				  //finds the closest player? 					
- 				playerTransform = players[i].transform;
-				// playerDir = playerTransform.position - transform.position;
-				// if(Vector3.Dot(transform.forward, playerTransform.position) > 0){
-				// 	alertState = AlertState.ALERTED;
-				// } else {
-				// 	alertState = AlertState.NORMAL;
-				// }			
-			  }
-		  }
+		Debug.Log("Player closest to enemy is: " + closestPlayer);
+		for (int i = 0; i < players.Length; i++) {
+			distToPlayer[i] = Vector3.Distance(players[i].transform.position, transform.position);
+            for (int j = i+1; j < players.Length; j++) {
+                if ( (distToPlayer[i] > distToPlayer[j]) && (i != j) ) {
+					closestPlayer = players[j];
+					players[j] = players[i];
+					players[i] = closestPlayer;
+                }
+            }
+        }
+ 	}
 
-		// RaycastHit hit;
-		// Vector3 rayDirection = transform.forward;
-		// if (Physics.Raycast (transform.position, rayDirection, out hit)) {
-		// 	Debug.Log(hit.transform.name);
-		// 	if (hit.transform.tag == "Player") {
- 		// 		playerTransform = hit.transform;
-		// 		playerDir = playerTransform.position - transform.position;
- 		// 	} 
-		// }
-	}
+	//   for (int i = 0; i < sorted.length; i++) {
+    //         for (int j = i+1; j < sorted.length; j++) {
+    //             if ( (sorted[i] > sorted[j]) && (i != j) ) {
+    //                 int temp = sorted[j];
+    //                 sorted[j] = sorted[i];
+    //                 sorted[i] = temp;
+    //             }
+    //         }
+    //     }
 
 	//Changes alert state
 	public void CheckIfInConeOfVision(){
-		Debug.Log("checking if in cone of vision!");
-		if(Vector3.Dot(transform.forward, playerDir) > 0.75f){
+ 		if(Vector3.Dot(transform.forward, playerDir) > 0.75f){
 			alertState = AlertState.ALERTED;
 		} 
 	}
@@ -124,11 +119,10 @@ public class TargetAttackControl : MonoBehaviour {
 	//FIRST, CHECK IF IN LINE OF SIGHT
 	public void CheckIfInLineOfSight(){
 		RaycastHit hit;
-		Vector3 rayDirection = player1.transform.position - transform.position;
+		Vector3 rayDirection = closestPlayer.transform.position - transform.position;
 		if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity, ownAmmo)) {
-			Debug.Log(hit.transform.name);
-			if(alertState == AlertState.NORMAL){
-				if (hit.transform.name == "Laser") {
+ 			if(alertState == AlertState.NORMAL){
+				if (hit.transform.tag == "Player") {
 					alertState = AlertState.PLAYER_NEAR;
 				} else {
 					alertState = AlertState.NORMAL;
@@ -136,7 +130,7 @@ public class TargetAttackControl : MonoBehaviour {
 			}
 
 			if(alertState == AlertState.ALERTED){
-				if (hit.transform.name == "Laser") {
+				if (hit.transform.tag == "Player") {
 					alertState = AlertState.ALERTED;
 				} else {
 					alertState = AlertState.NORMAL;
