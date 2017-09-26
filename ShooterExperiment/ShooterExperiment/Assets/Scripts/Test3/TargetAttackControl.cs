@@ -10,6 +10,7 @@ public class TargetAttackControl : MonoBehaviour {
 	public GameObject[] players;
 
 	public GameObject closestPlayer;
+	public GameObject closestVisiblePlayer;
 	public float[] distToPlayer;
 
 	private Vector3 playerDir; //direction from this transform to the player.
@@ -41,22 +42,25 @@ public class TargetAttackControl : MonoBehaviour {
 	void Update () {
  
 		DetectNearestPlayer();
+		CheckIfInLineOfSight();
+		playerDir = closestPlayer.transform.position - transform.position;
 
 		switch(alertState)	
 		{
 
 			case AlertState.NORMAL:
-				CheckIfInLineOfSight();
+
+				//return to normal pos and rot
 				transform.rotation = Quaternion.Slerp (transform.rotation, startingRot, rotationSpeed * Time.deltaTime);
+				// transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
+
 				break;
 			
 			case AlertState.PLAYER_NEAR:
-				CheckIfInConeOfVision();
-				break;
+ 				break;
 			
 			case AlertState.ALERTED:
- 				CheckIfInLineOfSight();
-				playerDir = closestPlayer.transform.position - transform.position;
+  
 				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
 				if (cooldown <= 0f) {
 					Fire ();
@@ -90,6 +94,11 @@ public class TargetAttackControl : MonoBehaviour {
         }
 
 		closestPlayer = players[0];
+		// if(closestVisiblePlayer != players[0]){
+		// 	for(int i = 0; i<players.Length; i++){
+
+		// 	}
+		// }
 		
  	}
 	
@@ -112,17 +121,26 @@ public class TargetAttackControl : MonoBehaviour {
 	}
 	
 	//FIRST, CHECK IF IN LINE OF SIGHT
+
+	private Vector3 rayDirection;
 	public void CheckIfInLineOfSight(){
 		RaycastHit hit;
-		Vector3 rayDirection = closestPlayer.transform.position - transform.position;
+ 		rayDirection = closestPlayer.transform.position - transform.position;
+ 		Debug.DrawRay(transform.position, rayDirection * 5f, Color.red);
 		if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity, ownAmmo)) {
+			Debug.Log("Raycast hit " + hit.transform.name);
  			if(alertState == AlertState.NORMAL){
+				//ORIGINAL, WORKING
 				// if (hit.transform.tag == "Player") {
 				// 	alertState = AlertState.ALERTED;
 				// } else {
 				// 	alertState = AlertState.NORMAL;
-				// }
+				// }	
+
 				if (hit.transform.tag == "Player") {
+ 					// if(hit.transform != closestPlayer.transform){
+					// 	closestPlayer = closestVisiblePlayer;
+					// } 
 					alertState = AlertState.ALERTED;
 				} else {
 					alertState = AlertState.NORMAL;
