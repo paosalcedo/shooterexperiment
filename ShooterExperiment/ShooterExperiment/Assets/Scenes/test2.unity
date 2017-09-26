@@ -5319,7 +5319,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 303898721}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 2013473918}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 1299207833}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -9466,7 +9486,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 303898721}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 2013473918}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 1299207833}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -11127,7 +11167,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 303898721}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 2013473918}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 1299207833}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -12020,7 +12080,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 9.29
+      value: 7.31
       objectReference: {fileID: 0}
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12028,7 +12088,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -7.38
+      value: -8.14
       objectReference: {fileID: 0}
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12056,7 +12116,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 303898721}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 2013473918}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 1299207833}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -15034,7 +15114,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 303898721}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 2013473918}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 1299207833}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -15793,7 +15893,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 303898721}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 2013473918}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 1299207833}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -28460,7 +28580,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 17.42
+      value: 17.37
       objectReference: {fileID: 0}
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalPosition.y
@@ -28468,7 +28588,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -22.51
+      value: -22.68
       objectReference: {fileID: 0}
     - target: {fileID: 4203775923261012, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_LocalRotation.x
@@ -28508,6 +28628,11 @@ Prefab:
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_Name
       value: Target (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
@@ -36197,7 +36322,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 303898721}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player2
+      value: 
+      objectReference: {fileID: 2013473918}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: player3
+      value: 
+      objectReference: {fileID: 1299207833}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: ownAmmo.m_Bits
+      value: 4294964735
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}

@@ -53,7 +53,7 @@ public class EnemyDefs {
             new EnemyInfo
             (
                 "Target Practice",
-                500, //HP
+                100, //HP
                 10, //movement speed
                 0, //attack speed
                 100, //attack damage

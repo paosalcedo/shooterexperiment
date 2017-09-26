@@ -68,10 +68,14 @@ public class TargetAttackControl : MonoBehaviour {
 
 			case AlertState.NORMAL:
 
-				if(PlayerIsInConeOfVision()){
-					Debug.Log("player is in cone of vision!");
-					CheckIfInLineOfSight(closestVisiblePlayer);	
-				}
+				CheckLineOfSightForAll();
+				// if(playersInCone.Count <= 0){
+				// 	if(PlayerIsInConeOfVision()){
+				// 		Debug.Log("player is in cone of vision!");
+				// 		CheckLineOfSightForAll();
+				// 		// CheckIfInLineOfSight(closestVisiblePlayer);	
+				// 	}
+				// }
  		
 				//return to normal pos and rot
 				transform.rotation = Quaternion.Slerp (transform.rotation, startingRot, rotationSpeed * Time.deltaTime);
@@ -85,16 +89,16 @@ public class TargetAttackControl : MonoBehaviour {
 			
 			case AlertState.ALERTED:
 				CheckIfInConeOfVision();
-				CheckIfInLineOfSight(closestVisiblePlayer);	
+				// CheckIfInLineOfSight(closestVisiblePlayer);	
 				CheckLineOfSightForAll();
 				if(playersInCone.Count > 0){
 					DetectNearestPlayer();
 					playerDir = closestPlayer.transform.position - transform.position;
-					transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
-					if (cooldown <= 0f) {
+					// transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
+					if (cooldown <= 0f && playersInConeAndInSight.Count > 0) {
 						Fire ();
 						cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
-					}
+					} 
 					cooldown -= Time.deltaTime;
 
 
@@ -152,8 +156,12 @@ public class TargetAttackControl : MonoBehaviour {
                 }
             }
         }
-
-		closestPlayer = playersInConeAndInSight[0];
+		if(playersInConeAndInSight.Count > 0){
+ 			closestPlayer = playersInConeAndInSight[0];
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
+		} else if (playersInConeAndInSight.Count <= 0){
+			alertState = AlertState.NORMAL;
+		}
  	}
 	
 
@@ -171,6 +179,8 @@ public class TargetAttackControl : MonoBehaviour {
 	private bool player1inCone = false;
 	private bool player2inCone = false;
 	private bool player3inCone = false;
+
+	//Since Vector3.Dot checks for players even through walls, this function checks if they've already been added to the playersInCone list.
 	public void CheckIfInConeOfVision(){
  		if(Vector3.Dot(transform.forward, player1Dir) > 0f && !player1inCone){
 			playersInCone.Add(player1);
@@ -195,21 +205,27 @@ public class TargetAttackControl : MonoBehaviour {
 		if(Vector3.Dot(transform.forward, player1Dir) > 0f){
  			closestVisiblePlayer = player1;
 			playerIsInConeOfVision = true;
-			playersInCone.Add(player1);
+			if(!player1inCone){
+				playersInCone.Add(player1);
+			}
 			player1inCone = true;
 
-		} if(Vector3.Dot(transform.forward, player2Dir) > 0f)
+		} if(Vector3.Dot(transform.forward, player2Dir) > 0f && !player2inCone)
 		{
  			closestVisiblePlayer = player2;
 			playerIsInConeOfVision = true;
-			playersInCone.Add(player2);
+			if(!player2inCone){
+				playersInCone.Add(player2);
+			}
 			player2inCone = true;
 		}
-		if(Vector3.Dot(transform.forward, player3Dir) > 0f)
+		if(Vector3.Dot(transform.forward, player3Dir) > 0f && !player3inCone)
 		{
  			closestVisiblePlayer = player3;
 			playerIsInConeOfVision = true;
-			playersInCone.Add(player3);
+			if(!player3inCone){
+				playersInCone.Add(player3);
+			}
 			player3inCone = true;
 		}
 		return playerIsInConeOfVision;
@@ -272,6 +288,8 @@ public class TargetAttackControl : MonoBehaviour {
 					if(!playersInConeAndInSight.Contains(hitRight.transform.gameObject))
 						playersInConeAndInSight.Add(hitRight.transform.gameObject);
 						alertState = AlertState.ALERTED;
+			} else {
+				playersInConeAndInSight.Remove(player1);
 			}
 		}
 
@@ -284,6 +302,8 @@ public class TargetAttackControl : MonoBehaviour {
 					if(!playersInConeAndInSight.Contains(hitLeft.transform.gameObject))
 						playersInConeAndInSight.Add(hitLeft.transform.gameObject);
 						alertState = AlertState.ALERTED;
+			} else if(hitLeft.transform.tag != "Player") {
+				playersInConeAndInSight.Remove(player2);
 			}
 		}
 
@@ -292,10 +312,12 @@ public class TargetAttackControl : MonoBehaviour {
  		Debug.DrawRay(transform.position, rayMid * 5f, Color.cyan);
 		if (Physics.Raycast (transform.position, rayMid, out hitMid, Mathf.Infinity, ownAmmo)) {
 			if(hitMid.transform.tag == "Player"){
-				if(hitMid.transform)
-					if(!playersInConeAndInSight.Contains(hitMid.transform.gameObject))
-						playersInConeAndInSight.Add(hitMid.transform.gameObject);
-						alertState = AlertState.ALERTED;
+				if(!playersInConeAndInSight.Contains(hitMid.transform.gameObject))
+					playersInConeAndInSight.Add(hitMid.transform.gameObject);
+					alertState = AlertState.ALERTED;
+			} 
+			else {
+				playersInConeAndInSight.Remove(player3);
 			}
 		}
 	}
