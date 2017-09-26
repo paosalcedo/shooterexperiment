@@ -7608,7 +7608,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.4708947
+  m_Radius: 1
   m_Height: 1
   m_Direction: 1
   m_Center: {x: -0.026721, y: 0.5, z: 0.4708947}
@@ -22891,7 +22891,7 @@ CapsuleCollider:
   m_Radius: 1
   m_Height: 2.7489572
   m_Direction: 1
-  m_Center: {x: 1.0584254, y: -0.37447858, z: 0.89155334}
+  m_Center: {x: 0, y: -0.37447858, z: 0}
 --- !u!114 &1299207835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39324,11 +39324,11 @@ GameObject:
   - component: {fileID: 2013473922}
   - component: {fileID: 2013473921}
   - component: {fileID: 2013473920}
-  - component: {fileID: 2013473919}
   - component: {fileID: 2013473925}
   - component: {fileID: 2013473926}
   - component: {fileID: 2013473927}
   - component: {fileID: 2013473928}
+  - component: {fileID: 2013473919}
   m_Layer: 8
   m_Name: MineMaster
   m_TagString: Player
@@ -39336,8 +39336,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &2013473919
-MeshCollider:
+--- !u!136 &2013473919
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -39345,11 +39345,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 1503868561}
+  m_Radius: 0.78890073
+  m_Height: 2.3156314
+  m_Direction: 1
+  m_Center: {x: 0.00000047683716, y: -0.000000059604645, z: 0}
 --- !u!114 &2013473920
 MonoBehaviour:
   m_ObjectHideFlags: 0

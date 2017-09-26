@@ -9,12 +9,9 @@ public class TargetAttackControl : MonoBehaviour {
 
 	public GameObject[] players;
 
-	private GameObject closestPlayer;
+	public GameObject closestPlayer;
 	public float[] distToPlayer;
 
-	public GameObject player1;
-	public GameObject player2;
-	public GameObject player3;
 	private Vector3 playerDir; //direction from this transform to the player.
 	private Transform closestPlayerTransform;
 
@@ -34,10 +31,6 @@ public class TargetAttackControl : MonoBehaviour {
 
 	void Start () {
 		players = GameObject.FindGameObjectsWithTag("Player");
-	 
-		player1 = players[0];
-		player2 = players[1];
-		player3 = players[2];
 
 		startingPos = transform.position;
 		startingRot = transform.rotation;
@@ -46,10 +39,8 @@ public class TargetAttackControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		// DetectNearestPlayer();
+ 
 		DetectNearestPlayer();
-		playerDir = closestPlayer.transform.position - transform.position;
 
 		switch(alertState)	
 		{
@@ -61,11 +52,11 @@ public class TargetAttackControl : MonoBehaviour {
 			
 			case AlertState.PLAYER_NEAR:
 				CheckIfInConeOfVision();
-
 				break;
 			
 			case AlertState.ALERTED:
  				CheckIfInLineOfSight();
+				playerDir = closestPlayer.transform.position - transform.position;
 				transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
 				if (cooldown <= 0f) {
 					Fire ();
@@ -86,18 +77,22 @@ public class TargetAttackControl : MonoBehaviour {
 	}
 
 	public void DetectNearestPlayer(){
-		Debug.Log("Player closest to enemy is: " + closestPlayer);
-		for (int i = 0; i < players.Length; i++) {
+ 		for (int i = 0; i < players.Length; i++) {
 			distToPlayer[i] = Vector3.Distance(players[i].transform.position, transform.position);
             for (int j = i+1; j < players.Length; j++) {
                 if ( (distToPlayer[i] > distToPlayer[j]) && (i != j) ) {
-					closestPlayer = players[j];
+					GameObject tempGameObject;
+					tempGameObject = players[j];
 					players[j] = players[i];
-					players[i] = closestPlayer;
+					players[i] = tempGameObject;
                 }
             }
         }
+
+		closestPlayer = players[0];
+		
  	}
+	
 
 	//   for (int i = 0; i < sorted.length; i++) {
     //         for (int j = i+1; j < sorted.length; j++) {
@@ -122,8 +117,13 @@ public class TargetAttackControl : MonoBehaviour {
 		Vector3 rayDirection = closestPlayer.transform.position - transform.position;
 		if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity, ownAmmo)) {
  			if(alertState == AlertState.NORMAL){
+				// if (hit.transform.tag == "Player") {
+				// 	alertState = AlertState.ALERTED;
+				// } else {
+				// 	alertState = AlertState.NORMAL;
+				// }
 				if (hit.transform.tag == "Player") {
-					alertState = AlertState.PLAYER_NEAR;
+					alertState = AlertState.ALERTED;
 				} else {
 					alertState = AlertState.NORMAL;
 				}
