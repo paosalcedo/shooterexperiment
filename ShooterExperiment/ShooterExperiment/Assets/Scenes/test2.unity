@@ -7612,6 +7612,7 @@ GameObject:
   - component: {fileID: 303898728}
   - component: {fileID: 303898729}
   - component: {fileID: 303898722}
+  - component: {fileID: 303898731}
   m_Layer: 8
   m_Name: Laser
   m_TagString: Player
@@ -8490,6 +8491,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &303898731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 303898721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405e22ece98c3ef4c8a00b7899810cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &303898732
 Animator:
   serializedVersion: 3
@@ -14680,7 +14692,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13636
+  m_Name: pb_Mesh13608
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -15341,7 +15353,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13612
+  m_Name: pb_Mesh13126
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -22991,6 +23003,7 @@ GameObject:
   - component: {fileID: 1299207841}
   - component: {fileID: 1299207842}
   - component: {fileID: 1299207834}
+  - component: {fileID: 1299207843}
   m_Layer: 8
   m_Name: Tank
   m_TagString: Player
@@ -25267,12 +25280,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &1299207843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1299207833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405e22ece98c3ef4c8a00b7899810cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1330024415
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14374
+  m_Name: pb_Mesh13888
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -28066,7 +28090,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14108
+  m_Name: pb_Mesh13622
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -28642,7 +28666,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh14466
+  m_Name: pb_Mesh13980
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -39474,6 +39498,7 @@ GameObject:
   - component: {fileID: 2013473927}
   - component: {fileID: 2013473928}
   - component: {fileID: 2013473919}
+  - component: {fileID: 2013473929}
   m_Layer: 8
   m_Name: MineMaster
   m_TagString: Player
@@ -40729,7 +40754,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &2013473927
 MonoBehaviour:
@@ -40769,6 +40794,17 @@ MonoBehaviour:
   recordingState: 0
   isAttacking: 0
   isSelected: 0
+--- !u!114 &2013473929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2013473918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405e22ece98c3ef4c8a00b7899810cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018609924
 GameObject:
   m_ObjectHideFlags: 0
