@@ -20,8 +20,8 @@ public class TargetAttackControl : MonoBehaviour {
 	private bool player2inCone = false;
 	private bool player3inCone = false;
 
-	public GameObject closestPlayer;
-	public GameObject closestVisiblePlayer;
+	private GameObject closestPlayer;
+	private GameObject closestVisiblePlayer;
 	public float[] distToPlayer;
 
 	private Vector3 playerDir; //direction from this transform to the player.
@@ -44,10 +44,13 @@ public class TargetAttackControl : MonoBehaviour {
 	Vector3 player1Dir;
 	Vector3 player2Dir;
 	Vector3 player3Dir;
-	void Start () {
-		// players = GameObject.FindGameObjectsWithTag("Player");
 
-		player1Dir = player1.transform.position - transform.position;
+	void Awake(){
+ 	}
+	void Start () {
+		closestPlayer = player3;
+		// players = GameObject.FindGameObjectsWithTag("Player");
+ 		player1Dir = player1.transform.position - transform.position;
 		player2Dir = player2.transform.position - transform.position;
 		player3Dir = player3.transform.position - transform.position;
 
@@ -91,7 +94,7 @@ public class TargetAttackControl : MonoBehaviour {
 				break;
 			
 			case AlertState.ALERTED:
-				CheckIfInConeOfVision();
+ 				CheckIfInConeOfVision();
 				// CheckIfInLineOfSight(closestVisiblePlayer);	
 				CheckLineOfSightForAll();
 				if(playersInCone.Count > 0){

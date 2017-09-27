@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDefs : MonoBehaviour {
+public class PlayerDefs {
 
 	// public static Dictionary<EnemyType, EnemyInfo> enemyDict = new Dictionary<EnemyType, EnemyInfo>();
 	public static Dictionary<PlayerType, PlayerInfo> playerDict = new Dictionary<PlayerType, PlayerInfo>();

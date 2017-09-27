@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class CursorManager : PlayerSwitcherScript {
 
+	public enum CanvasState{
+		VISIBLE,
+		INVISIBLE
+	}
+
+	CanvasState canvasState;
+
+	private KeyCode toggleCanvasKey;
+	public GameObject playbackCanvas;
 	bool gameIsPaused;
 	private CursorLockMode cursorLockMode;
 	// Use this for initialization
 	void Start () {
+		toggleCanvasKey = KeyCode.Tab;
+		canvasState = CanvasState.INVISIBLE;
 		gameIsPaused = false;
 	}
 	
@@ -21,6 +32,34 @@ public class CursorManager : PlayerSwitcherScript {
 			Cursor.lockState = CursorLockMode.Locked;
 			// Cursor.visible = false;
 		}		
+
+		switch (canvasState){
+			case CanvasState.INVISIBLE:
+				ShowPlaybackCanvas(toggleCanvasKey);
+				break;
+			case CanvasState.VISIBLE:
+				HidePlaybackCanvas(toggleCanvasKey);
+				break;
+			default:
+				break;
+		}
 	}
+
+	private bool playbackCanvasIsVisible = false;
+	public void HidePlaybackCanvas(KeyCode key){
+		if(Input.GetKeyDown(key)){
+			canvasState = CanvasState.INVISIBLE;
+			playbackCanvas.SetActive(false);
+		}
+	}
+
+	public void ShowPlaybackCanvas(KeyCode key){
+		if(Input.GetKeyDown(key)){
+			canvasState = CanvasState.VISIBLE;
+			playbackCanvas.SetActive(true);
+		}
+	}
+
+
 
 }
