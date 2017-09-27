@@ -26,6 +26,7 @@ public class EnemyBulletMotor : MonoBehaviour {
 	void OnCollisionEnter(Collision coll){
 		if(coll.gameObject.tag == "Player"){
 			//DAMAGE PLAYER
+			coll.gameObject.GetComponent<PlayerHealth>().TakeDamage(BulletDefs.bullets[BulletType.STAR].attackDamage);
 			Destroy(gameObject);
 		} else{
 			Destroy(gameObject);

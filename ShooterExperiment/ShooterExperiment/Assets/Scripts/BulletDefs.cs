@@ -66,6 +66,16 @@ public class BulletDefs {
 				100
 			)
 		);
+
+		bullets.Add(
+			BulletType.STAR,
+			new BulletInfo(
+				"Ninja stars",
+				0f,
+				80,
+				34
+			)	
+		);
 	}
 		
 }

@@ -16,4 +16,6 @@ public static class Services {
 	public static BulletDefs BulletDefs { get; set; }
 
 	public static PrefabsDB Prefabs { get; set; }
+
+	public static PlayerDefs PlayerDefs { get; set; }
 }

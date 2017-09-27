@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BulletType {
-	BALL,
-	REFLECTOR,
-	CONE,
+public enum PlayerType{
 	LASER,
-	SHELL,
-	MINE,
-	STAR	
+	TANK,
+	MINEMASTER
 }

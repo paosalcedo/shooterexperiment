@@ -56,20 +56,27 @@ public class GodControl : PlayerSwitcherScript {
     {
         godControl.midIsPlaying = !godControl.midIsPlaying;
         midIsPlaying = godControl.midIsPlaying;
-        Debug.Log("heyyy " + midPlayer.name + "is playing a recording!");
-    }
+     }
 
     public void LeftTogglePlay(GodControl godControl)
     {
         godControl.leftIsPlaying = !godControl.leftIsPlaying;
         leftIsPlaying = godControl.leftIsPlaying;
-        Debug.Log("heyyy " + leftPlayer.name + "is playing a recording!");
-    }
+     }
 
     public void RightTogglePlay(GodControl godControl)
     {
         godControl.rightIsPlaying = !godControl.rightIsPlaying;
         rightIsPlaying = godControl.rightIsPlaying;
-        Debug.Log("heyyy " + rightPlayer.name + "is playing a recording!");
     }
+
+    public void AllTogglePlay(GodControl godControl){
+        godControl.midIsPlaying = !godControl.midIsPlaying;
+        midIsPlaying = godControl.midIsPlaying;
+        godControl.rightIsPlaying = !godControl.rightIsPlaying;
+        rightIsPlaying = godControl.rightIsPlaying;
+        godControl.leftIsPlaying = !godControl.leftIsPlaying;
+        leftIsPlaying = godControl.leftIsPlaying;
+    }
+    
 }
