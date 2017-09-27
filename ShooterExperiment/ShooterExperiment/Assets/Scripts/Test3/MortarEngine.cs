@@ -5,9 +5,9 @@ using UnityEngine;
 public class MortarEngine : MonoBehaviour {
 
 	Rigidbody rb;
-	private float radius = 5F;
-    private float power = 100.0F;	
-	private float upwardsMod = 10f;
+	private float radius = 3F;
+    private float power = 20.0F;	
+	private float upwardsMod = 0f;
 	void Awake(){
 	
 		rb = GetComponent<Rigidbody>();

@@ -33,8 +33,11 @@ public class LaserControl : GunControl {
 
 	void ShootRay(){
 	
-		Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));
-		// Ray ray = new Ray(transform.position, transform.forward);
+		//RNG recoil spread
+		// Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));
+		
+		//no spread
+		Ray ray = new Ray(transform.position, transform.forward);
 
 		RaycastHit rayHit = new RaycastHit();
 

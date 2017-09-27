@@ -5421,7 +5421,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -6683,7 +6683,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13732
+  m_Name: pb_Mesh13246
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -8580,7 +8580,7 @@ MonoBehaviour:
   thisCamera: {fileID: 1506637047}
   playKey: 0
   recordKey: 56
-  recordTime: 5
+  recordTime: 30
   recordingState: 0
   isAttacking: 0
   isSelected: 0
@@ -9611,7 +9611,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -11441,7 +11441,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -12395,7 +12395,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -15509,7 +15509,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13126
+  m_Name: pb_Mesh13166
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -16061,7 +16061,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -17410,6 +17410,18 @@ GameObject:
   m_PrefabParentObject: {fileID: 1920579098415278, guid: 32994304d29f69d47addb070ad188288,
     type: 2}
   m_PrefabInternal: {fileID: 176446308}
+--- !u!114 &1182227786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182227785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d84adeb95b53f40960ab146c6c6173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 0
 --- !u!114 &1182227790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25400,7 +25412,7 @@ MonoBehaviour:
   thisCamera: {fileID: 851929861}
   playKey: 0
   recordKey: 48
-  recordTime: 5
+  recordTime: 30
   recordingState: 0
   isAttacking: 0
   isSelected: 0
@@ -28003,7 +28015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1450994884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28411,7 +28423,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13622
+  m_Name: pb_Mesh13668
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -29066,6 +29078,30 @@ Prefab:
       propertyPath: ownAmmo.m_Bits
       value: 4294964735
       objectReference: {fileID: 0}
+    - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114207664129649408, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65962352034124938, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114339734927393630, guid: 3a984661b80f85e40a3e67ccdfd76c57,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
   m_IsPrefabParent: 0
@@ -29074,7 +29110,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13980
+  m_Name: pb_Mesh14062
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -35565,7 +35601,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -36847,7 +36883,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1402935189330910, guid: 3a984661b80f85e40a3e67ccdfd76c57, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -39859,7 +39895,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh13894
+  m_Name: pb_Mesh13458
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -41291,7 +41327,7 @@ MonoBehaviour:
   thisCamera: {fileID: 1782124343}
   playKey: 0
   recordKey: 57
-  recordTime: 5
+  recordTime: 30
   recordingState: 0
   isAttacking: 0
   isSelected: 0

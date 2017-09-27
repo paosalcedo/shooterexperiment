@@ -16,11 +16,6 @@ public class ActionRecorder : MonoBehaviour
         PLAYBACK
     }
 
-    public enum AttackState {
-        ATTACKING,
-        NOT_ATTACKING
-    }
-
     public GameObject thisCamera;
 
     public KeyCode playKey;
@@ -39,11 +34,10 @@ public class ActionRecorder : MonoBehaviour
     public bool isAttacking = false;
     public bool isSelected;
 
+    //Lists for recording
     List<bool> attacks = new List<bool>();
     List<Vector3> positions = new List<Vector3>();
     List<Vector3> rotations = new List<Vector3>();
- 
-    float t = 1f;
 
     void Start()
     {
@@ -99,6 +93,7 @@ public class ActionRecorder : MonoBehaviour
         {
             if (recordTime >= 0)
             {
+                GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
                 RecordMovement(transform.position);
                 RecordRotation(transform.eulerAngles);
                 RecordWeaponActivity(isAttacking);
@@ -111,9 +106,14 @@ public class ActionRecorder : MonoBehaviour
 
         if (recordingState == RecordingState.PLAYBACK)
         {
+            GameStateControl.gameState = GameStateControl.GameState.LIVE;
             MoveBasedOnRecording();
             RotateBasedOnRecording();
             AttackBasedOnRecording();
+        }
+
+        if(recordingState == RecordingState.NOT_RECORDING){
+            GameStateControl.gameState = GameStateControl.GameState.LIVE;
         }
 
     }

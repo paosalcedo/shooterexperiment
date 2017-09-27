@@ -69,48 +69,51 @@ public class TargetAttackControl : MonoBehaviour {
  
 		//only check for players in cone if there are actually players in the cone
 
-		switch(alertState)	
-		{
+		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+			switch(alertState)	
+			{
 
-			case AlertState.NORMAL:
+				case AlertState.NORMAL:
 
-				CheckLineOfSightForAll();
-				CheckIfInConeOfVision();
-				// if(PlayerIsInConeOfVision()){
-				// 	Debug.Log("hey player is in cone of vision!");
-				// }
-				// if(playersInCone.Count <= 0){
-				// 	if(PlayerIsInConeOfVision()){
-				// 		Debug.Log("player is in cone of vision!");
-				// 		CheckLineOfSightForAll();
-				// 		// CheckIfInLineOfSight(closestVisiblePlayer);	
-				// 	}
-				// }
- 		
-				//return to normal pos and rot
-				transform.rotation = Quaternion.Slerp (transform.rotation, startingRot, rotationSpeed * Time.deltaTime);
-				// transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
-
-				break;
+					CheckLineOfSightForAll();
+					CheckIfInConeOfVision();
+					// if(PlayerIsInConeOfVision()){
+					// 	Debug.Log("hey player is in cone of vision!");
+					// }
+					// if(playersInCone.Count <= 0){
+					// 	if(PlayerIsInConeOfVision()){
+					// 		Debug.Log("player is in cone of vision!");
+					// 		CheckLineOfSightForAll();
+					// 		// CheckIfInLineOfSight(closestVisiblePlayer);	
+					// 	}
+					// }
 			
-			case AlertState.ALERTED:
- 				CheckIfInConeOfVision();
-				// CheckIfInLineOfSight(closestVisiblePlayer);	
-				CheckLineOfSightForAll();
-				if(playersInCone.Count > 0){
-					DetectNearestPlayer();
-					playerDir = closestPlayer.transform.position - transform.position;
- 					if (cooldown <= 0f && playersInConeAndInSight.Count > 0) {
-						Fire ();
-						cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
-					} 
-					cooldown -= Time.deltaTime;
-				}
+					//return to normal pos and rot
+					transform.rotation = Quaternion.Slerp (transform.rotation, startingRot, rotationSpeed * Time.deltaTime);
+					// transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation(playerDir), rotationSpeed * Time.deltaTime);
 
-				break;
+					break;
+				
+				case AlertState.ALERTED:
+					CheckIfInConeOfVision();
+					// CheckIfInLineOfSight(closestVisiblePlayer);	
+					CheckLineOfSightForAll();
+					if(playersInCone.Count > 0){
+						DetectNearestPlayer();
+						playerDir = closestPlayer.transform.position - transform.position;
+						if (cooldown <= 0f && playersInConeAndInSight.Count > 0) {
+							Fire ();
+							cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
+						} 
+						cooldown -= Time.deltaTime;
+					}
 
-			default:
-				break;
+					break;
+
+				default:
+					break;
+
+			}
 		}
 
   	}
