@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LaserControl : GunControl {
 
-	[SerializeField]LayerMask playerLayer; 
- 	[SerializeField]float laserLifetime = 1f;
+	public LayerMask playerLayer; 
+ 	public float laserLifetime = 1f;
 	float laserLifetimeReset;
 
 	bool isFiring = false;
@@ -31,7 +31,7 @@ public class LaserControl : GunControl {
         }	 
     }
 
-	void ShootRay(){
+	public void ShootRay(){
 	
 		//RNG recoil spread
 		// Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));

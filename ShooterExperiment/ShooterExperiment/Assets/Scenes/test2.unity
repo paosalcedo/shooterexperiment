@@ -8578,6 +8578,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHUD: {fileID: 443063239}
   thisCamera: {fileID: 1506637047}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 4294967039
   playKey: 0
   recordKey: 56
   recordTime: 30
@@ -17421,7 +17424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d84adeb95b53f40960ab146c6c6173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: 0
 --- !u!114 &1182227790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25410,6 +25412,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHUD: {fileID: 443063239}
   thisCamera: {fileID: 851929861}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   playKey: 0
   recordKey: 48
   recordTime: 30
@@ -29085,12 +29090,12 @@ Prefab:
     - target: {fileID: 114553656042552802, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114207664129649408, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 65962352034124938, guid: 3a984661b80f85e40a3e67ccdfd76c57,
         type: 2}
@@ -41306,6 +41311,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHUD: {fileID: 443063239}
   thisCamera: {fileID: 1782124343}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
   playKey: 0
   recordKey: 57
   recordTime: 7.5

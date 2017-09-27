@@ -18,6 +18,7 @@ public class ActionRecorder : MonoBehaviour
 
     public GameObject thisCamera;
 
+    [SerializeField]LayerMask playerLayer;
     public KeyCode playKey;
     public KeyCode recordKey;
     private float timeFired;
@@ -146,12 +147,18 @@ public class ActionRecorder : MonoBehaviour
 
     void MoveBasedOnRecording()
     {
-        playbackIndex++;
-         transform.position = positions[playbackIndex];
+        if(playbackIndex < positions.Count)
+        {
+            playbackIndex++;
+            transform.position = positions[playbackIndex];
+            Debug.Log("playback index is still increasing");
+        }
         //if (transform.position == positions[positions.Count-1]) {
+        
         if(playbackIndex == positions.Count - 1) {
-            playbackIndex = 0;
-            transform.position = positions[0];   
+            recordingState = RecordingState.NOT_RECORDING;  
+            Debug.Log("playback index is not increasing?");
+            Debug.Log("playback index: " + playbackIndex); 
         }
      }
 
@@ -206,16 +213,37 @@ public class ActionRecorder : MonoBehaviour
         attacks.Add(isAttacking_);
     }
 
-
+    //Instantiates the player's bullets 
     void AttackBasedOnRecording() {
         attackIndex++;
         isAttacking = attacks[attackIndex];
 
         if (isAttacking) {
             if(gameObject.name == "Laser") {
-                GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/LaserBullet")) as GameObject;
-                 bullet.transform.position = thisCamera.transform.position;
-                 bullet.transform.rotation = thisCamera.transform.rotation;
+                Ray ray = new Ray(transform.position, transform.forward);
+                Transform laserTarget;
+		        RaycastHit rayHit = new RaycastHit();
+
+                if(Physics.Raycast (ray, out rayHit, Mathf.Infinity, playerLayer)){
+                    if(rayHit.transform.name != "Laser"){
+                        laserTarget = rayHit.transform;
+                        GameObject hitEffect; 
+                        hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
+                        hitEffect.transform.position = rayHit.point;
+                        Debug.Log(rayHit.collider.name);
+                        // hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
+                        // hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
+
+                        if(rayHit.transform.tag == "Enemies"){
+                            var enemy = rayHit.transform;
+                            Debug.Log("PLAYBACK RAY sent!");
+                            enemy.SendMessage("DeductHealth", 20f); 
+                        }
+                }
+		}
+                 // GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/LaserBullet")) as GameObject;
+                //  bullet.transform.position = thisCamera.transform.position;
+                //  bullet.transform.rotation = thisCamera.transform.rotation;
             }
 
             if (gameObject.name == "MineMaster")
