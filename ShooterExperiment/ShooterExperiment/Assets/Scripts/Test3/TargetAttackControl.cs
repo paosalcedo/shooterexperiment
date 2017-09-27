@@ -69,6 +69,10 @@ public class TargetAttackControl : MonoBehaviour {
 			case AlertState.NORMAL:
 
 				CheckLineOfSightForAll();
+
+				if(PlayerIsInConeOfVision()){
+					Debug.Log("hey player is in cone of vision!");
+				}
 				// if(playersInCone.Count <= 0){
 				// 	if(PlayerIsInConeOfVision()){
 				// 		Debug.Log("player is in cone of vision!");
@@ -100,8 +104,6 @@ public class TargetAttackControl : MonoBehaviour {
 						cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
 					} 
 					cooldown -= Time.deltaTime;
-
-
 				}
 
 				break;
