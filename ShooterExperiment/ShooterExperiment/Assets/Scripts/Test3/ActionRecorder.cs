@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class ActionRecorder : MonoBehaviour
 {
     public GameObject playerHUD;
-
-
     public enum RecordingState
     {
         RECORDING,
@@ -27,6 +25,8 @@ public class ActionRecorder : MonoBehaviour
     private int attackIndex = 0;
     private int rotPlaybackIndex = 0;
 
+    private int rotXplaybackIndex = 0;
+
     private float maxRecordTime = 0;
     [SerializeField]float recordTime = 5;
 
@@ -39,6 +39,7 @@ public class ActionRecorder : MonoBehaviour
     List<bool> attacks = new List<bool>();
     List<Vector3> positions = new List<Vector3>();
     List<Vector3> rotations = new List<Vector3>();
+    List<float> xRotations = new List<float>();
 
     void Start()
     {
@@ -96,7 +97,7 @@ public class ActionRecorder : MonoBehaviour
             {
                 GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
                 RecordMovement(transform.position);
-                RecordRotation(transform.eulerAngles);
+                RecordRotation(transform.eulerAngles, thisCamera.transform.eulerAngles.x);
                 RecordWeaponActivity(isAttacking);
             }
             else {
@@ -145,36 +146,20 @@ public class ActionRecorder : MonoBehaviour
     }
 
 
-    void MoveBasedOnRecording()
-    {
-        if(playbackIndex < positions.Count)
-        {
-            playbackIndex++;
-            transform.position = positions[playbackIndex];
-            Debug.Log("playback index is still increasing");
-        }
-        //if (transform.position == positions[positions.Count-1]) {
-        
-        if(playbackIndex == positions.Count - 1) {
-            recordingState = RecordingState.NOT_RECORDING;  
-            Debug.Log("playback index is not increasing?");
-            Debug.Log("playback index: " + playbackIndex); 
-        }
-     }
 
     void PlayRecording(KeyCode key)
     {
         if (Input.GetKeyDown(key))
         {
             recordingState = RecordingState.PLAYBACK;
-            Debug.Log(this.gameObject.name + " is playing a recording");
         }
     }
 
-    void RecordRotation(Vector3 playerRot)
+    
+    void RecordRotation(Vector3 playerRot, float playerRotX)
     {
         rotations.Add(playerRot);
-        Debug.Log(this.gameObject.name + " is recording!");
+        xRotations.Add(playerRotX);
     }
 
     //void RecordRotation(Quaternion playerRot)
@@ -182,23 +167,51 @@ public class ActionRecorder : MonoBehaviour
     //    rotations.Add(playerRot);
     //}
 
+    void RecordWeaponActivity (bool isAttacking_)
+	{
+        attacks.Add(isAttacking_);
+    }
+
+    void MoveBasedOnRecording()
+    {
+        if(playbackIndex < positions.Count-1)
+        {
+            playbackIndex++;
+            transform.position = positions[playbackIndex];
+            Debug.Log("playback index is still increasing");
+        }
+        //if (transform.position == positions[positions.Count-1]) {
+        else if(playbackIndex == positions.Count - 1) {
+            recordingState = RecordingState.NOT_RECORDING;  
+            //add these back in if you want the recording to loop
+            // playbackIndex = 0;
+            // transform.position = positions[0];
+        }
+     }
 
     //void RotateBasedOnRecording() {
 
+    
     void RotateBasedOnRecording()
     {
-        rotPlaybackIndex++;
-        transform.eulerAngles = rotations[rotPlaybackIndex];
-        if (rotPlaybackIndex == rotations.Count - 1)
+        if(rotPlaybackIndex < rotations.Count-1){
+            rotPlaybackIndex++;
+            transform.eulerAngles = new Vector3(xRotations[rotPlaybackIndex], rotations[rotPlaybackIndex].y, 0);
+        }
+
+        else if (rotPlaybackIndex == rotations.Count - 1)
         {
-            rotPlaybackIndex = 0;
-            transform.eulerAngles = rotations[0];
+            recordingState = RecordingState.NOT_RECORDING;  
+            //add these back in if you want the recording to loop
+            // rotPlaybackIndex = 0;
+            // transform.eulerAngles = rotations[0];
         }
     }
+   
+    //    Debug.Log("this is the quaternion version");
 
     //void RotateBasedOnRecording()
     //{
-    //    Debug.Log("this is the quaternion version");
     //    rotPlaybackIndex++;
     //    transform.rotation = rotations[rotPlaybackIndex];
     //     if (transform.rotation == rotations[rotations.Count - 1])
@@ -208,15 +221,15 @@ public class ActionRecorder : MonoBehaviour
     //    }
     //}
 
-    void RecordWeaponActivity (bool isAttacking_)
-	{
-        attacks.Add(isAttacking_);
-    }
+    
+  
 
     //Instantiates the player's bullets 
     void AttackBasedOnRecording() {
-        attackIndex++;
-        isAttacking = attacks[attackIndex];
+        if(attackIndex < attacks.Count-1){
+            attackIndex++;
+            isAttacking = attacks[attackIndex];
+        }
 
         if (isAttacking) {
             if(gameObject.name == "Laser") {
@@ -239,8 +252,8 @@ public class ActionRecorder : MonoBehaviour
                             Debug.Log("PLAYBACK RAY sent!");
                             enemy.SendMessage("DeductHealth", 20f); 
                         }
-                }
-		}
+                    }
+		        }
                  // GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/LaserBullet")) as GameObject;
                 //  bullet.transform.position = thisCamera.transform.position;
                 //  bullet.transform.rotation = thisCamera.transform.rotation;
@@ -263,9 +276,10 @@ public class ActionRecorder : MonoBehaviour
         }
 
         if (attackIndex == attacks.Count-1) {
-            attackIndex = 0;
+            recordingState = RecordingState.NOT_RECORDING;  
+            // attackIndex = 0;
             isAttacking = false;
-        }
+        } 
     }
 
     // OLD METHOD

@@ -62,6 +62,7 @@ public class TargetAttackControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		//update player locations
 		player1Dir = player1.transform.position - transform.position;
 		player2Dir = player2.transform.position - transform.position;
