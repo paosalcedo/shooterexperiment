@@ -8361,12 +8361,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e7229ba79a74d2abc8ad736499ddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1182227785}
   playerHUD: {fileID: 443063239}
   thisCamera: {fileID: 1506637047}
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967039
-  playKey: 0
+  playKey: 47
   recordKey: 56
   recordTime: 10
   recordingState: 0
@@ -17223,10 +17224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eff4dbe8adea604bb857aa72d5da21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPlayer: {fileID: 0}
-  midPlayer: {fileID: 0}
-  rightPlayer: {fileID: 0}
-  godPlayer: {fileID: 0}
+  leftPlayer: {fileID: 303898721}
+  midPlayer: {fileID: 2013473918}
+  rightPlayer: {fileID: 1299207833}
+  godPlayer: {fileID: 1917946883}
+  players: []
   leftPlayerKey: 0
   rightPlayerKey: 0
   midPlayerKey: 0
@@ -25070,12 +25072,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e7229ba79a74d2abc8ad736499ddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1182227785}
   playerHUD: {fileID: 443063239}
   thisCamera: {fileID: 851929861}
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
-  playKey: 0
+  playKey: 55
   recordKey: 48
   recordTime: 10
   recordingState: 0
@@ -38195,6 +38198,7 @@ MonoBehaviour:
   midPlayer: {fileID: 2013473918}
   rightPlayer: {fileID: 1299207833}
   godPlayer: {fileID: 1917946883}
+  players: []
   leftPlayerKey: 49
   rightPlayerKey: 51
   midPlayerKey: 50
@@ -41084,6 +41088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e7229ba79a74d2abc8ad736499ddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1182227785}
   playerHUD: {fileID: 443063239}
   thisCamera: {fileID: 1782124343}
   playerLayer:

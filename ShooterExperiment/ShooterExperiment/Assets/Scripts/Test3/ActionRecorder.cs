@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ActionRecorder : MonoBehaviour
 {
+    public GameObject gameManager;
     public GameObject playerHUD;
     public enum RecordingState
     {
@@ -94,7 +95,7 @@ public class ActionRecorder : MonoBehaviour
         if (recordingState == RecordingState.RECORDING)
         {
             if (recordTime >= 0)
-            {
+            {   //RECORDING happens here
                 GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
                 RecordMovement(transform.position);
                 RecordRotation(transform.eulerAngles, thisCamera.transform.eulerAngles.x);
@@ -130,11 +131,17 @@ public class ActionRecorder : MonoBehaviour
              if (recordingState == RecordingState.NOT_RECORDING || recordingState == RecordingState.PLAYBACK)
             {
                 recordingState = RecordingState.RECORDING;
+                // for(int i = 0; i<gameManager.GetComponent<PlayerSwitcherScript>().players.Count-1; i++){
+                //     gameManager.GetComponent<PlayerSwitcherScript>().players[i].GetComponent<ActionRecorder>().enabled = true;
+                // }
                 return;
             }
             if (recordingState == RecordingState.RECORDING || recordingState == RecordingState.PLAYBACK)
             {
                 recordingState = RecordingState.NOT_RECORDING;
+                // for(int i = 0; i<gameManager.GetComponent<PlayerSwitcherScript>().players.Count-1; i++){
+                //     gameManager.GetComponent<PlayerSwitcherScript>().players[i].GetComponent<ActionRecorder>().enabled = false;
+                // }
                 return;
             }
         }

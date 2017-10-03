@@ -10,7 +10,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
     public GameObject rightPlayer;
     public GameObject godPlayer;
 
-    private List<GameObject> players = new List<GameObject>();
+    public List<GameObject> players = new List<GameObject>();
 
     private GameObject presentPlayer;
     private GameObject nextPlayer;
