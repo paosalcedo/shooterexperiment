@@ -151,7 +151,12 @@ public class ActionRecorder : MonoBehaviour
 
     public virtual void RecordMovement(Vector3 playerPos)
     {
-        positions.Add(playerPos);
+        if(PlayerSwitcherScript.presentPlayerStatic == this.gameObject){
+            positions.Add(playerPos);        
+        } else {
+            Debug.Log("the current player is not selected!");
+        }
+
     }
 
     public void StopPlayback(){
@@ -193,7 +198,7 @@ public class ActionRecorder : MonoBehaviour
         else if(playbackIndex == positions.Count - 1) {
             recordingState = RecordingState.NOT_RECORDING;  
             //add these back in if you want the recording to loop
-            // playbackIndex = 0;
+            playbackIndex = 0;
             // transform.position = positions[0];
         }
      }

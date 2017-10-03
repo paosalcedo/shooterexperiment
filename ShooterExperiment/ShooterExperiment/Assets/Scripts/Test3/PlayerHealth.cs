@@ -44,8 +44,11 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	public virtual void TakeDamage(int damage_){
-		// health -= damage_;
-		// Debug.Log(gameObject.name + "'s health is " + health);
+		//only take damage
+		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+			health -= damage_;
+			Debug.Log(gameObject.name + "'s health is " + health);
+		}
 	} 
 	
  	IEnumerator KillPlayer(float delay){

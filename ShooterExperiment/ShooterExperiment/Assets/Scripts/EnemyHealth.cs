@@ -21,10 +21,12 @@ public class EnemyHealth : MonoBehaviour {
  	}
 
 	public virtual void DeductHealth(int damage_){
-		damage = damage_;
-		health -= damage;
- 		if (health <= 0) {
-			Destroy (gameObject);
+		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+			damage = damage_;
+			health -= damage;
+			if (health <= 0) {
+				Destroy (gameObject);
+			}
 		}
 	}
 

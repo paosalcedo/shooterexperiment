@@ -69,17 +69,19 @@ public class EnemyActionRecorder : ActionRecorder {
 		}
 	}
 
+	int playbackIndex = 0;
 	public void PerformActionsBasedOnRecording(){
-        int playbackIndex = 0;
 		if(playbackIndex < enemyPositions.Count-1)
         {
+			Debug.Log("enemy playback index: " + playbackIndex);
             playbackIndex++;
             transform.position = enemyPositions[playbackIndex];
 			transform.eulerAngles = enemyRotations[playbackIndex];
 			isAttacking = enemyAttacks[playbackIndex];
         }
         else if(playbackIndex == enemyPositions.Count - 1) {
-            recordingState = RecordingState.NOT_RECORDING;  
+            recordingState = RecordingState.NOT_RECORDING;
+			playbackIndex = 0;
         }
 	}
 

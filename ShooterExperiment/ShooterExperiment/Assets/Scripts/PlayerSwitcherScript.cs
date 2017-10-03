@@ -13,6 +13,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
     public List<GameObject> players = new List<GameObject>();
 
     private GameObject presentPlayer;
+    public static GameObject presentPlayerStatic;
     private GameObject nextPlayer;
   
     public KeyCode leftPlayerKey;
@@ -32,6 +33,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
         PAUSED
     }
 
+
     public static PresentPlayer playerIsNow;
 
     public PresentPlayer currentlySelectedPlayer;
@@ -43,6 +45,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
         players.Add(midPlayer); //you can use Instatiate here later, as in "players.Add(Instantiate(Resources.Load...) as GameObject);"
         players.Add(rightPlayer);
         players.Add(leftPlayer);
+        presentPlayerStatic = presentPlayer;
     }
 
     void Start () {
@@ -86,6 +89,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
                 midPlayer.GetComponent<ActionRecorder>().enabled = true;
                 
                 presentPlayer = midPlayer;
+                presentPlayerStatic = presentPlayer;
                 playerIsNow = PresentPlayer.MID;
             }
             else {
@@ -118,7 +122,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
                 //godPlayer.GetComponentInChildren<GunControl>().enabled = true;
 
                 presentPlayer = godPlayer;
-
+                presentPlayerStatic = presentPlayer;
                 playerIsNow = PresentPlayer.GOD;
             }
         }
@@ -140,6 +144,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
                 leftPlayer.GetComponent<ActionRecorder>().enabled = true;
 
                 presentPlayer = leftPlayer;
+                presentPlayerStatic = presentPlayer;
                 playerIsNow = PresentPlayer.LEFT;
             } 
             
@@ -165,6 +170,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
                 rightPlayer.GetComponent<ActionRecorder>().enabled = true;
 
                 presentPlayer = rightPlayer;
+                presentPlayerStatic = presentPlayer;
                 playerIsNow = PresentPlayer.RIGHT;                
             }
 
