@@ -204,7 +204,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
             presentPlayer.GetComponent<FPSController>().enabled = false;
             presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
             presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
-            presentPlayer.GetComponent<ActionRecorder>().enabled = false;
+            presentPlayer.GetComponent<ActionRecorder>().enabled = true;
             presentPlayer.GetComponent<MeshRenderer>().enabled = true;
         }
     }

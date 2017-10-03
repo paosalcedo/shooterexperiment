@@ -8,25 +8,44 @@ public class EnemyActionRecorder : ActionRecorder {
 	private List<Vector3> enemyRotations = new List<Vector3>();
 	private List<bool> enemyAttacks = new List<bool>();
 
+	Rigidbody rb;
+
 	public bool enemyIsAttacking;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+		base.Start();
+		rb = GetComponent<Rigidbody>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
+ 	// Update is called once per frame
+	void Update () {	
+
+		base.ToggleRecord(recordKey);
+
+		if (recordingState != RecordingState.RECORDING)
+        {
+            PlayRecording(playKey);
+        }
+        
+        if (recordingState == RecordingState.RECORDING){
+        	recordTime -= Time.deltaTime;
+        }
 		
+		if(recordingState == RecordingState.NOT_RECORDING){
+			ResetRecordTime();
+        }
 	}
 
 	void FixedUpdate(){
 		switch(recordingState){
 			case RecordingState.NOT_RECORDING:
-					
+				ResetRecordTime();
 				break;
 
 			case RecordingState.PLAYBACK:
 				PerformActionsBasedOnRecording();
+				rb.isKinematic = true;
 				break;
 
 			case RecordingState.RECORDING:
@@ -45,7 +64,9 @@ public class EnemyActionRecorder : ActionRecorder {
 	}
 
 	public override void PlayRecording(KeyCode key){
-		base.PlayRecording(key);
+		if(Input.GetKeyDown(key)){
+			recordingState = RecordingState.PLAYBACK;
+		}
 	}
 
 	public void PerformActionsBasedOnRecording(){

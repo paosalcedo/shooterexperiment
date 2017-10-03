@@ -35,12 +35,10 @@ public class MortarEngine : MonoBehaviour {
         foreach (Collider hit in colliders)
         {
 			if(hit.tag == "Enemies" && hit.GetComponent<EnemyHealth>() != null){
-				Debug.Log("found colliders!");
-				Debug.Log(hit.name);
-				Rigidbody rb = hit.GetComponent<Rigidbody>();
-				hit.GetComponent<EnemyHealth>().DeductHealth(BulletDefs.bullets[BulletType.SHELL].attackDamage);
+ 				Rigidbody rb = hit.GetComponent<Rigidbody>();
+				// hit.GetComponent<EnemyHealth>().DeductHealth(BulletDefs.bullets[BulletType.SHELL].attackDamage);
 				if (rb != null)
-					Debug.Log("hit " + rb.name);
+					// Debug.Log("hit " + rb.name);
 					rb.AddExplosionForce(power, explosionPos, radius, upwardsMod, ForceMode.Impulse);
 			}
         }

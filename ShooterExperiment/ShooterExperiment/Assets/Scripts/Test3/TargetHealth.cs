@@ -20,11 +20,11 @@ public class TargetHealth : EnemyHealth
         base.Update();
         healthText.text = targetHealth.ToString();
 
-        if(GameStateControl.gameState == GameStateControl.GameState.SIMULATION){
-            rb.isKinematic = true;
-        } else {
-            rb.isKinematic = false;
-        }
+        // if(GameStateControl.gameState == GameStateControl.GameState.SIMULATION){
+        //     rb.isKinematic = true;
+        // } else {
+        //     rb.isKinematic = false;
+        // }
     }
 
     public override void DeductHealth(int damage_)

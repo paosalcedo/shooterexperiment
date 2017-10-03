@@ -70,7 +70,8 @@ public class TargetAttackControl : MonoBehaviour {
  
 		//only check for players in cone if there are actually players in the cone
 
-		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+		// if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+
 			switch(alertState)	
 			{
 
@@ -115,7 +116,7 @@ public class TargetAttackControl : MonoBehaviour {
 					break;
 
 			}
-		}
+		// }
 
   	}
 	void Fire(){

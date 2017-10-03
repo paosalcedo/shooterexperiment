@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	public virtual void TakeDamage(int damage_){
-		health -= damage_;
+		// health -= damage_;
 		// Debug.Log(gameObject.name + "'s health is " + health);
 	} 
 	

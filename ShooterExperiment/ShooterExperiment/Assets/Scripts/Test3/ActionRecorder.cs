@@ -29,7 +29,7 @@ public class ActionRecorder : MonoBehaviour
     private int rotXplaybackIndex = 0;
 
     private float maxRecordTime = 0;
-    [SerializeField]float recordTime = 5;
+    public float recordTime = 5;
 
     public RecordingState recordingState;
 
@@ -42,9 +42,10 @@ public class ActionRecorder : MonoBehaviour
     List<Vector3> rotations = new List<Vector3>();
     List<float> xRotations = new List<float>();
 
-    void Start()
-    {
+    void Awake(){
         isSelected = false;
+    }
+    public virtual void Start() {
         maxRecordTime = recordTime;
         recordingState = RecordingState.NOT_RECORDING;
      }
@@ -160,8 +161,7 @@ public class ActionRecorder : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {   
-            Debug.Log(recordTime);
-            recordingState = RecordingState.PLAYBACK;
+             recordingState = RecordingState.PLAYBACK;
         }
     }
 
@@ -205,7 +205,8 @@ public class ActionRecorder : MonoBehaviour
     {
         if(rotPlaybackIndex < rotations.Count-1){
             rotPlaybackIndex++;
-            transform.eulerAngles = new Vector3(xRotations[rotPlaybackIndex], rotations[rotPlaybackIndex].y, 0);
+            transform.eulerAngles = new Vector3(0, rotations[rotPlaybackIndex].y, 0);
+            thisCamera.transform.eulerAngles = new Vector3(xRotations[rotPlaybackIndex], rotations[rotPlaybackIndex].y , 0);
         }
 
         else if (rotPlaybackIndex == rotations.Count - 1)
@@ -242,7 +243,7 @@ public class ActionRecorder : MonoBehaviour
 
         if (isAttacking) {
             if(gameObject.name == "Laser") {
-                Ray ray = new Ray(transform.position, transform.forward);
+                Ray ray = new Ray(thisCamera.transform.position, thisCamera.transform.forward);
                 Transform laserTarget;
 		        RaycastHit rayHit = new RaycastHit();
 
