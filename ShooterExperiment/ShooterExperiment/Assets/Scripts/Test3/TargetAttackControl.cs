@@ -102,7 +102,7 @@ public class TargetAttackControl : MonoBehaviour {
 					if(playersInCone.Count > 0){
 						DetectNearestPlayer();
 						playerDir = closestPlayer.transform.position - transform.position;
-						if (cooldown <= 0f && playersInConeAndInSight.Count > 0) {
+						if (cooldown <= 0f && playersInConeAndInSight.Count > 0 && !closestPlayer.GetComponent<PlayerHealth>().playerIsDead) {
 							Fire ();
 							cooldown = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackCooldown;
 						} 
@@ -157,20 +157,20 @@ public class TargetAttackControl : MonoBehaviour {
 			player1inCone = true;
 			alertState = AlertState.ALERTED;
 		} else if (Vector3.Dot(transform.forward, player1Dir) < 0f && player1inCone){
-			Debug.Log("player 2 removed from playersInCone!");
+			// Debug.Log("player 2 removed from playersInCone!");
 			playersInCone.Remove(player1);
 			player1inCone = false;			
 		}
 		
 		if(Vector3.Dot(transform.forward, player2Dir) > 0f && !player2inCone)
 		{	
-			Debug.Log("player 2 in cone!");
+			// Debug.Log("player 2 in cone!");
 			playersInCone.Add(player2);
 			player2inCone = true;
 			alertState = AlertState.ALERTED;
 		} 
 		else if (Vector3.Dot(transform.forward, player2Dir) < 0f && player2inCone){
-			Debug.Log("player 2 removed from playersInCone!");
+			// Debug.Log("player 2 removed from playersInCone!");
 			playersInCone.Remove(player2);
 			player2inCone = false;			
 		}
@@ -181,7 +181,7 @@ public class TargetAttackControl : MonoBehaviour {
 			player3inCone = true;
 			alertState = AlertState.ALERTED;
 		 } else if (Vector3.Dot(transform.forward, player3Dir) < 0f && player3inCone){
-			Debug.Log("player 2 removed from playersInCone!");
+			// Debug.Log("player 2 removed from playersInCone!");
 			playersInCone.Remove(player3);	
 			player3inCone = false;		
 		}

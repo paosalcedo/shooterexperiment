@@ -13,6 +13,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
     private List<GameObject> players = new List<GameObject>();
 
     private GameObject presentPlayer;
+    private GameObject nextPlayer;
   
     public KeyCode leftPlayerKey;
     public KeyCode rightPlayerKey;
@@ -72,118 +73,104 @@ public class PlayerSwitcherScript : MonoBehaviour {
 
      public void SelectMidPlayer(KeyCode key) {
         if (Input.GetKeyDown(key)) {
+            if(!midPlayer.GetComponent<PlayerHealth>().playerIsDead){
+                DeactivatePresentPlayerComponents();
 
-            if (presentPlayer != godPlayer) //if the presentPlayer is NOT the GodPlayer
-            {
-                presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
-                presentPlayer.GetComponent<FPSController>().enabled = false;
-                presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
-                presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
-                presentPlayer.GetComponent<ActionRecorder>().enabled = false;
-                presentPlayer.GetComponent<MeshRenderer>().enabled = true;
+                midPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
+                midPlayer.GetComponent<MeshRenderer>().enabled = false;
+                midPlayer.GetComponentInChildren<MouseLook>().enabled = true;
+                midPlayer.GetComponent<FPSController>().enabled = true;
+                midPlayer.GetComponentInChildren<Camera>().enabled = true;
+                midPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+                midPlayer.GetComponentInChildren<GunControl>().enabled = true;
+                midPlayer.GetComponent<ActionRecorder>().enabled = true;
+                
+                presentPlayer = midPlayer;
+                playerIsNow = PresentPlayer.MID;
             }
-            
-            presentPlayer.GetComponentInChildren<Camera>().enabled = false;
-
-            midPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
-            midPlayer.GetComponent<MeshRenderer>().enabled = false;
-            midPlayer.GetComponentInChildren<MouseLook>().enabled = true;
-            midPlayer.GetComponent<FPSController>().enabled = true;
-            midPlayer.GetComponentInChildren<Camera>().enabled = true;
-            midPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
-            midPlayer.GetComponentInChildren<GunControl>().enabled = true;
-            midPlayer.GetComponent<ActionRecorder>().enabled = true;
-            
-            presentPlayer = midPlayer;
-            playerIsNow = PresentPlayer.MID;
-
+            else {
+                Debug.Log("Mid player is dead!");
+            }
         }
     }
 
     public void SelectGodPlayer(KeyCode key) {
         if(Input.GetKeyDown(key))
         { 
-            presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
-            presentPlayer.GetComponent<FPSController>().enabled = false;
-            presentPlayer.GetComponentInChildren<Camera>().enabled = false;
-            presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
-            presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
-            presentPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(false);
-            presentPlayer.GetComponent<MeshRenderer>().enabled = true;
+            if(presentPlayer != godPlayer){
+                presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
+                presentPlayer.GetComponent<FPSController>().enabled = false;
+                presentPlayer.GetComponentInChildren<Camera>().enabled = false;
+                presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+                presentPlayer.GetComponentInChildren<Rigidbody>().isKinematic = true;
+                presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
+                presentPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(false);
+                presentPlayer.GetComponent<MeshRenderer>().enabled = true;
 
 
-            ReactivateActionRecorders();
- 
-            //godPlayer.GetComponentInChildren<MouseLook>().enabled = true;
-            //godPlayer.GetComponent<FPSController>().enabled = true;
-            godPlayer.GetComponentInChildren<Camera>().enabled = true;
-            godPlayer.GetComponent<GodControl>().godIsSelected = true;
-            //godPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
-            //godPlayer.GetComponentInChildren<GunControl>().enabled = true;
+                ReactivateActionRecorders();
+    
+                //godPlayer.GetComponentInChildren<MouseLook>().enabled = true;
+                //godPlayer.GetComponent<FPSController>().enabled = true;
+                godPlayer.GetComponentInChildren<Camera>().enabled = true;
+                godPlayer.GetComponent<GodControl>().godIsSelected = true;
+                //godPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+                //godPlayer.GetComponentInChildren<GunControl>().enabled = true;
 
-            presentPlayer = godPlayer;
+                presentPlayer = godPlayer;
 
-            playerIsNow = PresentPlayer.GOD;
+                playerIsNow = PresentPlayer.GOD;
+            }
         }
     }
 
 
     public void SelectLeftPlayer(KeyCode key) {
-        if (Input.GetKeyDown(key))
-        {
-            presentPlayer.GetComponentInChildren<Camera>().enabled = false;
+        if (Input.GetKeyDown(key)){
+            if(!leftPlayer.GetComponent<PlayerHealth>().playerIsDead){ //first check if player you want to switch to is still alive
+                DeactivatePresentPlayerComponents();
 
-            if (presentPlayer != godPlayer)
-            {
-                presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
-                presentPlayer.GetComponent<FPSController>().enabled = false;
-                presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
-                presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
-                presentPlayer.GetComponent<ActionRecorder>().enabled = false;
-                presentPlayer.GetComponent<MeshRenderer>().enabled = true;
+                leftPlayer.GetComponent<MeshRenderer>().enabled = false;
+                leftPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
+                leftPlayer.GetComponentInChildren<MouseLook>().enabled = true;
+                leftPlayer.GetComponent<FPSController>().enabled = true;
+                leftPlayer.GetComponentInChildren<Camera>().enabled = true;
+                leftPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+                leftPlayer.GetComponentInChildren<GunControl>().enabled = true;
+                leftPlayer.GetComponent<ActionRecorder>().enabled = true;
+
+                presentPlayer = leftPlayer;
+                playerIsNow = PresentPlayer.LEFT;
+            } 
+            
+            else {
+                Debug.Log("Left player is dead!");
             }
-
-            leftPlayer.GetComponent<MeshRenderer>().enabled = false;
-            leftPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
-            leftPlayer.GetComponentInChildren<MouseLook>().enabled = true;
-            leftPlayer.GetComponent<FPSController>().enabled = true;
-            leftPlayer.GetComponentInChildren<Camera>().enabled = true;
-            leftPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
-            leftPlayer.GetComponentInChildren<GunControl>().enabled = true;
-            leftPlayer.GetComponent<ActionRecorder>().enabled = true;
-
-            presentPlayer = leftPlayer;
-            playerIsNow = PresentPlayer.LEFT;
         }
     }
 
     public void SelectRightPlayer(KeyCode key)
     {
         if (Input.GetKeyDown(key)) { 
-            presentPlayer.GetComponentInChildren<Camera>().enabled = false;
+            if(!rightPlayer.GetComponent<PlayerHealth>().playerIsDead){
+                DeactivatePresentPlayerComponents();
 
-            if (presentPlayer != godPlayer)
-            {
-                presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
-                presentPlayer.GetComponent<FPSController>().enabled = false;
-                presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
-                presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
-                presentPlayer.GetComponent<ActionRecorder>().enabled = false;
-                presentPlayer.GetComponent<MeshRenderer>().enabled = true;
+                rightPlayer.GetComponent<MeshRenderer>().enabled = false;
+                rightPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
+                rightPlayer.GetComponentInChildren<MouseLook>().enabled = true;
+                rightPlayer.GetComponent<FPSController>().enabled = true;
+                rightPlayer.GetComponentInChildren<Camera>().enabled = true;
+                rightPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
+                rightPlayer.GetComponentInChildren<GunControl>().enabled = true;
+                rightPlayer.GetComponent<ActionRecorder>().enabled = true;
+
+                presentPlayer = rightPlayer;
+                playerIsNow = PresentPlayer.RIGHT;                
             }
 
-            rightPlayer.GetComponent<MeshRenderer>().enabled = false;
-            rightPlayer.GetComponent<ActionRecorder>().playerHUD.SetActive(true);
-            rightPlayer.GetComponentInChildren<MouseLook>().enabled = true;
-            rightPlayer.GetComponent<FPSController>().enabled = true;
-            rightPlayer.GetComponentInChildren<Camera>().enabled = true;
-            rightPlayer.GetComponentInChildren<Rigidbody>().useGravity = false;
-            rightPlayer.GetComponentInChildren<GunControl>().enabled = true;
-            rightPlayer.GetComponent<ActionRecorder>().enabled = true;
-
-            presentPlayer = rightPlayer;
-            playerIsNow = PresentPlayer.RIGHT;
-
+            else {
+                Debug.Log("Right player is dead!");
+            }
         }
     }
 
@@ -205,6 +192,20 @@ public class PlayerSwitcherScript : MonoBehaviour {
         for (int i = 0; i < players.Count; i++)
         {
             players[i].GetComponent<ActionRecorder>().enabled = true;
+        }
+    }
+
+    void DeactivatePresentPlayerComponents(){
+        presentPlayer.GetComponentInChildren<Camera>().enabled = false;
+
+        if (presentPlayer != godPlayer)
+        {
+            presentPlayer.GetComponentInChildren<MouseLook>().enabled = false;
+            presentPlayer.GetComponent<FPSController>().enabled = false;
+            presentPlayer.GetComponentInChildren<Rigidbody>().useGravity = true;
+            presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
+            presentPlayer.GetComponent<ActionRecorder>().enabled = false;
+            presentPlayer.GetComponent<MeshRenderer>().enabled = true;
         }
     }
 

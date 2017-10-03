@@ -47,8 +47,7 @@ public class LaserControl : GunControl {
 				GameObject hitEffect; 
 				hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
 				hitEffect.transform.position = rayHit.point;
-				Debug.Log(rayHit.collider.name);
-				// hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
+ 				// hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
 				// hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
 
 				if(rayHit.transform.tag == "Enemies"){

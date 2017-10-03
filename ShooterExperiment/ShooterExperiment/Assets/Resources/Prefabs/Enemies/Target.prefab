@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114339734927393630}
   - component: {fileID: 54294204823818538}
   - component: {fileID: 114553656042552802}
+  - component: {fileID: 114220433392539128}
   m_Layer: 10
   m_Name: Target
   m_TagString: Enemies
@@ -74,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402935189330910}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.1278286, y: 17.569508, z: 14.87}
+  m_LocalPosition: {x: 19.24783, y: 17.569508, z: -9.08}
   m_LocalScale: {x: 1, y: 2.7049198, z: 1}
   m_Children:
   - {fileID: 4579051136147312}
@@ -279,6 +280,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionDamage: 0
   healthText: {fileID: 102422767101406752}
+--- !u!114 &114220433392539128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402935189330910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb5b40d87ee8ab4b84d5b62920243bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHUD: {fileID: 0}
+  thisCamera: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playKey: 0
+  recordKey: 0
+  recordTime: 5
+  recordingState: 0
+  isAttacking: 0
+  isSelected: 0
+  enemyIsAttacking: 0
 --- !u!114 &114339734927393630
 MonoBehaviour:
   m_ObjectHideFlags: 1

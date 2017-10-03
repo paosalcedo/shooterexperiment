@@ -61,7 +61,7 @@ public class ActionRecorder : MonoBehaviour
         if (recordingState != RecordingState.RECORDING)
         {
             PlayRecording(playKey);
-        }
+         }
         
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -88,7 +88,7 @@ public class ActionRecorder : MonoBehaviour
 
    
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
 
         if (recordingState == RecordingState.RECORDING)
@@ -101,32 +101,33 @@ public class ActionRecorder : MonoBehaviour
                 RecordWeaponActivity(isAttacking);
             }
             else {
-                Debug.Log(this.gameObject + "is not recording!");
-                recordingState = RecordingState.NOT_RECORDING;
+                 recordingState = RecordingState.NOT_RECORDING;
             }
         }
 
         if (recordingState == RecordingState.PLAYBACK)
         {
             GameStateControl.gameState = GameStateControl.GameState.LIVE;
-            MoveBasedOnRecording();
-            RotateBasedOnRecording();
-            AttackBasedOnRecording();
+            //check if player is alive before moving.
+            if(!GetComponent<PlayerHealth>().playerIsDead){
+                MoveBasedOnRecording();
+                RotateBasedOnRecording();
+                AttackBasedOnRecording();
+            }
         }
 
         if(recordingState == RecordingState.NOT_RECORDING){
             GameStateControl.gameState = GameStateControl.GameState.LIVE;
+            ResetRecordTime();
         }
 
     }
 
-
-    void ToggleRecord(KeyCode key)
+    public virtual void ToggleRecord(KeyCode key)
     {
         if (Input.GetKeyDown(key))
         {
-            Debug.Log("record key pressed");
-            if (recordingState == RecordingState.NOT_RECORDING || recordingState == RecordingState.PLAYBACK)
+             if (recordingState == RecordingState.NOT_RECORDING || recordingState == RecordingState.PLAYBACK)
             {
                 recordingState = RecordingState.RECORDING;
                 return;
@@ -140,23 +141,25 @@ public class ActionRecorder : MonoBehaviour
     }
 
 
-    void RecordMovement(Vector3 playerPos)
+    public virtual void RecordMovement(Vector3 playerPos)
     {
         positions.Add(playerPos);
     }
 
-
-
-    void PlayRecording(KeyCode key)
+    public void StopPlayback(){
+        recordingState = RecordingState.NOT_RECORDING;        
+    }
+    public virtual void PlayRecording(KeyCode key)
     {
         if (Input.GetKeyDown(key))
-        {
+        {   
+            Debug.Log(recordTime);
             recordingState = RecordingState.PLAYBACK;
         }
     }
 
     
-    void RecordRotation(Vector3 playerRot, float playerRotX)
+    public virtual void RecordRotation(Vector3 playerRot, float playerRotX)
     {
         rotations.Add(playerRot);
         xRotations.Add(playerRotX);
@@ -167,19 +170,18 @@ public class ActionRecorder : MonoBehaviour
     //    rotations.Add(playerRot);
     //}
 
-    void RecordWeaponActivity (bool isAttacking_)
+    public virtual void RecordWeaponActivity (bool isAttacking_)
 	{
         attacks.Add(isAttacking_);
     }
 
-    void MoveBasedOnRecording()
+    public virtual void MoveBasedOnRecording()
     {
         if(playbackIndex < positions.Count-1)
         {
             playbackIndex++;
             transform.position = positions[playbackIndex];
-            Debug.Log("playback index is still increasing");
-        }
+         }
         //if (transform.position == positions[positions.Count-1]) {
         else if(playbackIndex == positions.Count - 1) {
             recordingState = RecordingState.NOT_RECORDING;  
@@ -192,7 +194,7 @@ public class ActionRecorder : MonoBehaviour
     //void RotateBasedOnRecording() {
 
     
-    void RotateBasedOnRecording()
+    public virtual void RotateBasedOnRecording()
     {
         if(rotPlaybackIndex < rotations.Count-1){
             rotPlaybackIndex++;
@@ -225,7 +227,7 @@ public class ActionRecorder : MonoBehaviour
   
 
     //Instantiates the player's bullets 
-    void AttackBasedOnRecording() {
+    public virtual void AttackBasedOnRecording() {
         if(attackIndex < attacks.Count-1){
             attackIndex++;
             isAttacking = attacks[attackIndex];
@@ -243,8 +245,7 @@ public class ActionRecorder : MonoBehaviour
                         GameObject hitEffect; 
                         hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
                         hitEffect.transform.position = rayHit.point;
-                        Debug.Log(rayHit.collider.name);
-                        // hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
+                         // hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
                         // hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
 
                         if(rayHit.transform.tag == "Enemies"){
@@ -309,10 +310,14 @@ public class ActionRecorder : MonoBehaviour
     //     }
     // }
 
-    public void IsSelected(ActionRecorder script) {
+    void IsSelected(ActionRecorder script) {
         script.isSelected = !script.isSelected;
         isSelected = script.isSelected;
         Debug.Log("heyyy it's " + this.gameObject.name + " " + isSelected);
+    }
+
+    public void ResetRecordTime(){
+        recordTime = maxRecordTime;
     }
 
 }
