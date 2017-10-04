@@ -54,6 +54,8 @@ public class ActionRecorder : MonoBehaviour
     {
         //update recording bar
 
+        Debug.Log("Tank is " + recordingState);
+
         playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime,maxRecordTime);
 
         //Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
@@ -93,35 +95,70 @@ public class ActionRecorder : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (recordingState == RecordingState.RECORDING)
-        {
-            if (recordTime >= 0)
-            {   //RECORDING happens here
-                GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
-                RecordMovement(transform.position);
-                RecordRotation(transform.eulerAngles, thisCamera.transform.eulerAngles.x);
-                RecordWeaponActivity(isAttacking);
-            }
-            else {
-                 recordingState = RecordingState.NOT_RECORDING;
-            }
-        }
-
-        if (recordingState == RecordingState.PLAYBACK)
-        {
-            GameStateControl.gameState = GameStateControl.GameState.LIVE;
+        switch(recordingState){
+            case RecordingState.RECORDING:
+                if (recordTime >= 0)
+                {   //RECORDING happens here
+                    GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
+                    RecordMovement(transform.position);
+                    RecordRotation(transform.eulerAngles, thisCamera.transform.eulerAngles.x);
+                    RecordWeaponActivity(isAttacking);
+                }
+                else {
+                    recordingState = RecordingState.NOT_RECORDING;
+                    Debug.Log("Line 109 incurred");
+                }
+                break;
+            case RecordingState.PLAYBACK:
+                GameStateControl.gameState = GameStateControl.GameState.LIVE;
+                Debug.Log(this.gameObject.name + " is in playback mode");
             //check if player is alive before moving.
-            if(!GetComponent<PlayerHealth>().playerIsDead){
-                MoveBasedOnRecording();
-                RotateBasedOnRecording();
-                AttackBasedOnRecording();
-            }
+                if(!GetComponent<PlayerHealth>().playerIsDead){
+                    MoveBasedOnRecording();
+                    RotateBasedOnRecording();
+                    AttackBasedOnRecording();
+                }
+                break;
+
+            case RecordingState.NOT_RECORDING:
+                ResetRecordTime();
+                break;
+            
+            default:
+                break;
         }
 
-        if(recordingState == RecordingState.NOT_RECORDING){
-            GameStateControl.gameState = GameStateControl.GameState.LIVE;
-            ResetRecordTime();
-        }
+        // if (recordingState == RecordingState.RECORDING)
+        // {
+        //     if (recordTime >= 0)
+        //     {   //RECORDING happens here
+        //         GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
+        //         RecordMovement(transform.position);
+        //         RecordRotation(transform.eulerAngles, thisCamera.transform.eulerAngles.x);
+        //         RecordWeaponActivity(isAttacking);
+        //     }
+        //     else {
+        //          recordingState = RecordingState.NOT_RECORDING;
+        //          Debug.Log("Line 109 incurred");
+        //     }
+        // }
+
+        // if (recordingState == RecordingState.PLAYBACK)
+        // {
+        //     GameStateControl.gameState = GameStateControl.GameState.LIVE;
+        //     Debug.Log(this.gameObject.name + " is in playback mode");
+        //     //check if player is alive before moving.
+        //     if(!GetComponent<PlayerHealth>().playerIsDead){
+        //         MoveBasedOnRecording();
+        //         RotateBasedOnRecording();
+        //         AttackBasedOnRecording();
+        //     }
+        // }
+
+        // if(recordingState == RecordingState.NOT_RECORDING){
+        //     GameStateControl.gameState = GameStateControl.GameState.LIVE;
+        //     ResetRecordTime();
+        // }
 
     }
 
@@ -149,32 +186,30 @@ public class ActionRecorder : MonoBehaviour
     }
 
 
-    public virtual void RecordMovement(Vector3 playerPos)
-    {
+    public virtual void RecordMovement(Vector3 playerPos){
         if(PlayerSwitcherScript.presentPlayerStatic == this.gameObject){
             positions.Add(playerPos);        
-        } else {
-            Debug.Log("the current player is not selected!");
         }
-
     }
 
     public void StopPlayback(){
         recordingState = RecordingState.NOT_RECORDING;        
     }
-    public virtual void PlayRecording(KeyCode key)
-    {
-        if (Input.GetKeyDown(key))
-        {   
-             recordingState = RecordingState.PLAYBACK;
+    public virtual void PlayRecording(KeyCode key){
+        if (Input.GetKeyDown(key)) { 
+            if(this.gameObject != PlayerSwitcherScript.presentPlayerStatic){
+                recordingState = RecordingState.PLAYBACK;
+            }  
         }
     }
 
     
     public virtual void RecordRotation(Vector3 playerRot, float playerRotX)
     {
-        rotations.Add(playerRot);
-        xRotations.Add(playerRotX);
+        if(PlayerSwitcherScript.presentPlayerStatic == this.gameObject){
+            rotations.Add(playerRot);
+            xRotations.Add(playerRotX);
+        }
     }
 
     //void RecordRotation(Quaternion playerRot)
@@ -183,17 +218,18 @@ public class ActionRecorder : MonoBehaviour
     //}
 
     public virtual void RecordWeaponActivity (bool isAttacking_)
-	{
-        attacks.Add(isAttacking_);
+	{        
+        if(PlayerSwitcherScript.presentPlayerStatic == this.gameObject){
+            attacks.Add(isAttacking_);
+        }
     }
 
     public virtual void MoveBasedOnRecording()
-    {
-        if(playbackIndex < positions.Count-1)
-        {
+    { 
+        if(playbackIndex < positions.Count-1){
             playbackIndex++;
             transform.position = positions[playbackIndex];
-         }
+        }
         //if (transform.position == positions[positions.Count-1]) {
         else if(playbackIndex == positions.Count - 1) {
             recordingState = RecordingState.NOT_RECORDING;  
@@ -206,8 +242,7 @@ public class ActionRecorder : MonoBehaviour
     //void RotateBasedOnRecording() {
 
     
-    public virtual void RotateBasedOnRecording()
-    {
+    public virtual void RotateBasedOnRecording() {
         if(rotPlaybackIndex < rotations.Count-1){
             rotPlaybackIndex++;
             transform.eulerAngles = new Vector3(0, rotations[rotPlaybackIndex].y, 0);

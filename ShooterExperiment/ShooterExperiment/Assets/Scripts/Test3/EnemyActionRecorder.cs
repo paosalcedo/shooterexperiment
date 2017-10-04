@@ -73,8 +73,7 @@ public class EnemyActionRecorder : ActionRecorder {
 	public void PerformActionsBasedOnRecording(){
 		if(playbackIndex < enemyPositions.Count-1)
         {
-			Debug.Log("enemy playback index: " + playbackIndex);
-            playbackIndex++;
+			playbackIndex++;
             transform.position = enemyPositions[playbackIndex];
 			transform.eulerAngles = enemyRotations[playbackIndex];
 			isAttacking = enemyAttacks[playbackIndex];
@@ -82,6 +81,9 @@ public class EnemyActionRecorder : ActionRecorder {
         else if(playbackIndex == enemyPositions.Count - 1) {
             recordingState = RecordingState.NOT_RECORDING;
 			playbackIndex = 0;
+			transform.position = enemyPositions[playbackIndex];
+			transform.eulerAngles = enemyRotations[playbackIndex];
+			isAttacking = enemyAttacks[playbackIndex];
         }
 	}
 
