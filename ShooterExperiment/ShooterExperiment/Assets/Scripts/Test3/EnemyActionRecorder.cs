@@ -27,9 +27,12 @@ public class EnemyActionRecorder : ActionRecorder {
  	// Update is called once per frame
 	void Update () {	
 
-		base.ToggleRecord(recordKey);
+		// base.ToggleRecord(recordKey);
 
 		// Debug.Log("Target is " + recordingState);
+		if(Input.GetKeyDown(KeyCode.E)){
+			CommonFunctions.ResetPosAndRot(this.gameObject, startPos, startEuler);
+		}
 
 		if (recordingState != RecordingState.RECORDING)
         {
@@ -53,7 +56,7 @@ public class EnemyActionRecorder : ActionRecorder {
 
 			case RecordingState.PLAYBACK:
 				PerformActionsBasedOnRecording();
-				rb.isKinematic = true;
+				// rb.isKinematic = true;
 				break;
 
 			case RecordingState.RECORDING:
@@ -69,6 +72,7 @@ public class EnemyActionRecorder : ActionRecorder {
 				break;
 		}
 	}
+
 
 	public void Record(Vector3 pos_, Vector3 rot_, bool enemyIsAttacking_){
 		enemyPositions.Add(pos_);	
@@ -99,6 +103,9 @@ public class EnemyActionRecorder : ActionRecorder {
         }
 	}
 
+	public void ResetEnemyPosAndRot(){
+		CommonFunctions.ResetPosAndRot(this.gameObject, startPos, startEuler);
+	}
 
 
 

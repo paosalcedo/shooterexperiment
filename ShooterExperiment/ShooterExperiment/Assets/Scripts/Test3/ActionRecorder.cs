@@ -66,10 +66,7 @@ public class ActionRecorder : MonoBehaviour
         //Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
 
         ToggleRecord(recordKey);
-
-        if (recordingState != RecordingState.RECORDING){
-            PlayRecording(playKey);
-        }
+        PlayRecording(playKey);
         
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
             isAttacking = true;
@@ -169,8 +166,7 @@ public class ActionRecorder : MonoBehaviour
         if (Input.GetKeyDown(key)) { 
              if(this.gameObject != PlayerSwitcherScript.presentPlayerStatic){
                 recordingState = RecordingState.PLAYBACK;
-                Debug.Log("changing recording state to PLAYBACK for " + this.gameObject);
-            }  
+             }  
         }
     }
 
