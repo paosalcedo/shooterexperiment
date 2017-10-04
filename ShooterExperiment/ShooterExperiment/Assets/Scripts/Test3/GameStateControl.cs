@@ -17,6 +17,7 @@ public class GameStateControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log(gameState);
 		// Debug.Log(gameState);
 	}
 

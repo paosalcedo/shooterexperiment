@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	public virtual void TakeDamage(int damage_){
-		//only take damage
+		//only take damage if gamestate is LIVE.
 		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
 			health -= damage_;
 			Debug.Log(gameObject.name + "'s health is " + health);

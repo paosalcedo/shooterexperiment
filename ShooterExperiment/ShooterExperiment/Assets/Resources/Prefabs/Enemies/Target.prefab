@@ -74,15 +74,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402935189330910}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.24783, y: 17.569508, z: -9.08}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -3.95, y: 17.569508, z: -1.677412}
   m_LocalScale: {x: 1, y: 2.7049198, z: 1}
   m_Children:
   - {fileID: 4579051136147312}
   - {fileID: 4482997946267668}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4482997946267668
 Transform:
   m_ObjectHideFlags: 1
@@ -291,14 +291,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb5b40d87ee8ab4b84d5b62920243bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   playerHUD: {fileID: 0}
   thisCamera: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
-  playKey: 0
-  recordKey: 0
-  recordTime: 5
+  playKey: 101
+  recordKey: 114
+  recordTime: 30
   recordingState: 0
   isAttacking: 0
   isSelected: 0

@@ -10,7 +10,9 @@ public class EnemyActionRecorder : ActionRecorder {
 
 	Rigidbody rb;
 
-	public bool enemyIsAttacking;
+	int playbackIndex = 0;
+
+	public bool enemyIsAttacking = false;
 
 	// Use this for initialization
 	public override void Start () {
@@ -23,7 +25,7 @@ public class EnemyActionRecorder : ActionRecorder {
 
 		base.ToggleRecord(recordKey);
 
-		Debug.Log("Target is " + recordingState);
+		// Debug.Log("Target is " + recordingState);
 
 		if (recordingState != RecordingState.RECORDING)
         {
@@ -51,7 +53,11 @@ public class EnemyActionRecorder : ActionRecorder {
 				break;
 
 			case RecordingState.RECORDING:
-				Record(transform.position, transform.eulerAngles, enemyIsAttacking);		
+				if(recordTime>=0){
+					Record(transform.position, transform.eulerAngles, enemyIsAttacking);		
+				} else {
+					recordingState = RecordingState.NOT_RECORDING;
+				}
 				break;
 
 			default:
@@ -71,7 +77,6 @@ public class EnemyActionRecorder : ActionRecorder {
 		}
 	}
 
-	int playbackIndex = 0;
 	public void PerformActionsBasedOnRecording(){
 		if(playbackIndex < enemyPositions.Count-1)
         {

@@ -52,7 +52,7 @@ public class LaserControl : GunControl {
 
 				if(rayHit.transform.tag == "Enemies"){
 					var enemy = rayHit.transform;
-					Debug.Log("ray sent!");
+					// Debug.Log("ray sent!");
 					enemy.SendMessage("DeductHealth", 20f); 
 				}
 			 }

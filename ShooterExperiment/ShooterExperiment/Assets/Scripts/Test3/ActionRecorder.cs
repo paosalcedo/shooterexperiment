@@ -54,7 +54,7 @@ public class ActionRecorder : MonoBehaviour
     {
         //update recording bar
 
-        Debug.Log("Tank is " + recordingState);
+        // Debug.Log("Tank is " + recordingState);
 
         playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime,maxRecordTime);
 
@@ -100,13 +100,13 @@ public class ActionRecorder : MonoBehaviour
                     RecordRotation(transform.eulerAngles, thisCamera.transform.eulerAngles.x);
                     RecordWeaponActivity(isAttacking);
                 }
-                // else {
-                //     recordingState = RecordingState.NOT_RECORDING;
-                // }
+                else {
+                    recordingState = RecordingState.NOT_RECORDING;
+                }
                 break;
             case RecordingState.PLAYBACK:
                 // GameStateControl.gameState = GameStateControl.GameState.LIVE;
-                Debug.Log(this.gameObject.name + " is in playback mode");
+                // Debug.Log(this.gameObject.name + " is in playback mode");
             //check if player is alive before moving.
                 if(!GetComponent<PlayerHealth>().playerIsDead){
                     MoveBasedOnRecording();
@@ -117,6 +117,7 @@ public class ActionRecorder : MonoBehaviour
 
             case RecordingState.NOT_RECORDING:
                 ResetRecordTime();
+                GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
                 break;
             
             default:
@@ -129,7 +130,7 @@ public class ActionRecorder : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {
-             if (recordingState == RecordingState.NOT_RECORDING || recordingState == RecordingState.PLAYBACK)
+             if (recordingState == RecordingState.NOT_RECORDING)
             {
                 recordingState = RecordingState.RECORDING;
                 // for(int i = 0; i<gameManager.GetComponent<PlayerSwitcherScript>().players.Count-1; i++){
@@ -137,7 +138,7 @@ public class ActionRecorder : MonoBehaviour
                 // }
                 return;
             }
-            if (recordingState == RecordingState.RECORDING || recordingState == RecordingState.PLAYBACK)
+            if (recordingState == RecordingState.RECORDING)
             {
                 recordingState = RecordingState.NOT_RECORDING;
                 // for(int i = 0; i<gameManager.GetComponent<PlayerSwitcherScript>().players.Count-1; i++){
@@ -222,22 +223,6 @@ public class ActionRecorder : MonoBehaviour
         }
     }
    
-    //    Debug.Log("this is the quaternion version");
-
-    //void RotateBasedOnRecording()
-    //{
-    //    rotPlaybackIndex++;
-    //    transform.rotation = rotations[rotPlaybackIndex];
-    //     if (transform.rotation == rotations[rotations.Count - 1])
-    //    {
-    //        rotPlaybackIndex = 0;
-    //        transform.rotation = rotations[0];
-    //    }
-    //}
-
-    
-  
-
     //Instantiates the player's bullets 
     public virtual void AttackBasedOnRecording() {
         if(attackIndex < attacks.Count-1){
@@ -266,7 +251,7 @@ public class ActionRecorder : MonoBehaviour
 
                         if(rayHit.transform.tag == "Enemies"){
                             var enemy = rayHit.transform;
-                            Debug.Log("PLAYBACK RAY sent!");
+                            // Debug.Log("PLAYBACK RAY sent!");
                             enemy.SendMessage("DeductHealth", 20f); 
                         }
                     }

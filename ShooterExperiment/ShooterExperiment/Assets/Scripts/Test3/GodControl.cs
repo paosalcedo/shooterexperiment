@@ -77,6 +77,7 @@ public class GodControl : PlayerSwitcherScript {
         rightIsPlaying = godControl.rightIsPlaying;
         godControl.leftIsPlaying = !godControl.leftIsPlaying;
         leftIsPlaying = godControl.leftIsPlaying;
+        GameStateControl.gameState = GameStateControl.GameState.LIVE;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
         foreach (GameObject enemy in enemies){
             enemy.GetComponent<EnemyActionRecorder>().recordingState = EnemyActionRecorder.RecordingState.PLAYBACK; 
