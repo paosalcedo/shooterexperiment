@@ -17738,7 +17738,7 @@ MonoBehaviour:
     m_Bits: 4294967039
   playKey: 101
   recordKey: 114
-  recordTime: 30
+  recordTime: 20
   recordingState: 0
   isAttacking: 0
   isSelected: 0
@@ -52832,7 +52832,7 @@ MonoBehaviour:
     m_Bits: 0
   playKey: 101
   recordKey: 114
-  recordTime: 30
+  recordTime: 20
   recordingState: 0
   isAttacking: 0
   isSelected: 0
