@@ -66,7 +66,7 @@ public class ActionRecorder : MonoBehaviour
  
         //Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
 
-        ToggleRecord(recordKey);
+        // ToggleRecord(recordKey);
         PlayRecording(playKey);
         
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
@@ -121,6 +121,7 @@ public class ActionRecorder : MonoBehaviour
 
             case RecordingState.NOT_RECORDING:
                 ResetRecordTime();
+                ToggleRecord(recordKey);
                 GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
                 break;
             

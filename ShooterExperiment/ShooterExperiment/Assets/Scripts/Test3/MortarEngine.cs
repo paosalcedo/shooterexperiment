@@ -36,7 +36,7 @@ public class MortarEngine : MonoBehaviour {
         {
 			if(hit.tag == "Enemies" && hit.GetComponent<EnemyHealth>() != null){
  				Rigidbody rb = hit.GetComponent<Rigidbody>();
-				// hit.GetComponent<EnemyHealth>().DeductHealth(BulletDefs.bullets[BulletType.SHELL].attackDamage);
+				hit.GetComponent<EnemyHealth>().DeductHealth(BulletDefs.bullets[BulletType.SHELL].attackDamage);
 				if (rb != null)
 					// Debug.Log("hit " + rb.name);
 					rb.AddExplosionForce(power, explosionPos, radius, upwardsMod, ForceMode.Impulse);
