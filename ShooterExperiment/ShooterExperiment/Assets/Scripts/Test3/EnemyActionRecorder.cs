@@ -23,6 +23,8 @@ public class EnemyActionRecorder : ActionRecorder {
 
 		base.ToggleRecord(recordKey);
 
+		Debug.Log("Target is " + recordingState);
+
 		if (recordingState != RecordingState.RECORDING)
         {
             PlayRecording(playKey);
@@ -32,9 +34,9 @@ public class EnemyActionRecorder : ActionRecorder {
         	recordTime -= Time.deltaTime;
         }
 		
-		if(recordingState == RecordingState.NOT_RECORDING){
-			ResetRecordTime();
-        }
+		// if(recordingState == RecordingState.NOT_RECORDING){
+		// 	ResetRecordTime();
+        // }
 	}
 
 	void FixedUpdate(){
