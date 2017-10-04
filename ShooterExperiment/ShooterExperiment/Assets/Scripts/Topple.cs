@@ -23,7 +23,7 @@ public class Topple : MonoBehaviour {
 	void Start () {
 		buildingState = BuildingState.NORMAL;
 		rb = GetComponent<Rigidbody> ();
-		riskNum = CommonFunctions.SetRisk ();
+		riskNum = 0;
  	}
 	
 	// Update is called once per frame

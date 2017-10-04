@@ -14,10 +14,14 @@ public class EnemyActionRecorder : ActionRecorder {
 
 	public bool enemyIsAttacking = false;
 
+	private Vector3 startPos;
+	private Vector3 startEuler;
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
 		rb = GetComponent<Rigidbody>();
+		startPos = transform.position;
+		startEuler = transform.eulerAngles;
 	}
 	
  	// Update is called once per frame
@@ -35,7 +39,7 @@ public class EnemyActionRecorder : ActionRecorder {
         if (recordingState == RecordingState.RECORDING){
         	recordTime -= Time.deltaTime;
         }
-		
+	
 		// if(recordingState == RecordingState.NOT_RECORDING){
 		// 	ResetRecordTime();
         // }
@@ -56,6 +60,7 @@ public class EnemyActionRecorder : ActionRecorder {
 				if(recordTime>=0){
 					Record(transform.position, transform.eulerAngles, enemyIsAttacking);		
 				} else {
+
 					recordingState = RecordingState.NOT_RECORDING;
 				}
 				break;

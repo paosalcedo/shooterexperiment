@@ -42,12 +42,17 @@ public class ActionRecorder : MonoBehaviour
     List<Vector3> rotations = new List<Vector3>();
     List<float> xRotations = new List<float>();
 
+    private Vector3 startPos;
+    private Vector3 startEuler;
+
     void Awake(){
         isSelected = false;
     }
     public virtual void Start() {
         maxRecordTime = recordTime;
         recordingState = RecordingState.NOT_RECORDING;
+        startEuler = transform.eulerAngles;
+        startPos = transform.position;
      }
     // Update is called once per frame
     void Update()
@@ -101,6 +106,7 @@ public class ActionRecorder : MonoBehaviour
                     RecordWeaponActivity(isAttacking);
                 }
                 else {
+                    CommonFunctions.ResetPosAndRot(gameObject, startPos, startEuler);
                     recordingState = RecordingState.NOT_RECORDING;
                 }
                 break;
