@@ -57,10 +57,7 @@ public class MidRecorder : MonoBehaviour
     void Update()
     {
         //update recording bar
-
-        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime, maxRecordTime);
-
-        //Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
+        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateBar(recordTime, maxRecordTime);
 
         ToggleRecord(recordKey);
 

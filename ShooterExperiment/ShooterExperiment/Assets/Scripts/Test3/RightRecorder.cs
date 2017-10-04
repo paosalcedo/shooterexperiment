@@ -56,8 +56,7 @@ public class RightRecorder : MonoBehaviour
     void Update()
     {
         //update recording bar
-
-        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateRecordBar(recordTime, maxRecordTime);
+        playerHUD.GetComponentInChildren<PlayerHUD>().UpdateBar(recordTime,maxRecordTime);
 
         //Debug.Log("attack: " + attackIndex + " rotation: " + rotPlaybackIndex + " movement: " + playbackIndex);
 

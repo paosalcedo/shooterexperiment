@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	public GameObject godCanvas;
 	private float deathDelay = 3f;
-	[SerializeField]int health; 
+	public int health; 
 	private Rigidbody rb;
 
 	public bool playerIsDead;

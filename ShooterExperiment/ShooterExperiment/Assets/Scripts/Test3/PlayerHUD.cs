@@ -17,10 +17,10 @@ public class PlayerHUD : MonoBehaviour {
 
 	}
 
-    public void UpdateRecordBar(float time, float maxTime) {
+    public virtual void UpdateBar(float currentValue, float maxValue) {
         //float remappedTime = remapRange(time, 0, maxTime, 0, 1);
 
-        recordBar.fillAmount = time/maxTime;
+        recordBar.fillAmount = currentValue/maxValue;
        
     }
 
