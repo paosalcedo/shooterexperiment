@@ -10,7 +10,7 @@ public class EnemyActionRecorder : ActionRecorder {
 
 	Rigidbody rb;
 
-	int playbackIndex = 0;
+	int enemyPlaybackIndex = 0;
 
 	public bool enemyIsAttacking = false;
 
@@ -87,19 +87,19 @@ public class EnemyActionRecorder : ActionRecorder {
 	}
 
 	public void PerformActionsBasedOnRecording(){
-		if(playbackIndex < enemyPositions.Count-1)
+		if(enemyPlaybackIndex < enemyPositions.Count-1)
         {
-			playbackIndex++;
-            transform.position = enemyPositions[playbackIndex];
-			transform.eulerAngles = enemyRotations[playbackIndex];
-			isAttacking = enemyAttacks[playbackIndex];
+			enemyPlaybackIndex++;
+            transform.position = enemyPositions[enemyPlaybackIndex];
+			transform.eulerAngles = enemyRotations[enemyPlaybackIndex];
+			isAttacking = enemyAttacks[enemyPlaybackIndex];
         }
-        else if(playbackIndex == enemyPositions.Count - 1) {
+        else if(enemyPlaybackIndex == enemyPositions.Count - 1) {
             recordingState = RecordingState.NOT_RECORDING;
-			playbackIndex = 0;
-			transform.position = enemyPositions[playbackIndex];
-			transform.eulerAngles = enemyRotations[playbackIndex];
-			isAttacking = enemyAttacks[playbackIndex];
+			enemyPlaybackIndex = 0;
+			transform.position = enemyPositions[enemyPlaybackIndex];
+			transform.eulerAngles = enemyRotations[enemyPlaybackIndex];
+			isAttacking = enemyAttacks[enemyPlaybackIndex];
         }
 	}
 

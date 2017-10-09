@@ -7,6 +7,9 @@ public class PlayerHealth : MonoBehaviour {
 	public GameObject godCanvas;
 	private float deathDelay = 3f;
 	public int health; 
+
+	private int numHits;
+
 	private Rigidbody rb;
 
 	public bool playerIsDead;
@@ -21,6 +24,7 @@ public class PlayerHealth : MonoBehaviour {
 		tweenIsDone = false;
 		health = PlayerDefs.playerDict[PlayerType.LASER].health;
 		rb = GetComponent<Rigidbody>();
+		numHits = 0;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +51,11 @@ public class PlayerHealth : MonoBehaviour {
 		//only take damage
 		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
 			health -= damage_;
-			Debug.Log(gameObject.name + "'s health is " + health);
+ 		} 
+
+		if(GameStateControl.gameState == GameStateControl.GameState.SIMULATION){
+			numHits++;
+			Debug.Log(numHits);
 		}
 	} 
 	
