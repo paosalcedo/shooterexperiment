@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ActionRecorder : MonoBehaviour
 {
     protected GameObject godHUD;
+    protected GodControl godControl;
     public GameObject gameManager;
     public GameObject playerHUD;
     public enum RecordingState
@@ -51,6 +52,7 @@ public class ActionRecorder : MonoBehaviour
         isSelected = false;
     }
     public virtual void Start() {
+        godControl = GameObject.Find("GodPlayer").GetComponent<GodControl>();
         godHUD = GameObject.Find("GodCanvas");
         allTogglePlay = godHUD.GetComponentInChildren<Toggle>();
         maxRecordTime = recordTime;
@@ -122,13 +124,11 @@ public class ActionRecorder : MonoBehaviour
                     AttackBasedOnRecording();
                 }
                 break;
-
             case RecordingState.NOT_RECORDING:
                 ResetRecordTime();
                 ToggleRecord(recordKey);
                 GameStateControl.gameState = GameStateControl.GameState.SIMULATION;
                 break;
-            
             default:
                 break;
         }
@@ -199,8 +199,17 @@ public class ActionRecorder : MonoBehaviour
         }
         //if (transform.position == positions[positions.Count-1]) {
         else if(playbackIndex == positions.Count - 1) {
-            recordingState = RecordingState.NOT_RECORDING;  
-            allTogglePlay.isOn = false;
+            recordingState = RecordingState.NOT_RECORDING;
+            if(this.gameObject == godControl.rightPlayer){
+                godControl.rightIsPlaying = false;                    
+            }  
+            else if(this.gameObject == godControl.midPlayer){
+                godControl.midIsPlaying = false;
+            }
+            else if(this.gameObject == godControl.leftPlayer){
+                godControl.leftIsPlaying = false;
+            }
+            // allTogglePlay.isOn = false;
             //add these back in if you want the recording to loop
             playbackIndex = 0;
             transform.position = positions[playbackIndex];
