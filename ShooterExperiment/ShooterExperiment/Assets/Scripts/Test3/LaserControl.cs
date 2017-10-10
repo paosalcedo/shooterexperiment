@@ -28,16 +28,25 @@ public class LaserControl : GunControl {
         if (Input.GetKeyDown(key)) {
 			// DrawLaser();
 			ShootRay();
+			ShootRay();
+			ShootRay();
+			ShootRay();
+			ShootRay();
+			ShootRay();
+			ShootRay();
+			ShootRay();
+			ShootRay();
+
         }	 
     }
 
 	public void ShootRay(){
 	
 		//RNG recoil spread
-		// Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));
+		Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));
 		
 		//no spread
-		Ray ray = new Ray(transform.position, transform.forward);
+		// Ray ray = new Ray(transform.position, transform.forward);
 
 		RaycastHit rayHit = new RaycastHit();
 
@@ -49,10 +58,10 @@ public class LaserControl : GunControl {
 				hitEffect.transform.position = rayHit.point;
  				// hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
 				// hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
+				Debug.Log("ray sent!");
 
 				if(rayHit.transform.tag == "Enemies"){
 					var enemy = rayHit.transform;
-					// Debug.Log("ray sent!");
 					enemy.SendMessage("DeductHealth", 20f); 
 				}
 			 }
