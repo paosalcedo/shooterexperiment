@@ -49,8 +49,7 @@ public class PlayerHealth : MonoBehaviour {
 						tweenIsDone = true;
 					} 
 					playerIsDead = true;
-					// StartCoroutine(KillPlayer(deathDelay));
-				} 
+ 				} 
  			}
 		}
 
@@ -77,11 +76,4 @@ public class PlayerHealth : MonoBehaviour {
  		}
 	} 
 	
- 	IEnumerator KillPlayer(float delay){
-		yield return new WaitForSeconds(delay);
-		if(!playerIsDead){
- 			// gameObject.SetActive(false);
- 			playerIsDead = true;
-		}
-	}
 }

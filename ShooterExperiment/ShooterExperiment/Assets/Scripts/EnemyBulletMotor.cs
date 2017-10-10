@@ -33,6 +33,11 @@ public class EnemyBulletMotor : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider coll){
+		if(coll.gameObject.tag == "Door"){
+			Destroy(gameObject);
+		}
+	}
 	//OLD
 	// void OnCollisionEnter(Collision coll){
 	// 	if (coll.gameObject.tag == "Player") {	

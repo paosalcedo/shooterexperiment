@@ -138,17 +138,11 @@ public class ActionRecorder : MonoBehaviour
              if (recordingState == RecordingState.NOT_RECORDING)
             {
                 recordingState = RecordingState.RECORDING;
-                // for(int i = 0; i<gameManager.GetComponent<PlayerSwitcherScript>().players.Count-1; i++){
-                //     gameManager.GetComponent<PlayerSwitcherScript>().players[i].GetComponent<ActionRecorder>().enabled = true;
-                // }
                 return;
             }
             if (recordingState == RecordingState.RECORDING)
             {
                 recordingState = RecordingState.NOT_RECORDING;
-                // for(int i = 0; i<gameManager.GetComponent<PlayerSwitcherScript>().players.Count-1; i++){
-                //     gameManager.GetComponent<PlayerSwitcherScript>().players[i].GetComponent<ActionRecorder>().enabled = false;
-                // }
                 return;
             }
         }
@@ -319,6 +313,24 @@ public class ActionRecorder : MonoBehaviour
 
     public void ResetRecordTime(){
         recordTime = maxRecordTime;
+    }
+
+    void OnTriggerEnter(Collider coll){
+        if(coll.gameObject.tag == "RecordingTrigger"){
+            if (recordingState == RecordingState.NOT_RECORDING){
+                recordingState = RecordingState.RECORDING;
+                return;
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider coll){
+        if(coll.gameObject.tag == "RecordingTrigger"){
+            if (recordingState == RecordingState.RECORDING){
+                recordingState = RecordingState.NOT_RECORDING;
+                return;
+            }
+        }
     }
 
 }

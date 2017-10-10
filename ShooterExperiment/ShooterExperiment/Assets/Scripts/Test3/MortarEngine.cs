@@ -46,4 +46,10 @@ public class MortarEngine : MonoBehaviour {
 		Destroy(gameObject, 0.01f);
 	}
 
+	void OnTriggerEnter(Collider coll){
+		if(coll.gameObject.tag == "Door"){
+			Destroy(gameObject);
+		}
+	}
+
 }
