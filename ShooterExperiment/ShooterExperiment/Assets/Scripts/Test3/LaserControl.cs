@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LaserControl : GunControl {
 
+	private int attackDamage;
 	public LayerMask playerLayer; 
  	public float laserLifetime = 1f;
 	float laserLifetimeReset;
@@ -13,6 +14,7 @@ public class LaserControl : GunControl {
 	// Use this for initialization
 	void Start () {
 		laserLifetimeReset = laserLifetime;
+		attackDamage = BulletDefs.bullets[BulletType.LASER].attackDamage;
 	}
 	
 	// Update is called once per frame
@@ -56,13 +58,8 @@ public class LaserControl : GunControl {
 				GameObject hitEffect; 
 				hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
 				hitEffect.transform.position = rayHit.point;
- 				// hitEffect = Instantiate(Services.Prefabs.LaserHit, rayHit.point, Quaternion.identity);
-				// hitEffect = Instantiate(Resources.Load("Prefabs/Effects/LaserHit") as GameObject);
-				Debug.Log("ray sent!");
-
-				if(rayHit.transform.tag == "Enemies"){
-					var enemy = rayHit.transform;
-					enemy.SendMessage("DeductHealth", 20f); 
+  				if(rayHit.transform.tag == "Enemies"){
+					rayHit.transform.GetComponent<EnemyHealth>().DeductHealth(attackDamage);
 				}
 			 }
 		}

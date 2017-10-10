@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class TargetHealth : EnemyHealth
 {
     public TextMesh healthText;
-    private int targetHealth;
+    public int targetHealth;
      // Use this for initialization
     Rigidbody rb;
-    public override void Start()
-    {
+
+    void Awake(){
+        GameStateControl.enemies.Add(gameObject);
+    }
+    public override void Start(){
         rb = GetComponent<Rigidbody>();
         targetHealth = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].health;
         collisionDamage = EnemyDefs.enemyDict[EnemyDefs.EnemyType.TARGET].attackDamage;
+
     }
 
     public override void Update() {
@@ -35,6 +39,7 @@ public class TargetHealth : EnemyHealth
             targetHealth -= damage;
             if (targetHealth <= 0)
             {
+                GameStateControl.enemies.Remove(gameObject);
                 Destroy(gameObject);
             }
         }

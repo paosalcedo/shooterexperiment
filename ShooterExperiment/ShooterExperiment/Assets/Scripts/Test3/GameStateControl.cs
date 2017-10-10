@@ -9,10 +9,13 @@ public class GameStateControl : MonoBehaviour {
 		LIVE
 	}
 
+	public static List<GameObject> enemies = new List<GameObject>();
+
 	public static GameState gameState;
  	// Use this for initialization
 	void Start () {
 		gameState = GameState.LIVE;
+		Debug.Log(enemies.Count);
  	}
 	
 	// Update is called once per frame
