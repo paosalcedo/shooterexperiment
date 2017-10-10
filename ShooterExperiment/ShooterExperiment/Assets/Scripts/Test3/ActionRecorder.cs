@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ActionRecorder : MonoBehaviour
 {
+    protected GameObject godHUD;
     public GameObject gameManager;
     public GameObject playerHUD;
     public enum RecordingState
@@ -45,10 +46,13 @@ public class ActionRecorder : MonoBehaviour
     private Vector3 startPos;
     private Vector3 startEuler;
 
+    private Toggle allTogglePlay;
     void Awake(){
         isSelected = false;
     }
     public virtual void Start() {
+        godHUD = GameObject.Find("GodCanvas");
+        allTogglePlay = godHUD.GetComponentInChildren<Toggle>();
         maxRecordTime = recordTime;
         recordingState = RecordingState.NOT_RECORDING;
         startEuler = transform.eulerAngles;
@@ -196,6 +200,7 @@ public class ActionRecorder : MonoBehaviour
         //if (transform.position == positions[positions.Count-1]) {
         else if(playbackIndex == positions.Count - 1) {
             recordingState = RecordingState.NOT_RECORDING;  
+            allTogglePlay.isOn = false;
             //add these back in if you want the recording to loop
             playbackIndex = 0;
             transform.position = positions[playbackIndex];

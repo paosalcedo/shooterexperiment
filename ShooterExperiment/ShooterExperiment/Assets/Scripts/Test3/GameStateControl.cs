@@ -11,6 +11,7 @@ public class GameStateControl : MonoBehaviour {
 
 	public static List<GameObject> enemies = new List<GameObject>();
 
+	public static int attempts = 0;
 	public static GameState gameState;
  	// Use this for initialization
 	void Start () {

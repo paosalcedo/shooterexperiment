@@ -60,7 +60,6 @@ public class PlayerHealth : MonoBehaviour {
 			numHitText.text = "You've taken " + numHits.ToString() + "/3 hits.";
 			if(numHits >= 3){
 				//do something
-
 			}
 		}
 	}
