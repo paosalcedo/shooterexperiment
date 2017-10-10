@@ -38,19 +38,5 @@ public class EnemyBulletMotor : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
-	//OLD
-	// void OnCollisionEnter(Collision coll){
-	// 	if (coll.gameObject.tag == "Player") {	
-	// 		lastCheckpoint = CheckpointControl.chkDictP1 [CheckpointControl.chkLastP1];
-	// 		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-	// 		Debug.Log ("Player1 checkpoint is " + CheckpointControl.chkLastP1);
- 	// 	} 
 
-	// 	if (coll.gameObject.tag == "Player2") {
-	// 		lastCheckpoint = CheckpointControl.chkDictP2 [CheckpointControl.chkLastP2];
-	// 		RespawnControl.Respawn (coll.gameObject, lastCheckpoint);
-	// 		Debug.Log ("Player2 checkpoint is " + CheckpointControl.chkLastP2);
- 	// 	}
-	// 	Destroy (gameObject);
-	// }
 }

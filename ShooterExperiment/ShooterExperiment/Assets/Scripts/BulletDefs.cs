@@ -14,7 +14,8 @@ public class BulletDefs {
 				"plasma globule",
 	/*gravity*/	100,
 	/*speed*/	80,
-	/*damage*/	20
+	/*damage*/	20,
+				1
 			)
 		);
 		
@@ -24,6 +25,7 @@ public class BulletDefs {
 				"bounces off the walls at perfect angles",
 				0,
 				1000,
+				0,
 				0
 			)
 		);
@@ -34,8 +36,9 @@ public class BulletDefs {
 				"no idea",
 				0,
 				100f,
+				0,
 				0
-				)
+			)
 		);
 		
 		bullets.Add(
@@ -44,7 +47,8 @@ public class BulletDefs {
 				"Bullets at the speed of light",
 				0,
 				100f,
-				20
+				20,
+				1
 			)
 		);
 		bullets.Add(
@@ -53,7 +57,8 @@ public class BulletDefs {
 				"Shells",
 				9.8f,
 				1000f,
-				40
+				40,
+				2f
 			)		
 		);
 
@@ -63,7 +68,8 @@ public class BulletDefs {
 				"Mines",
 				9.8f,
 				1000f,
-				100
+				100,
+				3f
 			)
 		);
 
@@ -73,7 +79,8 @@ public class BulletDefs {
 				"Ninja stars",
 				0f,
 				80,
-				34
+				34,
+				1f
 			)	
 		);
 	}

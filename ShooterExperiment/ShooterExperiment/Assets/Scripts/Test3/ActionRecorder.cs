@@ -199,10 +199,9 @@ public class ActionRecorder : MonoBehaviour
             //add these back in if you want the recording to loop
             playbackIndex = 0;
             transform.position = positions[playbackIndex];
+            Debug.Log("loop should end here!");
         }
      }
-
-    //void RotateBasedOnRecording() {
     
     
     public virtual void RotateBasedOnRecording() {
@@ -277,33 +276,6 @@ public class ActionRecorder : MonoBehaviour
 
         
     }
-
-    // OLD METHOD
-    // void AttackBasedOnRecording() {
-    //     attackIndex++;
-    //     isAttacking = attacks[attackIndex];
-
-    //     if (isAttacking) {
-    //         if(gameObject.tag == "Player2") {
-    //             GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/RedBullet")) as GameObject;
-    //              bullet.transform.position = thisCamera.transform.position;
-    //              bullet.transform.rotation = thisCamera.transform.rotation;
-    //         }
-
-    //         if (gameObject.tag == "Player")
-    //         {
-    //             GameObject bullet = Instantiate(Resources.Load("Prefabs/Weapons/BlueBullet")) as GameObject;
-    //              bullet.transform.position = thisCamera.transform.position;
-    //              bullet.transform.rotation = thisCamera.transform.rotation;
-    //         }
-
-    //     }
-
-    //     if (attackIndex == attacks.Count-1) {
-    //         attackIndex = 0;
-    //         isAttacking = false;
-    //     }
-    // }
 
     void IsSelected(ActionRecorder script) {
         script.isSelected = !script.isSelected;

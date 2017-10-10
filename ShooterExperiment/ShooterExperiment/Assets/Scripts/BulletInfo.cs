@@ -8,6 +8,8 @@ public class BulletInfo {
 	public float grav;
 	public float speed;
 	public int attackDamage;
+
+	public float attackCooldown;
 	public AudioClip clip;
 
 	public string desc;
@@ -21,11 +23,12 @@ public class BulletInfo {
 //
 //		}
 
-	public BulletInfo(string desc_, float grav_, float speed_, int attackDamage_){
+	public BulletInfo(string desc_, float grav_, float speed_, int attackDamage_, float attackCooldown_){
  		desc = desc_;
 		grav = grav_;
 		speed = speed_;
 		attackDamage = attackDamage_;
+		attackCooldown = attackCooldown_;
 	}
 
 }
