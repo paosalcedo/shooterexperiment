@@ -81,7 +81,7 @@ public class GodControl : PlayerSwitcherScript {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
         foreach (GameObject enemy in enemies){
             enemy.GetComponent<EnemyActionRecorder>().ResetEnemyPosAndRot();
-            enemy.GetComponent<EnemyActionRecorder>().recordingState = EnemyActionRecorder.RecordingState.PLAYBACK; 
+            // enemy.GetComponent<EnemyActionRecorder>().recordingState = EnemyActionRecorder.RecordingState.PLAYBACK; 
         }
 
     }

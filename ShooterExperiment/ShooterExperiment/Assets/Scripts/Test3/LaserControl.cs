@@ -30,25 +30,16 @@ public class LaserControl : GunControl {
         if (Input.GetKeyDown(key)) {
 			// DrawLaser();
 			ShootRay();
-			ShootRay();
-			ShootRay();
-			ShootRay();
-			ShootRay();
-			ShootRay();
-			ShootRay();
-			ShootRay();
-			ShootRay();
-
         }	 
     }
 
 	public void ShootRay(){
 	
 		//RNG recoil spread
-		Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));
+		// Ray ray = new Ray(transform.position, transform.forward + new Vector3 (Random.Range(-0.05f,0.05f), Random.Range(-0.05f,0.05f), 0));
 		
 		//no spread
-		// Ray ray = new Ray(transform.position, transform.forward);
+		Ray ray = new Ray(transform.position, transform.forward);
 
 		RaycastHit rayHit = new RaycastHit();
 

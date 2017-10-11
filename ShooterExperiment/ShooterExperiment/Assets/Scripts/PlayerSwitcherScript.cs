@@ -14,6 +14,7 @@ public class PlayerSwitcherScript : MonoBehaviour {
 
     private GameObject presentPlayer;
     public static GameObject presentPlayerStatic;
+    public static GameObject otherPlayerStatic;
     private GameObject nextPlayer;
   
     public KeyCode leftPlayerKey;
@@ -212,7 +213,9 @@ public class PlayerSwitcherScript : MonoBehaviour {
             presentPlayer.GetComponentInChildren<GunControl>().enabled = false;
             presentPlayer.GetComponent<ActionRecorder>().enabled = true;
             presentPlayer.GetComponent<MeshRenderer>().enabled = true;
-        }
+            otherPlayerStatic = presentPlayer;
+         }
+
     }
 
 

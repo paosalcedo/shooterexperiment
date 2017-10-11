@@ -16,8 +16,7 @@ public class GameStateControl : MonoBehaviour {
  	// Use this for initialization
 	void Start () {
 		gameState = GameState.LIVE;
-		Debug.Log(enemies.Count);
- 	}
+  	}
 	
 	// Update is called once per frame
 	void Update () {

@@ -44,8 +44,8 @@ public class ActionRecorder : MonoBehaviour
     List<Vector3> rotations = new List<Vector3>();
     List<float> xRotations = new List<float>();
 
-    private Vector3 startPos;
-    private Vector3 startEuler;
+    public Vector3 startPos;
+    public Vector3 startEuler;
 
     private Toggle allTogglePlay;
     void Awake(){
@@ -79,9 +79,8 @@ public class ActionRecorder : MonoBehaviour
             isAttacking = true;
         }
         else {
-            isAttacking = false;
+            isAttacking = false; 
         }
-
         //add time to recordTime
         if (recordingState == RecordingState.RECORDING) {
             recordTime -= Time.deltaTime;
@@ -109,8 +108,17 @@ public class ActionRecorder : MonoBehaviour
                     RecordRotation(transform.eulerAngles, thisCamera.transform.eulerAngles.x);
                     RecordWeaponActivity(isAttacking);
                 }
-                else {
+                else { //what happens when RECORDING TIME reaches zero?
                     CommonFunctions.ResetPosAndRot(gameObject, startPos, startEuler);
+                    //find other player and reset their location; set to NOT_RECORDING to prevent loop ??
+                    ActionRecorder otherPlayerActionRecorder = PlayerSwitcherScript.otherPlayerStatic.GetComponent<ActionRecorder>(); 
+                    otherPlayerActionRecorder.recordingState = ActionRecorder.RecordingState.NOT_RECORDING;
+                    CommonFunctions.ResetPosAndRot(PlayerSwitcherScript.otherPlayerStatic, otherPlayerActionRecorder.startPos, otherPlayerActionRecorder.startEuler);
+                    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
+                    foreach (GameObject enemy in enemies){
+                        enemy.GetComponent<EnemyActionRecorder>().ResetEnemyPosAndRot();
+                        Debug.Log("resetting enemy positions");
+                    }
                     recordingState = RecordingState.NOT_RECORDING;
                 }
                 break;
@@ -305,8 +313,16 @@ public class ActionRecorder : MonoBehaviour
         if(coll.gameObject.tag == "RecordingTrigger"){
             if (recordingState == RecordingState.NOT_RECORDING){
                 recordingState = RecordingState.RECORDING;
+                //if this game object is NOT the presentplayer,
+                ActionRecorder otherPlayerActionRecorder = PlayerSwitcherScript.otherPlayerStatic.GetComponent<ActionRecorder>(); 
+                otherPlayerActionRecorder.recordingState = ActionRecorder.RecordingState.PLAYBACK;
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
+                foreach (GameObject enemy in enemies){
+                    enemy.GetComponent<EnemyActionRecorder>().ResetEnemyPosAndRot();
+                    // enemy.GetComponent<EnemyActionRecorder>().recordingState = EnemyActionRecorder.RecordingState.RECORDING; 
+                }
                 return;
-            }
+            }  
         }
     }
 
@@ -314,6 +330,14 @@ public class ActionRecorder : MonoBehaviour
         if(coll.gameObject.tag == "RecordingTrigger"){
             if (recordingState == RecordingState.RECORDING){
                 recordingState = RecordingState.NOT_RECORDING;
+                ActionRecorder otherPlayerActionRecorder = PlayerSwitcherScript.otherPlayerStatic.GetComponent<ActionRecorder>(); 
+                otherPlayerActionRecorder.recordingState = ActionRecorder.RecordingState.NOT_RECORDING;
+                CommonFunctions.ResetPosAndRot(PlayerSwitcherScript.otherPlayerStatic, otherPlayerActionRecorder.startPos, otherPlayerActionRecorder.startEuler);
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
+                foreach (GameObject enemy in enemies){
+                    enemy.GetComponent<EnemyActionRecorder>().ResetEnemyPosAndRot();
+                    // enemy.GetComponent<EnemyActionRecorder>().recordingState = EnemyActionRecorder.RecordingState.PLAYBACK; 
+                }
                 return;
             }
         }

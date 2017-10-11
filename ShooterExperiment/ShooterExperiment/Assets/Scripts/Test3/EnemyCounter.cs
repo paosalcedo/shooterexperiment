@@ -11,6 +11,8 @@ public class EnemyCounter : MonoBehaviour {
 	void Start () {
 		enemyNumAtStart = GameStateControl.enemies.Count;
 	}
+
+	
 	
 	// Update is called once per frame
 	void Update () {
