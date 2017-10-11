@@ -33,15 +33,23 @@ public class TargetHealth : EnemyHealth
 
     public override void DeductHealth(int damage_)
     {
-        if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
-            Debug.Log(targetHealth);
-            damage = damage_;
-            targetHealth -= damage;
-            if (targetHealth <= 0)
-            {
-                GameStateControl.enemies.Remove(gameObject);
-                Destroy(gameObject);
-            }
+        Debug.Log(targetHealth);
+        damage = damage_;
+        targetHealth -= damage;
+        if (targetHealth <= 0)
+        {
+            GameStateControl.enemies.Remove(gameObject);
+            Destroy(gameObject);
         }
+        // if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+        //     Debug.Log(targetHealth);
+        //     damage = damage_;
+        //     targetHealth -= damage;
+        //     if (targetHealth <= 0)
+        //     {
+        //         GameStateControl.enemies.Remove(gameObject);
+        //         Destroy(gameObject);
+        //     }
+        // }
     }
 }

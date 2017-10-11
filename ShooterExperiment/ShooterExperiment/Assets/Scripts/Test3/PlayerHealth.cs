@@ -35,23 +35,42 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
-			if(health <= 0){
-				if(!playerIsDead){ //if player is alive
-					GetComponent<FPSController>().enabled = false;
-					GetComponentInChildren<MouseLook>().enabled = false;
-					// GetComponent<ActionRecorder>().StopPlayback();
-					rb.freezeRotation = false;
-					rb.isKinematic = true;
-					if(!tweenIsDone){
-						LeanTween.rotate(gameObject, new Vector3(-90f, 0, 0), deathDelay*0.5f).setEaseInSine();				
-						LeanTween.moveLocalY(gameObject, 0f, deathDelay*0.5f).setEaseInSine();
-						tweenIsDone = true;
-					} 
-					playerIsDead = true;
- 				} 
- 			}
+		if(health <= 0){
+			if(!playerIsDead){ //if player is alive
+				GetComponent<FPSController>().enabled = false;
+				GetComponentInChildren<MouseLook>().enabled = false;
+				// GetComponent<ActionRecorder>().StopPlayback();
+				rb.freezeRotation = false;
+				rb.isKinematic = true;
+				if(!tweenIsDone){
+					LeanTween.rotate(gameObject, new Vector3(-90f, 0, 0), deathDelay*0.5f).setEaseInSine();				
+					LeanTween.moveLocalY(gameObject, 0f, deathDelay*0.5f).setEaseInSine();
+					tweenIsDone = true;
+				} 
+				playerIsDead = true;
+			} 
 		}
+
+		//	Put this code back in if you want the player to only take damage in LIVE.
+		//**************************************************************************** 
+		// if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+		// 	if(health <= 0){
+		// 		if(!playerIsDead){ //if player is alive
+		// 			GetComponent<FPSController>().enabled = false;
+		// 			GetComponentInChildren<MouseLook>().enabled = false;
+		// 			// GetComponent<ActionRecorder>().StopPlayback();
+		// 			rb.freezeRotation = false;
+		// 			rb.isKinematic = true;
+		// 			if(!tweenIsDone){
+		// 				LeanTween.rotate(gameObject, new Vector3(-90f, 0, 0), deathDelay*0.5f).setEaseInSine();				
+		// 				LeanTween.moveLocalY(gameObject, 0f, deathDelay*0.5f).setEaseInSine();
+		// 				tweenIsDone = true;
+		// 			} 
+		// 			playerIsDead = true;
+ 		// 		} 
+ 		// 	}
+		// }
+		//************************************************************************************
 
 		//check if game is in SIMULATION state and if currently selected player is RECORDING.
 		if (GameStateControl.gameState == GameStateControl.GameState.SIMULATION 
@@ -66,13 +85,15 @@ public class PlayerHealth : MonoBehaviour {
 
 	public virtual void TakeDamage(int damage_){
 		//only take damage
-		if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
-			health -= damage_;
- 		} 
+		health -= damage_;
 
-		if(GameStateControl.gameState == GameStateControl.GameState.SIMULATION){
-			numHits++;
- 		}
+		// if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
+		// 	health -= damage_;
+ 		// } 
+
+		// if(GameStateControl.gameState == GameStateControl.GameState.SIMULATION){
+		// 	numHits++;
+ 		// }
 	} 
 	
 }
