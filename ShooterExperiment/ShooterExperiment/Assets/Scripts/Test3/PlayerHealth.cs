@@ -86,6 +86,7 @@ public class PlayerHealth : MonoBehaviour {
 	public virtual void TakeDamage(int damage_){
 		//only take damage
 		health -= damage_;
+		//	Put this code back in if you want the player to only take damage in LIVE.
 
 		// if(GameStateControl.gameState == GameStateControl.GameState.LIVE){
 		// 	health -= damage_;
